@@ -25,9 +25,9 @@
     <div style="padding:0px 10px 0 10px;">
         <div style="margin-top: 0px; float: left; overflow: hidden; width: 60%;padding:10px 15px 0 0px">
             <div style='background:#898e8c;color:white;font-weight:bold;padding:7px;text-align:center'>Air Safety Report</div>
-            <div style="border:1px solid #ccc;padding:10px;">
+            <div style="border:1px solid #ccc;padding:10px;" ng-style="{height: scroll_asradd_height + 'px'}">
                 <!--<div id="scroll_qaCabin" dx-scroll-view="scroll_qaCabin" class='thin-scroll'>-->
-                <div class='thin-scroll' style='overflow-y:auto;' ng-style="{height: scroll_asradd_height + 'px'}">
+                <div class='thin-scroll' style='overflow-y:auto;height:100%'>
                     <table style="margin-top:10px;border:1px solid #eee;width:100%;color:black" class="dx-border">
                         <tr>
                             <td colspan="6" style=" padding:7px;text-align:left;color:black;font-weight:bold">
@@ -37,9 +37,31 @@
                     </table>
                     <table style="margin-top:10px;border:1px solid #eee;width:100%;color:black" class="dx-border">
                         <tr>
-                            <td colspan="2" style="background-color:lightgray;padding:7px;text-align:left;color:black;font-weight:bold">
-                               Flight
+                            <td colspan="6" style="background-color:lightgray;padding:7px;text-align:left;color:black;font-weight:bold">
+                                Flight
                             </td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 7px;text-align:left; font-weight: bold"> Date: </td>
+                            <td style="padding:7px;text-align:left;"><div dx-date-box="dt_date" style="width: 100%" class="center"></div></td>
+                            <td style="padding: 7px;text-align:left; font-weight: bold"> Reg.: </td>
+                            <td style="padding:7px;text-align:left;"><div dx-text-box="txt_reg" class="center"></div></td>
+                            <td style="padding: 7px;text-align:left; font-weight: bold"> No.: </td>
+                            <td style="padding:7px;text-align:left;"><div dx-number-box="num_no" class="center"></div></td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 7px;text-align:left; font-weight: bold"> Route: </td>
+                            <td style="padding:7px;text-align:left;"><div dx-text-box="txt_route" class="center"></div></td>
+                            <td style="padding: 7px;text-align:left; font-weight: bold"> STD: </td>
+                            <td style="padding:7px;text-align:left;"><div dx-date-box="dt_std" style="width: 100%" class="center"></div></td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 7px;text-align:left; font-weight: bold"> Capitan: </td>
+                            <td style="padding:7px;text-align:left;"><div dx-text-box="txt_cap" class="center"></div></td>
+                            <td style="padding: 7px;text-align:left; font-weight: bold"> F/O: </td>
+                            <td style="padding:7px;text-align:left;"><div dx-text-box="txt_fo" class="center"></div></td>
+                            <td style="padding: 7px;text-align:left; font-weight: bold"> SCCM: </td>
+                            <td style="padding:7px;text-align:left;"><div dx-text-box="txt_sccm" class="center"></div></td>
                         </tr>
 
                     </table>
@@ -93,13 +115,13 @@
                     </table>
                     <table style="margin-top:10px;border:1px solid #eee;width:100%;color:black" class="dx-border">
                         <!-- <tr>
-            <td style="background-color:lightgray;padding:7px;text-align:left;color:black;font-weight:bold">
-                Type of Event (Tick As Applicable)
-            </td>
-        </tr>
-        <tr>
-            <td style="padding:7px"><div dx-select-box="sb_EventType"> </div> </td>
-        </tr>-->
+                    <td style="background-color:lightgray;padding:7px;text-align:left;color:black;font-weight:bold">
+                        Type of Event (Tick As Applicable)
+                    </td>
+                </tr>
+                <tr>
+                    <td style="padding:7px"><div dx-select-box="sb_EventType"> </div> </td>
+                </tr>-->
                         <tr>
                             <td style="padding: 7px;text-align:left; font-weight: bold"> Date of Occurrence: </td>
                             <td style="padding:7px;text-align:left;"><div dx-date-box="txt_OccurrenceDate" class="center" dx-validator="{validationGroup:'asradd',  validationRules: [{ type: 'required',   }]}"></div></td>
@@ -489,17 +511,6 @@
 
                     </table>
 
-                    <table style="margin-top:10px;border:1px solid #eee;width:100%;color:black;  " class="dx-border">
-                        <tr>
-                            <td class="titleStyle" style="background-color: #66ffcc !important">
-                                Result
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="tdStyle"> <div dx-text-area="txt_result"></div></td>
-                        </tr>
-
-                    </table>
 
                     <div class="titleStyle">
                         ATTACHED DOCUMENTS
@@ -511,18 +522,31 @@
                     </div>
                 </div>
 
-                </div>
             </div>
-			
-          
+            <div>
+                <table style="margin-top:10px;border:1px solid #eee;width:100%;color:black;  " class="dx-border">
+                    <tr>
+                        <td class="titleStyle" style="background-color: #66ffcc !important">
+                            Result
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="tdStyle"> <div dx-text-area="txt_result"></div></td>
+                    </tr>
+
+                </table>
+            </div>
         </div>
-		<div style="float: right; width:40%">
-    <div ng-include="'app/views/qaRefer.html?vx=2'" onload="testLoaded()"></div>
-</div>
+       
+
+    </div>
+    <div style="float: right; width:40%">
+        <div ng-include="'app/views/qaRefer.html?vx=2'" onload="testLoaded()"></div>
     </div>
 
-
     <div dx-load-panel="loadPanel"></div>
+
+    <div style="clear:both"></div>
 </div>
-  <div style="clear:both"></div>
-			
+
+

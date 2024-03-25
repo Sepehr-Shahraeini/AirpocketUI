@@ -240,7 +240,7 @@ app.controller('asrAddController', ['$scope', '$location', 'flightBagService', '
         $scope.loadingVisible = false; General.ShowNotify(err.message, 'error');
     };
     ////////////////////////////////
-    $scope.scroll_asradd_height = $(window).height() - 215;
+    $scope.scroll_asradd_height = $(window).height() - 245;
     $scope.scroll_asradd = {
         width: '100%',
         bounceEnabled: false,
@@ -1137,6 +1137,55 @@ app.controller('asrAddController', ['$scope', '$location', 'flightBagService', '
 
         }
     };
+
+    $scope.dt_std = {
+        bindingOptions: {
+            value: 'entity.',
+        }
+    };
+
+    $scope.txt_reg = {
+        bindingOptions: {
+            value: 'entity.',
+        }
+    };
+
+    $scope.num_no = {
+        bindingOptions: {
+            value: 'entity.',
+        }
+    };
+
+    $scope.txt_route = {
+        bindingOptions: {
+            value: 'entity.',
+        }
+    };
+
+    $scope.dt_date = {
+        bindingOptions: {
+            value: 'entity.',
+        }
+    };
+
+    $scope.txt_cap = {
+        bindingOptions: {
+            value: 'entity.',
+        }
+    };
+
+    $scope.txt_fo = {
+        bindingOptions: {
+            value: 'entity.',
+        }
+    };
+
+    $scope.txt_sccm = {
+        bindingOptions: {
+            value: 'entity.',
+        }
+    };
+
 
     ///////////////////////////////
 
