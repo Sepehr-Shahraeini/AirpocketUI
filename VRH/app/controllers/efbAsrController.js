@@ -1139,52 +1139,83 @@ app.controller('asrAddController', ['$scope', '$location', 'flightBagService', '
     };
 
     $scope.dt_std = {
+        readOnly: true,
+        focusStateEnabled: false,
+        type: 'datetime',
+        displayFormat: "HH:mm",
         bindingOptions: {
-            value: 'entity.',
+            value: 'entity.STD',
         }
     };
 
     $scope.txt_reg = {
+        readOnly: true,
+        focusStateEnabled: false,
         bindingOptions: {
-            value: 'entity.',
+            value: 'entity.Register',
         }
     };
 
     $scope.num_no = {
+        readOnly: true,
+        focusStateEnabled: false,
         bindingOptions: {
-            value: 'entity.',
+            value: 'entity.FlightNumber',
         }
     };
 
+   
     $scope.txt_route = {
+        readOnly: true,
+        focusStateEnabled: false,
         bindingOptions: {
-            value: 'entity.',
+            value: 'entity.Route',
         }
     };
 
     $scope.dt_date = {
+        readOnly: true,
+        focusStateEnabled: false,
+        type: 'datetime',
+        displayFormat: "yyyy-MMM-dd",
         bindingOptions: {
-            value: 'entity.',
+            value: 'entity.STD',
         }
     };
 
     $scope.txt_cap = {
+        readOnly: true,
+        focusStateEnabled: false,
         bindingOptions: {
-            value: 'entity.',
+            value: 'entity.P1Name',
         }
     };
 
     $scope.txt_fo = {
+        readOnly: true,
+        focusStateEnabled: false,
         bindingOptions: {
-            value: 'entity.',
+            value: 'entity.P2Name',
         }
     };
 
     $scope.txt_sccm = {
+        readOnly: true,
+        focusStateEnabled: false,
         bindingOptions: {
-            value: 'entity.',
+            value: 'entity.SIC',
         }
     };
+
+  $scope.txt_ip = {
+        readOnly: true,
+        focusStateEnabled: false,
+        bindingOptions: {
+            value: 'entity.IPName',
+        }
+    };
+
+   
 
 
     ///////////////////////////////
