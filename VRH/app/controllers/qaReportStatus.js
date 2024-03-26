@@ -378,7 +378,7 @@ app.controller('qaReportStatus', ['$http', '$scope', '$location', '$routeParams'
 
             if (e.data.Status == 1)
                 data.isNotLocked = false;
-            else
+            else 
                 data.isNotLocked = true;
 
 
