@@ -1547,14 +1547,16 @@
                             <table style='width:100%;text-align:center'>
                                 <tr style='border-bottom:1px solid #ddd'>
                                     <td style='padding:3px;font-size:11px;border-right:1px solid #ddd;background:#ffcc66'>NEW</td>
+                                    <td style='padding:3px;font-size:11px;border-right:1px solid #ddd;background:#ffff99'>RETURNED</td>
                                     <td style='padding:3px;font-size:11px;border-right:1px solid #ddd;background:#b3e6ff'>IN PROGRESS</td>
                                     <td style='padding:3px;font-size:11px;background:#66ffcc'>CLOSED</td>
-                                <tr>
+                                </tr>
                                 <tr style='border-bottom:0px solid #eee'>
-                                    <td style='padding:3px;font-size:12px;font-weight:bold;border-right:1px solid #ddd '>{{x.NewCount}}</td>
-                                    <td style='padding:3px;font-size:12px;font-weight:bold;border-right:1px solid #ddd '>{{x.OpenCount}}</td>
-                                    <td style='padding:3px;font-size:12px;font-weight:bold'>{{x.DeterminedCount}}</td>
-                                <tr>
+                                    <td style='padding:5px;font-size:12px;font-weight:bold;border-right:1px solid #ddd '>{{x.NewCount}}</td>
+                                    <td style='padding:5px;font-size:12px;font-weight:bold;border-right:1px solid #ddd '>{{x.ReturnedCount}}</td>
+                                    <td style='padding:5px;font-size:12px;font-weight:bold;border-right:1px solid #ddd '>{{x.OpenCount}}</td>
+                                    <td style='padding:5px;font-size:12px;font-weight:bold'>{{x.DeterminedCount}}</td>
+                                </tr>
                             </table>
                         </div>
                     </div>
@@ -1868,6 +1870,12 @@
                         <a class="logo" style="text-decoration:none;" href="" data-ng-click="navigate(  '/board'  , 'flight_board')">
                             <img src="content/images/date.png">
                             <div class="title-small ng-binding" style="color:gray;font-size:1em">Flight Board</div>
+                        </a>
+                    </div>
+                    <div class="box-app" style="padding-top:0" ng-show="HasMenuAccess('log_report',3)">
+                        <a class="logo" style="text-decoration:none;" href="" data-ng-click="navigate(  '/qa/status/8/SafetyForms'  , 'safety_forms')">
+                            <img src="content/images/safetyforms.png">
+                            <div class="title-small ng-binding" style="color:gray;font-size:1em">Safety Forms</div>
                         </a>
                     </div>
                     <div class="box-app" style="padding-top:0" ng-show="HasMenuAccess('log_report',3)">
@@ -2285,14 +2293,16 @@
                             <table style='width:100%;text-align:center'>
                                 <tr style='border-bottom:1px solid #ddd'>
                                     <td style='padding:3px;font-size:11px;border-right:1px solid #ddd;background:#ffcc66'>NEW</td>
+                                    <td style='padding:3px;font-size:11px;border-right:1px solid #ddd;background:#ffff99'>RETURNED</td>
                                     <td style='padding:3px;font-size:11px;border-right:1px solid #ddd;background:#b3e6ff'>IN PROGRESS</td>
                                     <td style='padding:3px;font-size:11px;background:#66ffcc'>CLOSED</td>
-                                <tr>
+                                </tr>
                                 <tr style='border-bottom:0px solid #eee'>
-                                    <td style='padding:3px;font-size:12px;font-weight:bold;border-right:1px solid #ddd '>{{x.NewCount}}</td>
-                                    <td style='padding:3px;font-size:12px;font-weight:bold;border-right:1px solid #ddd '>{{x.OpenCount}}</td>
-                                    <td style='padding:3px;font-size:12px;font-weight:bold'>{{x.DeterminedCount}}</td>
-                                <tr>
+                                    <td style='padding:5px;font-size:12px;font-weight:bold;border-right:1px solid #ddd '>{{x.NewCount}}</td>
+                                    <td style='padding:5px;font-size:12px;font-weight:bold;border-right:1px solid #ddd '>{{x.ReturnedCount}}</td>
+                                    <td style='padding:5px;font-size:12px;font-weight:bold;border-right:1px solid #ddd '>{{x.OpenCount}}</td>
+                                    <td style='padding:5px;font-size:12px;font-weight:bold'>{{x.DeterminedCount}}</td>
+                                </tr>
                             </table>
                         </div>
                     </div>

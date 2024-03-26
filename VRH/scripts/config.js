@@ -226,7 +226,7 @@ Config.MenuItems = [
 	   { moduleId: 5, key: 'efb', title: 'EFB Report', url: '/flights/efbs', icon: 'content/images/efb.png' },
 	 { moduleId: 5, key: 'log_report', title: 'Flight Log Report', url: '/log/report', icon: 'content/images/efb.png' },
 	 { moduleId: 5, key: 'log_report_profile', title: 'Profile Log Report', url: '/log/profile/report', icon: 'content/images/efb.png' },
-	 
+    { moduleId: 5, key: 'safety_forms', title: 'Safety Forms', url: '/qa/status/8/SafetyForms', icon: 'content/images/efb.png' },
 	 
 	   { moduleId: 5, key: 'fdm_upload', title: 'Events', url: '/fdm', icon: 'content/images/efb.png' },
 		   { moduleId: 5, key: 'fdm_handling', title: 'Events Handling', url: '/fdm/ops', icon: 'content/images/efb.png' },

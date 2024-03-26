@@ -624,7 +624,8 @@ function ($scope, $routeParams, authService, activityService, libraryService,fli
 		title=title.replaceAll('/','_');
         //$location.url("/qa/status/" + type+"/"+title);
 	   //$window.open("/qa/status/" + type);
-	  $window.open($location.$$absUrl.replace($location.$$path,"/qa/status/" + type+"/"+title), '_blank');
+	  //$window.open($location.$$absUrl.replace($location.$$path,"/qa/status/" + type+"/"+title), '_blank');
+        $location.path("qa/status/" + type + "/SafetyForms");
 		qaService.setDateVisit($rootScope.employeeId, type).then(function(res){
 		console.log(res);
 		});
@@ -1842,6 +1843,11 @@ function ($scope, $routeParams, authService, activityService, libraryService,fli
                     else
                         $scope.qaNotifShow = false
                 });
+                qaService.getQAByEmployee($rootScope.employeeId).then(function (response) {
+                    $scope.qaStatus = response.Data;
+                    $scope.has_forms = $scope.qaStatus && $scope.qaStatus.length > 0;
+                    console.log($scope.qaStatus);
+                });
   //               				       qaService.getDateVisit($rootScope.employeeId).then(function (res) {
   //               console.log(res.Data)
   //    var _mes=[];
@@ -2126,16 +2132,17 @@ function ($scope, $routeParams, authService, activityService, libraryService,fli
 
             $scope.ShowForm = function (e) {
                 var data = {
-                    Id: e.Id,
+                    Id: e.data.EntityId,
                     Type: e.data.Type,
                     EmployeeId: $rootScope.employeeId,
                     isNotDetermined: true,
                     Category: 'open',
                     ProducerId: e.data.EmployeeId,
                     FlightId: e.data.FlightId,
-                    Priority: e.data.Priority,
+                    Priority: e.data.FlightId,
                     Entity: e.data
                 };
+                console.log('show_form',data);
                 //if (e.data.Status == 1)
                 //    data.isNotLocked = false;
                 //else
@@ -2178,11 +2185,11 @@ function ($scope, $routeParams, authService, activityService, libraryService,fli
                     fixed: true,
                     fixedPosition: 'right',
                 },
+                { dataField: 'DateStatus', caption: 'Date', allowResizing: true, alignment: 'center', dataType: 'date', allowEditing: false, width: 120 },
 
                 { dataField: 'TypeTitle', caption: 'Title', allowResizing: true, alignment: 'left', dataType: 'string', allowEditing: false},
-                { dataField: 'ReferrerName', caption: 'Referrer', allowResizing: true, alignment: 'center', dataType: 'string', allowEditing: false, minwidth: 150 },
-                { dataField: 'DateStatus', caption: 'Date', allowResizing: true, alignment: 'center', dataType: 'date', allowEditing: false, width: 120 },
-                { dataField: 'ReviewResultTitle', caption: 'Status', allowResizing: true, alignment: 'center', dataType: 'string', allowEditing: false, width: 100 },
+                { dataField: 'ReferrerName', caption: 'Referrer/Reporter', allowResizing: true, alignment: 'left', dataType: 'string', allowEditing: false, width: 230 },
+               // { dataField: 'ReviewResultTitle', caption: 'Status', allowResizing: true, alignment: 'center', dataType: 'string', allowEditing: false, width: 100 },
                 { dataField: 'DeadLine', caption: 'DeadLine', allowResizing: true, alignment: 'center', dataType: 'date', allowEditing: false, width: 120 },
                 { dataField: 'Priority', caption: 'Priority', allowResizing: true, alignment: 'center', dataType: 'string', allowEditing: false, width: 70 },
 
@@ -2203,7 +2210,7 @@ function ($scope, $routeParams, authService, activityService, libraryService,fli
                     visible: false
                 },
                 filterRow: {
-                    visible: true,
+                    visible: false,
                     showOperationChooser: true,
                 },
                 showRowLines: true,
@@ -2277,6 +2284,11 @@ function ($scope, $routeParams, authService, activityService, libraryService,fli
                         $scope.qaNotifShow = true
                     else
                         $scope.qaNotifShow = false
+                });
+                qaService.getQAByEmployee($rootScope.employeeId).then(function (response) {
+                    $scope.qaStatus = response.Data;
+                    $scope.has_forms = $scope.qaStatus && $scope.qaStatus.length > 0;
+                    console.log($scope.qaStatus);
                 });
   //         qaService.getDateVisit($rootScope.employeeId).then(function (res) {
   //               console.log(res.Data)

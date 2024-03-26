@@ -28,7 +28,7 @@ app.controller('qaReportStatus', ['$http', '$scope', '$location', '$routeParams'
     }
 
     $scope.entity.type = $routeParams.type;
-    $scope.selected_type = $scope.entity.type;
+    $scope.selected_type = Number($scope.entity.type);
 	
 	
 
