@@ -445,6 +445,23 @@ app.controller('qaSecurityController', ['$scope', '$location', 'qaService', 'aut
 
     //////////////////////////////////
 
+    $scope.isMaximise = true;
+    $scope.maximise = function () {
+        $scope.isMaximise = !$scope.isMaximise;
+        //document.getElementById("#referForm").style.width = "100%"
+
+    }
+
+    $scope.getStyle = function () {
+        var _width = '40%';
+        if (!$scope.isMaximise)
+            _width = '100%';
+        return {
+            'width': _width,
+        }
+
+    }
+
     var appWindow = angular.element($window);
     appWindow.bind('resize', function () {
         $scope.scroll_qaSecurity_height = $(window).height() - 170;

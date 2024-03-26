@@ -211,6 +211,7 @@ app.controller('qaOperationPopup', ['$scope', 'qaService', '$routeParams', '$roo
     }
 
     $scope.groundLoaded = function () {
+        console.log($scope.tempData);
         $rootScope.$broadcast('InitQAGround', $scope.tempData);
         qaService.setReceiverLog($scope.tempData.Entity.FollowingId).then(function (res) {
             console.log(res);
@@ -231,7 +232,9 @@ app.controller('qaOperationPopup', ['$scope', 'qaService', '$routeParams', '$roo
         });
     }
 	
-	$scope.asrLoaded = function () {
+    $scope.asrLoaded = function () {
+
+        console.log($scope.tempData);
         $rootScope.$broadcast('InitEfbAsr', $scope.tempData);
         qaService.setReceiverLog($scope.tempData.Entity.FollowingId).then(function (res) {
             console.log(res);

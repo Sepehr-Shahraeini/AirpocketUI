@@ -136,7 +136,6 @@ app.controller('asrAddController', ['$scope', '$location', 'flightBagService', '
     $scope.isLockVisible = false;
     $scope.bind = function () {
         $scope.entity.FlightId = $scope.tempData.FlightId;
-
         //if ($rootScope.getOnlineStatus()) {
 
         //    flightBagService.checkLock($scope.entity.FlightId, 'asr').then(function (response) {
@@ -1288,6 +1287,24 @@ app.controller('asrAddController', ['$scope', '$location', 'flightBagService', '
 
 
     ////////////////////////////////
+    $scope.isMaximise = true;
+    $scope.maximise = function () {
+        $scope.isMaximise = !$scope.isMaximise;
+        //document.getElementById("#referForm").style.width = "100%"
+
+    }
+
+    $scope.getStyle = function(){
+        var _width = '40%';
+        if (!$scope.isMaximise)
+            _width = '100%';
+        return {
+            'width':_width,
+        }
+
+    }
+
+
     $scope.tempData = null;
     $scope.$on('onSign', function (event, prms) {
 
@@ -1307,6 +1324,8 @@ app.controller('asrAddController', ['$scope', '$location', 'flightBagService', '
 
 
         $scope.tempData = prms;
+
+        console.log($scope.tempData);
 
         $scope.followUpEntity.Category = $scope.tempData.Category;
         $scope.followUpEntity.Id = $scope.tempData.Id;

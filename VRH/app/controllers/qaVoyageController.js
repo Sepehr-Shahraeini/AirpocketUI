@@ -548,6 +548,24 @@ app.controller('qaVoyageController', ['$scope', '$location', 'flightBagService',
 
     };
     /////////////////////////////////
+
+    $scope.isMaximise = true;
+    $scope.maximise = function () {
+        $scope.isMaximise = !$scope.isMaximise;
+        //document.getElementById("#referForm").style.width = "100%"
+
+    }
+
+    $scope.getStyle = function () {
+        var _width = '40%';
+        if (!$scope.isMaximise)
+            _width = '100%';
+        return {
+            'width': _width,
+        }
+
+    }
+
     $scope.tempData = null;
     $scope.$on('onSign', function (event, prms) {
 
