@@ -5,9 +5,11 @@ app.controller('qaReportStatus', ['$http', '$scope', '$location', '$routeParams'
     $scope.popupselectedTabIndex = -1;
     $scope.popupselectedTabId = null;
     $scope.tabs = [
-        { text: "New", id: 'new' },
-        { text: "In Progress", id: 'open' },
+       // { text: "Active", id: 'active' },
+        { text: "Active", id: 'new' },
         { text: "Closed", id: 'determined' },
+      
+       // { text: "In Progress", id: 'open' },
 
     ];
 
@@ -195,18 +197,30 @@ app.controller('qaReportStatus', ['$http', '$scope', '$location', '$routeParams'
 
     /////////////////////////////////////////
 
-
-
-    $scope.bind = function () {
-		console.log($scope.entity);
+    $scope.bind_forms = function () {
+        $scope.entity.type = $scope.selected_type;
         qaService.getQAStatus($scope.entity).then(function (response) {
-            $rootScope.dg_open_ds = response.Data.Open;
-            $rootScope.dg_new_ds = response.Data.New;
+            // $rootScope.dg_open_ds = response.Data.Open;
+            $rootScope.dg_new_ds = response.Data.Active;
             $rootScope.dg_determined_ds = response.Data.Determined;
             $scope.loadingVisible = false;
             console.log($rootScope.dg_determined_ds);
 
         });
+    }
+
+    $scope.bind = function () {
+        console.log($scope.entity);
+
+        qaService.getQAByEmployee($rootScope.employeeId).then(function (response2) {
+            $scope.qaStatus = response2.Data;
+            console.log('qastatus', response2.Data);
+            $scope.bind_forms();
+             
+        });
+
+
+       
     };
 
 
@@ -256,35 +270,57 @@ app.controller('qaReportStatus', ['$http', '$scope', '$location', '$routeParams'
 
 
 
-
+        { dataField: 'Category', caption: 'Status',name:'Category', allowResizing: true, alignment: 'center', dataType: 'string', allowEditing: false, width: 120 },
+        { dataField: 'DateStatus', caption: 'Status Date', allowResizing: true, alignment: 'center', dataType: 'date', format: 'yyyy-MM-dd', allowEditing: false, width: 120 },
+      //  { dataField: 'TypeTitle', caption: 'Form Type', allowResizing: true, alignment: 'center', dataType: 'string', allowEditing: false, width: 180 },
         { dataField: 'FormNo', caption: 'Form No', allowResizing: true, alignment: 'center', dataType: 'number', allowEditing: false, width: 180 },
-        { dataField: 'DeadLine', caption: 'DeadLine', allowResizing: true, alignment: 'center', dataType: 'date', allowEditing: false, width: 150 },
-{
-    dataField: 'Priority', caption: 'Priority', allowResizing: true, alignment: 'center', dataType: 'string', allowEditing: false, width: 150,
-    cellTemplate: function (container, options) {
-        var priority = options.data.Priority;
-        var priorityText = (priority === 0) ? 'Critical' : priority;
-        var priorityText = (priority === 1) ? 'Major' : priority;
-        var priorityText = (priority === 2) ? 'Minor' : priority;
-
-        $("<div>")
-            .html(priorityText)
-            .appendTo(container);
-    }
-},
+       
 		{ dataField: 'FlightNumber', caption: 'Flight No', allowResizing: true, alignment: 'center', dataType: 'number', allowEditing: false, width: 120 },
         { dataField: 'Route', caption: 'Route', allowResizing: true, alignment: 'center', dataType: 'string', allowEditing: false, width: 120 },
         { dataField: 'Register', caption: 'Reg', allowResizing: true, alignment: 'center', dataType: 'string', allowEditing: false, width: 120 },
         { dataField: 'FlightDate', caption: 'Flight Date', allowResizing: true, alignment: 'center', dataType: 'date', allowEditing: false, width: 130 },
         { dataField: 'EmployeeName', caption: 'Reporter', allowResizing: true, alignment: 'center', dataType: 'string', allowEditing: false, width: 300 },
         { dataField: 'DateOccurrence', caption: 'Date', allowResizing: true, alignment: 'center', dataType: 'date', allowEditing: false, width: 130 },
-        { dataField: 'ReviewResultTitle', caption: 'Status', allowResizing: true, alignment: 'center', dataType: 'string', allowEditing: false, width: 150 },
+       // { dataField: 'ReviewResultTitle', caption: 'Status', allowResizing: true, alignment: 'center', dataType: 'string', allowEditing: false, width: 150 },
 
+        { dataField: 'DeadLine', caption: 'DeadLine', allowResizing: true, alignment: 'center', dataType: 'date', allowEditing: false, width: 150 },
+        {
+            dataField: 'Priority', caption: 'Priority', allowResizing: true, alignment: 'center', dataType: 'string', allowEditing: false, width: 150,
+            cellTemplate: function (container, options) {
+                var priority = options.data.Priority;
+                var priorityText = (priority === 0) ? 'Critical' : priority;
+                var priorityText = (priority === 1) ? 'Major' : priority;
+                var priorityText = (priority === 2) ? 'Minor' : priority;
 
+                $("<div>")
+                    .html(priorityText)
+                    .appendTo(container);
+            }
+        },
 
 
 
     ];
+
+    $scope.get_height = function () {
+        var h = $(window).height() - 110;
+        return {
+            'height':h+'px',
+        }
+    }
+
+    $scope.showStatus = function (type, type_title) {
+        $scope.selected_type = Number(type);
+        $scope.bind_forms();
+
+    }
+    $scope.get_tile_class = function (type) {
+        if (Number(type) == $scope.selected_type)
+            return 'tile_selected';
+
+        return 'tile_header';
+    }
+
     $scope.dg_new_selected = null;
     $scope.dg_new_instance = null;
     $rootScope.dg_new_ds = null;
@@ -315,7 +351,7 @@ app.controller('qaReportStatus', ['$http', '$scope', '$location', '$routeParams'
         selection: { mode: 'single' },
 
         columnAutoWidth: false,
-        height: $(window).height() - 155,
+        height: $(window).height() - 180,
 
         columns: $scope.dg_new_columns,
         onContentReady: function (e) {
@@ -329,7 +365,7 @@ app.controller('qaReportStatus', ['$http', '$scope', '$location', '$routeParams'
 
                var data = {
                 Id: e.data.Id,
-                Type: $scope.entity.type,
+                Type: $scope.selected_type,
                 EmployeeId: $rootScope.employeeId,
                 isNotDetermined: true,
                 Category: 'new',
@@ -346,44 +382,45 @@ app.controller('qaReportStatus', ['$http', '$scope', '$location', '$routeParams'
                 data.isNotLocked = true;
 
 
-            switch ($scope.entity.type) {
-                case '0':
+            switch ($scope.selected_type) {
+                
+                case 0:
                     $rootScope.$broadcast('InitOperationPopup', data);
                     //$rootScope.$broadcast('InitQACabin', data);
                     break;
-                case '1':
+                case 1:
                     $rootScope.$broadcast('InitOperationPopup', data);
                     //$rootScope.$broadcast('InitQAGround', data);
                     break;
-                case '2':
+                case 2:
                     $rootScope.$broadcast('InitOperationPopup', data);
                     //$rootScope.$broadcast('InitVHR', data);
                     break;
-                case '3':
+                case 3:
                     $rootScope.$broadcast('InitOperationPopup', data);
                     //$rootScope.$broadcast('InitQAMaintenance', data);
                     break;
-                case '4':
+                case 4:
                     $rootScope.$broadcast('InitOperationPopup', data);
                     //$rootScope.$broadcast('InitQACatering', data);
                     break;
-                case '5':
+                case 5:
                     $rootScope.$broadcast('InitOperationPopup', data);
                     //$rootScope.$broadcast('InitQASecurity', data);
                     break;
-                case '6':
+                case 6:
                     $rootScope.$broadcast('InitOperationPopup', data);
                     //$rootScope.$broadcast('InitQADispatch', data);
                     break;
-					  case '7':
+					  case 7:
                     $rootScope.$broadcast('InitOperationPopup', data);
                     //$rootScope.$broadcast('InitQADispatch', data);
                     break;
-					  case '8':
+					  case 8:
                     $rootScope.$broadcast('InitOperationPopup', data);
                     //$rootScope.$broadcast('InitQADispatch', data);
                     break;
-					 case '9':
+					 case 9:
      $rootScope.$broadcast('InitOperationPopup', data);
      //$rootScope.$broadcast('InitQADispatch', data);
      break;
@@ -401,6 +438,29 @@ app.controller('qaReportStatus', ['$http', '$scope', '$location', '$routeParams'
      e.rowElement.css('background', '#ffcc99');
 
  }
+
+        },
+
+
+        onCellPrepared: function (e) {
+            if (e.column.name != "Category")
+                return;
+            if (e.data && e.data.CategoryOrder == 1) {
+
+                e.cellElement.css('background', '#ffcc66');
+            }
+            if (e.data && e.data.CategoryOrder == 2) {
+
+                e.cellElement.css('background', '#ffff99');
+            }
+            if (e.data && e.data.CategoryOrder == 3) {
+
+                e.cellElement.css('background', '#b3e6ff');
+            }
+            if (e.data && e.data.CategoryOrder == 4) {
+
+                e.cellElement.css('background', '#66ffcc');
+            }
 
         },
 
@@ -527,7 +587,7 @@ app.controller('qaReportStatus', ['$http', '$scope', '$location', '$routeParams'
 			
                 var data = {
                 Id: e.data.Id,
-                Type: $scope.entity.type,
+                    Type: $scope.selected_type,
                 EmployeeId: $rootScope.employeeId,
                 isNotDetermined: true,
                 Category: 'open',
@@ -541,8 +601,7 @@ app.controller('qaReportStatus', ['$http', '$scope', '$location', '$routeParams'
             else
                 data.isNotLocked = true;
 
-            var type = $scope.entity.type;
-            switch ($scope.entity.type) {
+            switch ($scope.selected_type) {
                 case '0':
                     $rootScope.$broadcast('InitOperationPopup', data);
                     //$rootScope.$broadcast('InitQACabin', data);
@@ -722,7 +781,7 @@ app.controller('qaReportStatus', ['$http', '$scope', '$location', '$routeParams'
 
               var data = {
                 Id: e.data.Id,
-                Type: $scope.entity.type,
+                  Type: $scope.selected_type,
                 EmployeeId: $rootScope.employeeId,
                 isNotDetermined: true,
                 ProducerId: e.data.EmployeeId,
@@ -737,7 +796,7 @@ app.controller('qaReportStatus', ['$http', '$scope', '$location', '$routeParams'
                 data.isNotLocked = true;
 
 
-            switch ($scope.entity.type) {
+            switch ($scope.selected_type) {
                 case '0':
                     $rootScope.$broadcast('InitOperationPopup', data);
                     //$rootScope.$broadcast('InitQACabin', data);
@@ -843,6 +902,46 @@ app.controller('qaReportStatus', ['$http', '$scope', '$location', '$routeParams'
     };
 
     //////////////////////////////////
+
+    $scope.selected_type = 8;
+    $scope.get_title = function () {
+        switch ($scope.selected_type) {
+            case 0:
+               return 'Cabin Safety Reports';
+                break;
+            case 1:
+                return 'Ground Incident/Accident/Damage Report';
+                break;
+            case 2:
+                return 'Voluntary Hazard Reporting';
+                break;
+            case 3:
+                return 'Maintenance Occurance Repor';
+                break;
+            case 4:
+                return 'Catering Hazard Report';
+                break;
+            case 5:
+                return 'Security Hazard Report';
+                break;
+            case 6:
+                return 'Dispatch Hazard Report';
+                break;
+            case 7:
+                return 'Cyber Security Report';
+                break;
+            case 8:
+                return 'Air Safety Report';
+                break;
+            case 9:
+                return 'Voyage Report';
+                break;
+            default:
+                return 'Others';
+                break;
+        }
+    };
+
     if (!authService.isAuthorized()) {
 
         authService.redirectToLogin();
@@ -850,44 +949,44 @@ app.controller('qaReportStatus', ['$http', '$scope', '$location', '$routeParams'
     else {
 		 //$rootScope.Title = $routeParams.title.replaceAll('_','/');
 		//2024-01-17
-		console.log('type',$scope.entity.type);
-	console.log('Route Params',$routeParams.type);
-		switch($routeParams.type){
-			case '0':
-				$rootScope.page_title = '> ' + 'Cabin Safety Reports';
-				break;
-				case '1':
-				$rootScope.page_title = '> ' + 'Ground Incident/Accident/Damage Report';
-				break;
-				case '2':
-				$rootScope.page_title = '> ' + 'Voluntary Hazard Reporting';
-				break;
-				case '3':
-				$rootScope.page_title = '> ' + 'Maintenance Occurence Repor';
-				break;
-				case '4':
-				$rootScope.page_title = '> ' + 'Catering Hazard Report';
-				break;
-				case '5':
-				$rootScope.page_title = '> ' + 'Security Hazard Report';
-				break;
-				case '6':
-				$rootScope.page_title = '> ' + 'Dispatch Hazard Report';
-				break;
-				case '7':
-				$rootScope.page_title = '> ' + 'Cyber Security Report';
-				break;
-				case '8':
-				$rootScope.page_title = '> ' + 'Air Safety Report';
-				break;
-				case '9':
-				$rootScope.page_title = '> ' + 'Voyage Report';
-				break;
-			default:
-				$rootScope.page_title = '> ' + 'Others';
-				break;
-		}
-        
+		//console.log('type',$scope.entity.type);
+	    //console.log('Route Params',$routeParams.type);
+		//switch($routeParams.type){
+		//	case '0':
+		//		$rootScope.page_title = '> ' + 'Cabin Safety Reports';
+		//		break;
+		//		case '1':
+		//		$rootScope.page_title = '> ' + 'Ground Incident/Accident/Damage Report';
+		//		break;
+		//		case '2':
+		//		$rootScope.page_title = '> ' + 'Voluntary Hazard Reporting';
+		//		break;
+		//		case '3':
+		//		$rootScope.page_title = '> ' + 'Maintenance Occurence Repor';
+		//		break;
+		//		case '4':
+		//		$rootScope.page_title = '> ' + 'Catering Hazard Report';
+		//		break;
+		//		case '5':
+		//		$rootScope.page_title = '> ' + 'Security Hazard Report';
+		//		break;
+		//		case '6':
+		//		$rootScope.page_title = '> ' + 'Dispatch Hazard Report';
+		//		break;
+		//		case '7':
+		//		$rootScope.page_title = '> ' + 'Cyber Security Report';
+		//		break;
+		//		case '8':
+		//		$rootScope.page_title = '> ' + 'Air Safety Report';
+		//		break;
+		//		case '9':
+		//		$rootScope.page_title = '> ' + 'Voyage Report';
+		//		break;
+		//	default:
+		//		$rootScope.page_title = '> ' + 'Others';
+		//		break;
+		//}
+        $rootScope.page_title = '> ' + 'Safety Forms';
 
 
         $('.finmonthreport').fadeIn(400, function () {

@@ -777,7 +777,7 @@ var atcfiles='https://files.airpocket.online/varesh/atc/';
 var apiCAO='https://apicao.apvaresh.com/';
 //var apiQA = 'https://apiqa.apvaresh.ir/';
 // apiQA = 'https://apiqa.apvaresh.com/';
-var apiQA = 'http://localhost:9063/'; 
+var apiQA = 'http://localhost:9064/'; 
 var zapiqa = 'https://apiqa.apvaresh.com/';
 var apiQAAuthCard = 'https://apiqaauth.apvaresh.ir/';
 

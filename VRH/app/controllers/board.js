@@ -22692,7 +22692,7 @@ $scope.btn_newtime = {
     ///////////////////////
     $scope.IsGNTVisible = false;
     $scope.delayCodes = null;
-    $scope.$on('$viewContentLoaded', function () {
+    $scope.$on('$viewContentLoaded', function () { 
         //2020-11-16
         $scope.getRealMSNs(Config.CustomerId, function () { });
         ////////////////////////////////
