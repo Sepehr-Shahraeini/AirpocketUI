@@ -781,6 +781,8 @@ var apiQA = 'http://localhost:9063/';
 var zapiqa = 'https://apiqa.apvaresh.com/';
 var apiQAAuthCard = 'https://apiqaauth.apvaresh.ir/';
 
+//2024-03-26
+
 var zscheduling='https://zscheduling.apvaresh.com/';
 var zreportflight='https://apireportflight.apvaresh.com/'; 
 var zapinet='https://zapinet.apvaresh.com/';
