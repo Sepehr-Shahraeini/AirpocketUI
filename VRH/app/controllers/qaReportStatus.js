@@ -28,6 +28,7 @@ app.controller('qaReportStatus', ['$http', '$scope', '$location', '$routeParams'
     }
 
     $scope.entity.type = $routeParams.type;
+    $scope.selected_type = $scope.entity.type;
 	
 	
 
@@ -903,7 +904,7 @@ app.controller('qaReportStatus', ['$http', '$scope', '$location', '$routeParams'
 
     //////////////////////////////////
 
-    $scope.selected_type = 8;
+   
     $scope.get_title = function () {
         switch ($scope.selected_type) {
             case 0:
