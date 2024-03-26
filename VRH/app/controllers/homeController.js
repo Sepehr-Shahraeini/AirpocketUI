@@ -1833,113 +1833,121 @@ function ($scope, $routeParams, authService, activityService, libraryService,fli
             $scope.flight.Init();
             $scope.flight.Bind();
 			
-			setInterval(function() {
-                 				       qaService.getDateVisit($rootScope.employeeId).then(function (res) {
-                 console.log(res.Data)
-      var _mes=[];
-      $.each(res.Data, function (_i, _d) {
-		  console.log(_d)
-		  var _j=_i+1;
-          switch (_d.Type) {
-              case 0:
-				  var _pos='25 '+(_j*-50);
-                   DevExpress.ui.notify({
-                      message: 'Cabin Safety Report(' + _d.Count + ')',
-                      type: 'info',
-                      displayTime: 5000,
-                      position: { offset: _pos }
-                  }); 
-				  _mes.push('Cabin Safety Report(' + _d.Count + ')');
-                  break;
-              case 1 :
-				  var _pos='25 '+(_j*-50);
-                  DevExpress.ui.notify({
-                      message: 'Ground Incident/Accident/Damage Report(' + _d.Count+ ')' ,
-                      type: 'success',
-                      displayTime: 5000,
-                      position: { offset: _pos }
-                  }); 
-				    _mes.push('Ground Incident/Accident/Damage Report(' + _d.Count + ')');
-                  break;
-              case 2:
-				  var _pos='25 '+(_j*-50);
-                   DevExpress.ui.notify({
-                      message: 'Voluntary Hazard Reporting(' + _d.Count + ')',
-                      type: 'success',
-                      displayTime: 5000,
-                      position: { offset: _pos }
-                  }); 
-				   _mes.push('Voluntary Hazard Reporting(' + _d.Count + ')');
-                  break;
-              case 3:
-				  var _pos='25 '+(_j*-50);
-                   DevExpress.ui.notify({
-                      message: 'Maintenance Occurence Report(' + _d.Count +')',
-                      type: 'success',
-                      displayTime: 5000,
-                      position: { offset: _pos }
-                  }); 
-				   _mes.push('Maintenance Occurence Report(' + _d.Count + ')');
-                  break;
-              case 4:
-				  var _pos='25 '+(_j*-50);
-                   DevExpress.ui.notify({
-                      message: 'Catering Hazard Report(' + _d.Count + ')',
-                      type: 'success',
-                      displayTime: 5000,
-                     position: { offset: _pos }
-                  }); 
-				     _mes.push('Catering Hazard Report(' + _d.Count + ')');
-                  break;
+            setInterval(function () {
+                qaService.qaNotification($rootScope.employeeId).then(function (res) {
+                    $scope.popup_qanotification_visible = true;
+                    $scope.dg_qa_notif_ds = res.Data;
+                    if ($scope.dg_qa_notif_ds != null)
+                        $scope.qaNotifShow = true
+                    else
+                        $scope.qaNotifShow = false
+                });
+  //               				       qaService.getDateVisit($rootScope.employeeId).then(function (res) {
+  //               console.log(res.Data)
+  //    var _mes=[];
+  //    $.each(res.Data, function (_i, _d) {
+		//  console.log(_d)
+		//  var _j=_i+1;
+  //        switch (_d.Type) {
+  //            case 0:
+		//		  var _pos='25 '+(_j*-50);
+  //                 DevExpress.ui.notify({
+  //                    message: 'Cabin Safety Report(' + _d.Count + ')',
+  //                    type: 'info',
+  //                    displayTime: 5000,
+  //                    position: { offset: _pos }
+  //                }); 
+		//		  _mes.push('Cabin Safety Report(' + _d.Count + ')');
+  //                break;
+  //            case 1 :
+		//		  var _pos='25 '+(_j*-50);
+  //                DevExpress.ui.notify({
+  //                    message: 'Ground Incident/Accident/Damage Report(' + _d.Count+ ')' ,
+  //                    type: 'success',
+  //                    displayTime: 5000,
+  //                    position: { offset: _pos }
+  //                }); 
+		//		    _mes.push('Ground Incident/Accident/Damage Report(' + _d.Count + ')');
+  //                break;
+  //            case 2:
+		//		  var _pos='25 '+(_j*-50);
+  //                 DevExpress.ui.notify({
+  //                    message: 'Voluntary Hazard Reporting(' + _d.Count + ')',
+  //                    type: 'success',
+  //                    displayTime: 5000,
+  //                    position: { offset: _pos }
+  //                }); 
+		//		   _mes.push('Voluntary Hazard Reporting(' + _d.Count + ')');
+  //                break;
+  //            case 3:
+		//		  var _pos='25 '+(_j*-50);
+  //                 DevExpress.ui.notify({
+  //                    message: 'Maintenance Occurence Report(' + _d.Count +')',
+  //                    type: 'success',
+  //                    displayTime: 5000,
+  //                    position: { offset: _pos }
+  //                }); 
+		//		   _mes.push('Maintenance Occurence Report(' + _d.Count + ')');
+  //                break;
+  //            case 4:
+		//		  var _pos='25 '+(_j*-50);
+  //                 DevExpress.ui.notify({
+  //                    message: 'Catering Hazard Report(' + _d.Count + ')',
+  //                    type: 'success',
+  //                    displayTime: 5000,
+  //                   position: { offset: _pos }
+  //                }); 
+		//		     _mes.push('Catering Hazard Report(' + _d.Count + ')');
+  //                break;
              
-              case 5:
-				  var _pos='25 '+(_j*-50);
-                   DevExpress.ui.notify({
-                      message: 'Security Hazard Report(' + _d.Count + ')',
-                      type: 'success',
-                      displayTime: 5000,
-                      position: { offset: _pos }
-                  }); 
-				   _mes.push('Security Hazard Report(' + _d.Count + ')');
-                  break;
-              case 6:
-				   var _pos='25 '+(_j*-50);
-                   DevExpress.ui.notify({
-                      message: 'Dispatch Hazard Report(' + _d.Count + ')' ,
-                      type: 'success',
-                      displayTime: 5000,
-                      position: { offset: _pos }
-                  }); 
-				    _mes.push('Dispatch Hazard Report(' + _d.Count + ')');
-                  break;
-              case 7:
-				  var _pos='25 '+(_j*-50);
-                   DevExpress.ui.notify({
-                      message: 'Cyber Security Report(' + _d.Count + ')' ,
-                      type: 'success',
-                      displayTime: 5000,
-                     position: { offset: _pos }
-                  }); 
-				   _mes.push('Cyber Security Report(' + _d.Count + ')');
-                  break;
-              case 8:
-				   var _pos='25 '+(_j*-50);
-                   DevExpress.ui.notify({
-                      message: 'Air Safety Report(' + _d.Count + ')',
-                      type: 'success',
-                      displayTime: 5000,
-                      position: { offset: _pos }
-                  }); 
-				   _mes.push('Air Safety Report(' + _d.Count + ')');
-                  break;
+  //            case 5:
+		//		  var _pos='25 '+(_j*-50);
+  //                 DevExpress.ui.notify({
+  //                    message: 'Security Hazard Report(' + _d.Count + ')',
+  //                    type: 'success',
+  //                    displayTime: 5000,
+  //                    position: { offset: _pos }
+  //                }); 
+		//		   _mes.push('Security Hazard Report(' + _d.Count + ')');
+  //                break;
+  //            case 6:
+		//		   var _pos='25 '+(_j*-50);
+  //                 DevExpress.ui.notify({
+  //                    message: 'Dispatch Hazard Report(' + _d.Count + ')' ,
+  //                    type: 'success',
+  //                    displayTime: 5000,
+  //                    position: { offset: _pos }
+  //                }); 
+		//		    _mes.push('Dispatch Hazard Report(' + _d.Count + ')');
+  //                break;
+  //            case 7:
+		//		  var _pos='25 '+(_j*-50);
+  //                 DevExpress.ui.notify({
+  //                    message: 'Cyber Security Report(' + _d.Count + ')' ,
+  //                    type: 'success',
+  //                    displayTime: 5000,
+  //                   position: { offset: _pos }
+  //                }); 
+		//		   _mes.push('Cyber Security Report(' + _d.Count + ')');
+  //                break;
+  //            case 8:
+		//		   var _pos='25 '+(_j*-50);
+  //                 DevExpress.ui.notify({
+  //                    message: 'Air Safety Report(' + _d.Count + ')',
+  //                    type: 'success',
+  //                    displayTime: 5000,
+  //                    position: { offset: _pos }
+  //                }); 
+		//		   _mes.push('Air Safety Report(' + _d.Count + ')');
+  //                break;
 
-          }
+  //        }
 
          
-      });
+  //    });
 		     	   
 					   
-  });
+  //});
 
 			  }, 30*1000);
 			//////////
@@ -1997,221 +2005,385 @@ function ($scope, $routeParams, authService, activityService, libraryService,fli
         }
 		else{
 			  $scope.qa.Init();
-			  $scope.qa.Bind();
-			   qaService.getDateVisit($rootScope.employeeId).then(function (res) {
-                 console.log(res.Data)
-      var _mes=[];
-      $.each(res.Data, function (_i, _d) {
-		  console.log(_d)
-		  var _j=_i+1;
-          switch (_d.Type) {
-              case 0:
-				  var _pos='25 '+(_j*-50);
-                   DevExpress.ui.notify({
-                      message: 'Cabin Safety Report(' + _d.Count + ')',
-                      type: 'info',
-                      displayTime: 5000,
-                      position: { offset: _pos }
-                  }); 
-				  _mes.push('Cabin Safety Report(' + _d.Count + ')');
-                  break;
-              case 1 :
-				  var _pos='25 '+(_j*-50);
-                  DevExpress.ui.notify({
-                      message: 'Ground Incident/Accident/Damage Report(' + _d.Count+ ')' ,
-                      type: 'success',
-                      displayTime: 5000,
-                      position: { offset: _pos }
-                  }); 
-				    _mes.push('Ground Incident/Accident/Damage Report(' + _d.Count + ')');
-                  break;
-              case 2:
-				  var _pos='25 '+(_j*-50);
-                   DevExpress.ui.notify({
-                      message: 'Voluntary Hazard Reporting(' + _d.Count + ')',
-                      type: 'success',
-                      displayTime: 5000,
-                      position: { offset: _pos }
-                  }); 
-				   _mes.push('Voluntary Hazard Reporting(' + _d.Count + ')');
-                  break;
-              case 3:
-				  var _pos='25 '+(_j*-50);
-                   DevExpress.ui.notify({
-                      message: 'Maintenance Occurence Report(' + _d.Count +')',
-                      type: 'success',
-                      displayTime: 5000,
-                      position: { offset: _pos }
-                  }); 
-				   _mes.push('Maintenance Occurence Report(' + _d.Count + ')');
-                  break;
-              case 4:
-				  var _pos='25 '+(_j*-50);
-                   DevExpress.ui.notify({
-                      message: 'Catering Hazard Report(' + _d.Count + ')',
-                      type: 'success',
-                      displayTime: 5000,
-                     position: { offset: _pos }
-                  }); 
-				     _mes.push('Catering Hazard Report(' + _d.Count + ')');
-                  break;
+            $scope.qa.Bind();
+            qaService.qaNotification($rootScope.employeeId).then(function (res) {
+                $scope.popup_qanotification_visible = true;
+                $scope.dg_qa_notif_ds = res.Data;
+                if ($scope.dg_qa_notif_ds != null)
+                    $scope.qaNotifShow = true
+                else
+                    $scope.qaNotifShow = false
+            });
+			 //  qaService.getDateVisit($rootScope.employeeId).then(function (res) {
+    //             console.log(res.Data)
+    //  var _mes=[];
+    //  $.each(res.Data, function (_i, _d) {
+		  //console.log(_d)
+		  //var _j=_i+1;
+    //      switch (_d.Type) {
+    //          case 0:
+				//  var _pos='25 '+(_j*-50);
+    //               DevExpress.ui.notify({
+    //                  message: 'Cabin Safety Report(' + _d.Count + ')',
+    //                  type: 'info',
+    //                  displayTime: 5000,
+    //                  position: { offset: _pos }
+    //              }); 
+				//  _mes.push('Cabin Safety Report(' + _d.Count + ')');
+    //              break;
+    //          case 1 :
+				//  var _pos='25 '+(_j*-50);
+    //              DevExpress.ui.notify({
+    //                  message: 'Ground Incident/Accident/Damage Report(' + _d.Count+ ')' ,
+    //                  type: 'success',
+    //                  displayTime: 5000,
+    //                  position: { offset: _pos }
+    //              }); 
+				//    _mes.push('Ground Incident/Accident/Damage Report(' + _d.Count + ')');
+    //              break;
+    //          case 2:
+				//  var _pos='25 '+(_j*-50);
+    //               DevExpress.ui.notify({
+    //                  message: 'Voluntary Hazard Reporting(' + _d.Count + ')',
+    //                  type: 'success',
+    //                  displayTime: 5000,
+    //                  position: { offset: _pos }
+    //              }); 
+				//   _mes.push('Voluntary Hazard Reporting(' + _d.Count + ')');
+    //              break;
+    //          case 3:
+				//  var _pos='25 '+(_j*-50);
+    //               DevExpress.ui.notify({
+    //                  message: 'Maintenance Occurence Report(' + _d.Count +')',
+    //                  type: 'success',
+    //                  displayTime: 5000,
+    //                  position: { offset: _pos }
+    //              }); 
+				//   _mes.push('Maintenance Occurence Report(' + _d.Count + ')');
+    //              break;
+    //          case 4:
+				//  var _pos='25 '+(_j*-50);
+    //               DevExpress.ui.notify({
+    //                  message: 'Catering Hazard Report(' + _d.Count + ')',
+    //                  type: 'success',
+    //                  displayTime: 5000,
+    //                 position: { offset: _pos }
+    //              }); 
+				//     _mes.push('Catering Hazard Report(' + _d.Count + ')');
+    //              break;
              
-              case 5:
-				  var _pos='25 '+(_j*-50);
-                   DevExpress.ui.notify({
-                      message: 'Security Hazard Report(' + _d.Count + ')',
-                      type: 'success',
-                      displayTime: 5000,
-                      position: { offset: _pos }
-                  }); 
-				   _mes.push('Security Hazard Report(' + _d.Count + ')');
-                  break;
-              case 6:
-				   var _pos='25 '+(_j*-50);
-                   DevExpress.ui.notify({
-                      message: 'Dispatch Hazard Report(' + _d.Count + ')' ,
-                      type: 'success',
-                      displayTime: 5000,
-                      position: { offset: _pos }
-                  }); 
-				    _mes.push('Dispatch Hazard Report(' + _d.Count + ')');
-                  break;
-              case 7:
-				  var _pos='25 '+(_j*-50);
-                   DevExpress.ui.notify({
-                      message: 'Cyber Security Report(' + _d.Count + ')' ,
-                      type: 'success',
-                      displayTime: 5000,
-                     position: { offset: _pos }
-                  }); 
-				   _mes.push('Cyber Security Report(' + _d.Count + ')');
-                  break;
-              case 8:
-				   var _pos='25 '+(_j*-50);
-                   DevExpress.ui.notify({
-                      message: 'Air Safety Report(' + _d.Count + ')',
-                      type: 'success',
-                      displayTime: 5000,
-                      position: { offset: _pos }
-                  }); 
-				   _mes.push('Air Safety Report(' + _d.Count + ')');
-                  break;
+    //          case 5:
+				//  var _pos='25 '+(_j*-50);
+    //               DevExpress.ui.notify({
+    //                  message: 'Security Hazard Report(' + _d.Count + ')',
+    //                  type: 'success',
+    //                  displayTime: 5000,
+    //                  position: { offset: _pos }
+    //              }); 
+				//   _mes.push('Security Hazard Report(' + _d.Count + ')');
+    //              break;
+    //          case 6:
+				//   var _pos='25 '+(_j*-50);
+    //               DevExpress.ui.notify({
+    //                  message: 'Dispatch Hazard Report(' + _d.Count + ')' ,
+    //                  type: 'success',
+    //                  displayTime: 5000,
+    //                  position: { offset: _pos }
+    //              }); 
+				//    _mes.push('Dispatch Hazard Report(' + _d.Count + ')');
+    //              break;
+    //          case 7:
+				//  var _pos='25 '+(_j*-50);
+    //               DevExpress.ui.notify({
+    //                  message: 'Cyber Security Report(' + _d.Count + ')' ,
+    //                  type: 'success',
+    //                  displayTime: 5000,
+    //                 position: { offset: _pos }
+    //              }); 
+				//   _mes.push('Cyber Security Report(' + _d.Count + ')');
+    //              break;
+    //          case 8:
+				//   var _pos='25 '+(_j*-50);
+    //               DevExpress.ui.notify({
+    //                  message: 'Air Safety Report(' + _d.Count + ')',
+    //                  type: 'success',
+    //                  displayTime: 5000,
+    //                  position: { offset: _pos }
+    //              }); 
+				//   _mes.push('Air Safety Report(' + _d.Count + ')');
+    //              break;
 
-          }
+    //      }
 
          
-      });
+    //  });
 		     	   
 					   
-  });
-			  //2024-01-16  ////////////////
-			  setInterval(function() {
-                 				       qaService.getDateVisit($rootScope.employeeId).then(function (res) {
-                 console.log(res.Data)
-      var _mes=[];
-      $.each(res.Data, function (_i, _d) {
-		  console.log(_d)
-		  var _j=_i+1;
-          switch (_d.Type) {
-              case 0:
-				  var _pos='25 '+(_j*-50);
-                   DevExpress.ui.notify({
-                      message: 'Cabin Safety Report(' + _d.Count + ')',
-                      type: 'info',
-                      displayTime: 5000,
-                      position: { offset: _pos }
-                  }); 
-				  _mes.push('Cabin Safety Report(' + _d.Count + ')');
-                  break;
-              case 1 :
-				  var _pos='25 '+(_j*-50);
-                  DevExpress.ui.notify({
-                      message: 'Ground Incident/Accident/Damage Report(' + _d.Count+ ')' ,
-                      type: 'success',
-                      displayTime: 5000,
-                      position: { offset: _pos }
-                  }); 
-				    _mes.push('Ground Incident/Accident/Damage Report(' + _d.Count + ')');
-                  break;
-              case 2:
-				  var _pos='25 '+(_j*-50);
-                   DevExpress.ui.notify({
-                      message: 'Voluntary Hazard Reporting(' + _d.Count + ')',
-                      type: 'success',
-                      displayTime: 5000,
-                      position: { offset: _pos }
-                  }); 
-				   _mes.push('Voluntary Hazard Reporting(' + _d.Count + ')');
-                  break;
-              case 3:
-				  var _pos='25 '+(_j*-50);
-                   DevExpress.ui.notify({
-                      message: 'Maintenance Occurence Report(' + _d.Count +')',
-                      type: 'success',
-                      displayTime: 5000,
-                      position: { offset: _pos }
-                  }); 
-				   _mes.push('Maintenance Occurence Report(' + _d.Count + ')');
-                  break;
-              case 4:
-				  var _pos='25 '+(_j*-50);
-                   DevExpress.ui.notify({
-                      message: 'Catering Hazard Report(' + _d.Count + ')',
-                      type: 'success',
-                      displayTime: 5000,
-                     position: { offset: _pos }
-                  }); 
-				     _mes.push('Catering Hazard Report(' + _d.Count + ')');
-                  break;
-             
-              case 5:
-				  var _pos='25 '+(_j*-50);
-                   DevExpress.ui.notify({
-                      message: 'Security Hazard Report(' + _d.Count + ')',
-                      type: 'success',
-                      displayTime: 5000,
-                      position: { offset: _pos }
-                  }); 
-				   _mes.push('Security Hazard Report(' + _d.Count + ')');
-                  break;
-              case 6:
-				   var _pos='25 '+(_j*-50);
-                   DevExpress.ui.notify({
-                      message: 'Dispatch Hazard Report(' + _d.Count + ')' ,
-                      type: 'success',
-                      displayTime: 5000,
-                      position: { offset: _pos }
-                  }); 
-				    _mes.push('Dispatch Hazard Report(' + _d.Count + ')');
-                  break;
-              case 7:
-				  var _pos='25 '+(_j*-50);
-                   DevExpress.ui.notify({
-                      message: 'Cyber Security Report(' + _d.Count + ')' ,
-                      type: 'success',
-                      displayTime: 5000,
-                     position: { offset: _pos }
-                  }); 
-				   _mes.push('Cyber Security Report(' + _d.Count + ')');
-                  break;
-              case 8:
-				   var _pos='25 '+(_j*-50);
-                   DevExpress.ui.notify({
-                      message: 'Air Safety Report(' + _d.Count + ')',
-                      type: 'success',
-                      displayTime: 5000,
-                      position: { offset: _pos }
-                  }); 
-				   _mes.push('Air Safety Report(' + _d.Count + ')');
-                  break;
+    //           });
 
-          }
+
+            //2024-03-26 ////////////////
+
+            $scope.ShowForm = function (e) {
+                var data = {
+                    Id: e.Id,
+                    Type: e.data.Type,
+                    EmployeeId: $rootScope.employeeId,
+                    isNotDetermined: true,
+                    Category: 'open',
+                    ProducerId: e.data.EmployeeId,
+                    FlightId: e.data.FlightId,
+                    Priority: e.data.Priority,
+                    Entity: e.data
+                };
+                //if (e.data.Status == 1)
+                //    data.isNotLocked = false;
+                //else
+                //    data.isNotLocked = true;
+
+                $rootScope.$broadcast('InitOperationPopup', data);
+                
+            }
+
+
+            $scope.SafetyForm = function (e) {
+                $location.path("/qa/status/" + e.data.Type + "/SafetyForms");
+            }
+
+
+
+
+            $scope.dg_qa_notif_columns = [
+
+                {
+                    dataField: "Id",
+                    caption: '',
+                    width: 140,
+                    allowFiltering: false,
+                    allowSorting: false,
+                    cellTemplate: 'ShowFormTemplate',
+                    name: 'Show',
+                    fixed: true,
+                    fixedPosition: 'right',
+                },
+
+               {
+                    dataField: "Id",
+                    caption: '',
+                    width: 140,
+                    allowFiltering: false,
+                    allowSorting: false,
+                    cellTemplate: 'SafetyFormTemplate',
+                    name: 'Safety Forms',
+                    fixed: true,
+                    fixedPosition: 'right',
+                },
+
+                { dataField: 'TypeTitle', caption: 'Title', allowResizing: true, alignment: 'left', dataType: 'string', allowEditing: false},
+                { dataField: 'ReferrerName', caption: 'Referrer', allowResizing: true, alignment: 'center', dataType: 'string', allowEditing: false, minwidth: 150 },
+                { dataField: 'DateStatus', caption: 'Date', allowResizing: true, alignment: 'center', dataType: 'date', allowEditing: false, width: 120 },
+                { dataField: 'ReviewResultTitle', caption: 'Status', allowResizing: true, alignment: 'center', dataType: 'string', allowEditing: false, width: 100 },
+                { dataField: 'DeadLine', caption: 'DeadLine', allowResizing: true, alignment: 'center', dataType: 'date', allowEditing: false, width: 120 },
+                { dataField: 'Priority', caption: 'Priority', allowResizing: true, alignment: 'center', dataType: 'string', allowEditing: false, width: 70 },
+
+
+
+
+            ];
+            $scope.dg_qa_notif_selected = null;
+            $scope.dg_qa_notif_instance = null;
+            $rootScope.dg_qa_notif_ds = null;
+            $scope.dg_qa_notif = {
+
+                
+
+                wordWrapEnabled: true,
+                rowAlternationEnabled: false,
+                headerFilter: {
+                    visible: false
+                },
+                filterRow: {
+                    visible: true,
+                    showOperationChooser: true,
+                },
+                showRowLines: true,
+                showColumnLines: true,
+                sorting: { mode: 'none' },
+
+                noDataText: '',
+
+                allowColumnReordering: true,
+                allowColumnResizing: true,
+                scrolling: { mode: 'infinite' },
+                paging: { pageSize: 100 },
+                showBorders: true,
+                selection: { mode: 'single' },
+
+                columnAutoWidth: false,
+                height: 300,
+                width: '100%',
+
+                columns: $scope.dg_qa_notif_columns,
+                onContentReady: function (e) {
+                   
+
+                },
+
+                //onRowClick: function (e) {
+
+                  
+                //},
+
+                onRowPrepared: function (e) {
+                
+                },
+
+                onSelectionChanged: function (e) {
+                    var data = e.selectedRowsData[0];
+
+
+                    if (!data) {
+                        $scope.dg_qa_notif_selected = null;
+                    }
+                    else
+                        $scope.dg_qa_notif_selected = data;
+
+
+                },
+
+                bindingOptions: {
+                    dataSource: 'dg_qa_notif_ds'
+                },
+                columnChooser: {
+                    enabled: false
+                },
+
+            };
+
+
+
+
+           
+
+            //2024-01-16  ////////////////
+
+            $scope.qaNotifShow = true;
+            setInterval(function () {
+
+                qaService.qaNotification($rootScope.employeeId).then(function (res) {
+                    $scope.popup_qanotification_visible = true;
+                    $scope.dg_qa_notif_ds = res.Data;
+                    if ($scope.dg_qa_notif_ds != null)
+                        $scope.qaNotifShow = true
+                    else
+                        $scope.qaNotifShow = false
+                });
+  //         qaService.getDateVisit($rootScope.employeeId).then(function (res) {
+  //               console.log(res.Data)
+  //    var _mes=[];
+  //    $.each(res.Data, function (_i, _d) {
+		//  console.log(_d)
+		//  var _j=_i+1;
+  //        switch (_d.Type) {
+  //            case 0:
+		//		  var _pos='25 '+(_j*-50);
+  //                 DevExpress.ui.notify({
+  //                    message: 'Cabin Safety Report(' + _d.Count + ')',
+  //                    type: 'info',
+  //                    displayTime: 5000,
+  //                    position: { offset: _pos }
+  //                }); 
+		//		  _mes.push('Cabin Safety Report(' + _d.Count + ')');
+  //                break;
+  //            case 1 :
+		//		  var _pos='25 '+(_j*-50);
+  //                DevExpress.ui.notify({
+  //                    message: 'Ground Incident/Accident/Damage Report(' + _d.Count+ ')' ,
+  //                    type: 'success',
+  //                    displayTime: 5000,
+  //                    position: { offset: _pos }
+  //                }); 
+		//		    _mes.push('Ground Incident/Accident/Damage Report(' + _d.Count + ')');
+  //                break;
+  //            case 2:
+		//		  var _pos='25 '+(_j*-50);
+  //                 DevExpress.ui.notify({
+  //                    message: 'Voluntary Hazard Reporting(' + _d.Count + ')',
+  //                    type: 'success',
+  //                    displayTime: 5000,
+  //                    position: { offset: _pos }
+  //                }); 
+		//		   _mes.push('Voluntary Hazard Reporting(' + _d.Count + ')');
+  //                break;
+  //            case 3:
+		//		  var _pos='25 '+(_j*-50);
+  //                 DevExpress.ui.notify({
+  //                    message: 'Maintenance Occurence Report(' + _d.Count +')',
+  //                    type: 'success',
+  //                    displayTime: 5000,
+  //                    position: { offset: _pos }
+  //                }); 
+		//		   _mes.push('Maintenance Occurence Report(' + _d.Count + ')');
+  //                break;
+  //            case 4:
+		//		  var _pos='25 '+(_j*-50);
+  //                 DevExpress.ui.notify({
+  //                    message: 'Catering Hazard Report(' + _d.Count + ')',
+  //                    type: 'success',
+  //                    displayTime: 5000,
+  //                   position: { offset: _pos }
+  //                }); 
+		//		     _mes.push('Catering Hazard Report(' + _d.Count + ')');
+  //                break;
+             
+  //            case 5:
+		//		  var _pos='25 '+(_j*-50);
+  //                 DevExpress.ui.notify({
+  //                    message: 'Security Hazard Report(' + _d.Count + ')',
+  //                    type: 'success',
+  //                    displayTime: 5000,
+  //                    position: { offset: _pos }
+  //                }); 
+		//		   _mes.push('Security Hazard Report(' + _d.Count + ')');
+  //                break;
+  //            case 6:
+		//		   var _pos='25 '+(_j*-50);
+  //                 DevExpress.ui.notify({
+  //                    message: 'Dispatch Hazard Report(' + _d.Count + ')' ,
+  //                    type: 'success',
+  //                    displayTime: 5000,
+  //                    position: { offset: _pos }
+  //                }); 
+		//		    _mes.push('Dispatch Hazard Report(' + _d.Count + ')');
+  //                break;
+  //            case 7:
+		//		  var _pos='25 '+(_j*-50);
+  //                 DevExpress.ui.notify({
+  //                    message: 'Cyber Security Report(' + _d.Count + ')' ,
+  //                    type: 'success',
+  //                    displayTime: 5000,
+  //                   position: { offset: _pos }
+  //                }); 
+		//		   _mes.push('Cyber Security Report(' + _d.Count + ')');
+  //                break;
+  //            case 8:
+		//		   var _pos='25 '+(_j*-50);
+  //                 DevExpress.ui.notify({
+  //                    message: 'Air Safety Report(' + _d.Count + ')',
+  //                    type: 'success',
+  //                    displayTime: 5000,
+  //                    position: { offset: _pos }
+  //                }); 
+		//		   _mes.push('Air Safety Report(' + _d.Count + ')');
+  //                break;
+
+  //        }
 
          
-      });
+  //    });
 		     	   
 					   
-  });
+  //});
 
 			  }, 30*1000);
 			

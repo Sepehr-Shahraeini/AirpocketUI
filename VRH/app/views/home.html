@@ -1,7 +1,8 @@
 <style>
-   .box-app{
-	   margin:5px auto 0 auto !important;
-	}
+    .box-app {
+        margin: 5px auto 0 auto !important;
+    }
+
     .summarybox {
         /*min-width: 140px !important;*/
         padding-right: 3px;
@@ -52,7 +53,7 @@
     <div class="wrapper library" style="display:inline-block;height:100%;padding-bottom:0px;display:none">
         <div class=" col-lg-1 col-md-1 col-sm-3 hidden-xs " style="padding:10px 0 10px 10px;padding:0; height:100%">
             <div class="home-box" style="height:100%;border-radius:0;">
-              
+
                 <div class="thin-scroll" style="margin-top:5px;height:93%;overflow-y:auto">
                     <div ng-repeat="x in lastHits">
 
@@ -74,7 +75,7 @@
             <div class=" col-lg-9 col-md-12  " style="padding:5px">
                 <div style="margin-bottom:5px">
 
-                        <div  ng-show='false' class="col-lg-4" style="padding:0 2px 0 2px">
+                    <div ng-show='false' class="col-lg-4" style="padding:0 2px 0 2px">
                         <div class="card text-white bg-danger">
                             <div class="card-body pb-0">
                                 <div class="btn-group float-right">
@@ -90,7 +91,7 @@
                             </div>
                         </div>
                     </div>
-                    <div  ng-show='false' class="col-lg-4" style="padding:0 2px 0 2px">
+                    <div ng-show='false' class="col-lg-4" style="padding:0 2px 0 2px">
                         <div class="card text-white bg-primary">
                             <div class="card-body pb-0">
                                 <div class="btn-group float-right">
@@ -122,7 +123,7 @@
                             </div>
                         </div>
                     </div>
-                    
+
 
                     <div style="clear:both"></div>
                 </div>
@@ -365,7 +366,7 @@
     <div class="wrapper profile" style="display:inline-block;height:100%;padding-bottom:0px;display:none">
         <div class=" col-lg-1 col-md-1 col-sm-3 hidden-xs " style="padding:10px 0 10px 10px;padding:0; height:100%">
             <div class="home-box" style="height:100%;border-radius:0;">
-               
+
                 <div class="thin-scroll" style="margin-top:5px;height:98%;overflow-y:auto">
                     <div ng-repeat="x in lastHits">
 
@@ -811,7 +812,7 @@
                             <div class="title-small ng-binding" style="color:gray;font-size:1em">Flight Board</div>
                         </a>
                     </div>
-					 <div class="box-app" style="padding-top:0" ng-show="HasMenuAccess('profile_person',1)">
+                    <div class="box-app" style="padding-top:0" ng-show="HasMenuAccess('profile_person',1)">
                         <a class="logo" style="text-decoration:none;" href="" data-ng-click="navigate(  '/person/crew'  , 'profile_person')">
                             <img src="content/images/group2.png">
                             <div class="title-small ng-binding" style="color:gray;font-size:1em">Profiles</div>
@@ -823,141 +824,134 @@
                             <div class="title-small ng-binding" style="color:gray;font-size:1em">Crew Scheduling</div>
                         </a>
                     </div>
-					<div class="box-app" style="padding-top:0" ng-show="HasMenuAccess('flight_calendar_cockpit',3)">
+                    <div class="box-app" style="padding-top:0" ng-show="HasMenuAccess('flight_calendar_cockpit',3)">
                         <a class="logo" style="text-decoration:none;" href="" data-ng-click="navigate(  'duty/timeline/z'  , 'dutytimeline')">
                             <img src="content/images/timeline.png">
                             <div class="title-small ng-binding" style="color:gray;font-size:1em">Timeline</div>
                         </a>
                     </div>
-					  <div class="box-app" style="padding-top:0" ng-show="HasMenuAccess('flight_report',3)">
+                    <div class="box-app" style="padding-top:0" ng-show="HasMenuAccess('flight_report',3)">
                         <a class="logo" style="text-decoration:none;" href="" data-ng-click="navigate(  '/flights/report'  , 'flight_report')">
                             <img src="content/images/flightsreport.png">
                             <div class="title-small ng-binding" style="color:gray;font-size:1em">Daily Report (A)</div>
                         </a>
                     </div>
-					 <div class="box-app" style="padding-top:0" ng-show="HasMenuAccess('flight_report',3)">
+                    <div class="box-app" style="padding-top:0" ng-show="HasMenuAccess('flight_report',3)">
                         <a class="logo" style="text-decoration:none;" href="" data-ng-click="navigate(  '/report/flight/daily'  , 'flight_daily')">
                             <img src="content/images/fltdaily.png">
                             <div class="title-small ng-binding" style="color:gray;font-size:1em">Daily Report (B)</div>
                         </a>
                     </div>
-					  <div class="box-app" style="padding-top:0" ng-show="HasMenuAccess('flight_crew',3)">
+                    <div class="box-app" style="padding-top:0" ng-show="HasMenuAccess('flight_crew',3)">
                         <a class="logo" style="text-decoration:none;" href="" data-ng-click="navigate(  '/crew/report'  , 'flight_crew')">
                             <img src="content/images/ftl.png">
                             <div class="title-small ng-binding" style="color:gray;font-size:1em">FTL Report</div>
                         </a>
                     </div>
-					 <div class="box-app" style="padding-top:0" ng-show="HasMenuAccess('efb',3)">
+                    <div class="box-app" style="padding-top:0" ng-show="HasMenuAccess('efb',3)">
                         <a class="logo" style="text-decoration:none;" href="" data-ng-click="navigate(  '/flights/efbs'  , 'flight_report')">
                             <img src="content/images/efb.png">
                             <div class="title-small ng-binding" style="color:gray;font-size:1em">EFB Report</div>
                         </a>
                     </div>
-					 <div class="box-app" style="padding-top:0" ng-show="HasMenuAccess('log_report',3)">
+                    <div class="box-app" style="padding-top:0" ng-show="HasMenuAccess('log_report',3)">
                         <a class="logo" style="text-decoration:none;" href="" data-ng-click="navigate(  '/log/duty/report'  , 'log_report')">
                             <img src="content/images/log.png">
                             <div class="title-small ng-binding" style="color:gray;font-size:1em">Duty Log Report</div>
                         </a>
                     </div>
-					 <div class="box-app" style="padding-top:0" ng-show="HasMenuAccess('log_report',3)">
+                    <div class="box-app" style="padding-top:0" ng-show="HasMenuAccess('log_report',3)">
                         <a class="logo" style="text-decoration:none;" href="" data-ng-click="navigate(  '/log/report'  , 'log_report')">
                             <img src="content/images/log.png">
                             <div class="title-small ng-binding" style="color:gray;font-size:1em">Flight Log Report</div>
                         </a>
                     </div>
-					 <div class="box-app" style="padding-top:0" ng-show="HasMenuAccess('log_report',3)">
+                    <div class="box-app" style="padding-top:0" ng-show="HasMenuAccess('log_report',3)">
                         <a class="logo" style="text-decoration:none;" href="" data-ng-click="navigate(  '/log/profile/report'  , 'log_profile_report')">
                             <img src="content/images/log.png">
                             <div class="title-small ng-binding" style="color:gray;font-size:1em">Profile Log Report</div>
                         </a>
                     </div>
-					 <div class="box-app" style="padding-top:0" ng-show="HasMenuAccess('flight_crew_time',3)">
+                    <div class="box-app" style="padding-top:0" ng-show="HasMenuAccess('flight_crew_time',3)">
                         <a class="logo" style="text-decoration:none;" href="" data-ng-click="navigate(  '/crew/time/report'  , 'flight_crew_time')">
                             <img src="content/images/crew_time.png">
                             <div class="title-small ng-binding" style="color:gray;font-size:1em">Flight Time Report</div>
                         </a>
                     </div>
-					<!--<div class="box-app" style="padding-top:0" ng-show="HasMenuAccess('flight_crew_time',3)">
+                    <!--<div class="box-app" style="padding-top:0" ng-show="HasMenuAccess('flight_crew_time',3)">
                         <a class="logo" style="text-decoration:none;" href="" data-ng-click="navigate(  '/crew/report/fixtime'  , 'flight_crew_fixtime')">
                             <img src="content/images/fixedtimereport.png">
                             <div class="title-small ng-binding" style="color:gray;font-size:1em">Fixed Time Report</div>
                         </a>
                     </div>-->
-					<div class="box-app" style="padding-top:0" ng-show="HasMenuAccess('flight_crew_time',3)">
+                    <div class="box-app" style="padding-top:0" ng-show="HasMenuAccess('flight_crew_time',3)">
                         <a class="logo" style="text-decoration:none;" href="" data-ng-click="navigate(  '/crew/report/fixtime/daily'  , 'flight_crew_fixtime')">
                             <img src="content/images/fixedtimereportdaily.png">
                             <div class="title-small ng-binding" style="color:gray;font-size:1em">Fixed Time Report</div>
                         </a>
                     </div>
-					 <div class="box-app" style="padding-top:0" ng-show="HasMenuAccess('bi_delay',3)">
+                    <div class="box-app" style="padding-top:0" ng-show="HasMenuAccess('bi_delay',3)">
                         <a class="logo" style="text-decoration:none;" href="" data-ng-click="navigate(  '/delay/main'  , 'bi_delay')">
                             <img src="content/images/delaybi.png">
                             <div class="title-small ng-binding" style="color:gray;font-size:1em">Delays Monitoring</div>
                         </a>
                     </div>
-					   <div class="box-app" style="padding-top:0" ng-show="HasMenuAccess('flight_fuel',3)">
+                    <div class="box-app" style="padding-top:0" ng-show="HasMenuAccess('flight_fuel',3)">
                         <a class="logo" style="text-decoration:none;" href="" data-ng-click="navigate(  '/fuel/report'  , 'flight_fuel')">
                             <img src="content/images/fuel.png">
                             <div class="title-small ng-binding" style="color:gray;font-size:1em">Fuel</div>
                         </a>
                     </div>
-					 <div class="box-app" style="padding-top:0" ng-show="HasMenuAccess('register_flights_report',3)">
+                    <div class="box-app" style="padding-top:0" ng-show="HasMenuAccess('register_flights_report',3)">
                         <a class="logo" style="text-decoration:none;" href="" data-ng-click="navigate(  '/flights/monthly'  , 'summary_flights_report')">
                             <img src="content/images/rgflt.png">
                             <div class="title-small ng-binding" style="color:gray;font-size:1em">Summary</div>
                         </a>
                     </div>
-					
+
                     <!--<div class="box-app" style="padding-top:0" ng-show="HasMenuAccess('flight_aog',3)">
                         <a class="logo" style="text-decoration:none;" href="" data-ng-click="navigate(  '/reg/availability'  , 'flight_aog')">
                             <img src="content/images/flights_total.png">
                             <div class="title-small ng-binding" style="color:gray;font-size:1em">AOG</div>
                         </a>
                     </div>-->
-        
-	
-                   
-					
-					<!--<div class="box-app" style="padding-top:0" ng-show="HasMenuAccess('flight_calendar_cockpit',3)">
+                    <!--<div class="box-app" style="padding-top:0" ng-show="HasMenuAccess('flight_calendar_cockpit',3)">
                         <a class="logo" style="text-decoration:none;" href="" data-ng-click="navigate(  '/duty/timeline'  , 'dutytimeline')">
                             <img src="content/images/dtt.png">
                             <div class="title-small ng-binding" style="color:gray;font-size:1em">Duties Timeline</div>
                         </a>
                     </div>-->
-					
-                  
-					
-					<!-- <div class="box-app" style="padding-top:0" ng-show="HasMenuAccess('register_flights_report',3)">
+                    <!-- <div class="box-app" style="padding-top:0" ng-show="HasMenuAccess('register_flights_report',3)">
                         <a class="logo" style="text-decoration:none;" href="" data-ng-click="navigate(  '/reg/flights/monthly'  , 'register_flights_report')">
                             <img src="content/images/rgflt.png">
                             <div class="title-small ng-binding" style="color:gray;font-size:1em">Register Flight Time</div>
                         </a>
                     </div>-->
-					
-					
-					 <div class="box-app" style="padding-top:0" ng-show="HasMenuAccess('atr_forma',3)">
+
+
+                    <div class="box-app" style="padding-top:0" ng-show="HasMenuAccess('atr_forma',3)">
                         <a class="logo" style="text-decoration:none;" href="" data-ng-click="navigate(  '/forma'  , 'atr_forma')">
                             <img src="content/images/forma.png">
                             <div class="title-small ng-binding" style="color:gray;font-size:1em">Form A</div>
                         </a>
                     </div>
-					
+
                     <div class="box-app" style="padding-top:0" ng-show="HasMenuAccess('atr_citypair',3)">
                         <a class="logo" style="text-decoration:none;" href="" data-ng-click="navigate(  '/citypair'  , 'atr_citypair')">
                             <img src="content/images/citypair.png">
                             <div class="title-small ng-binding" style="color:gray;font-size:1em">City-Pair Report</div>
                         </a>
                     </div>
-					
-					 <div class="box-app" style="padding-top:0" ng-show="HasMenuAccess('atr_forma',3)">
+
+                    <div class="box-app" style="padding-top:0" ng-show="HasMenuAccess('atr_forma',3)">
                         <a class="logo" style="text-decoration:none;" href="" data-ng-click="navigate(  '/formmovaled'  , 'atr_formmovaled')">
                             <img src="content/images/forma.png">
                             <div class="title-small ng-binding" style="color:gray;font-size:1em">فرم مولد</div>
                         </a>
                     </div>
-					
-					
-  <div class="box-app" style="padding-top:0" ng-show="HasMenuAccess('fdr_report',3)">
+
+
+                    <div class="box-app" style="padding-top:0" ng-show="HasMenuAccess('fdr_report',3)">
                         <a class="logo" style="text-decoration:none;" href="" data-ng-click="navigate(  '/fdr'  , 'fdr_report')">
                             <img src="content/images/flightsreport.png">
                             <div class="title-small ng-binding" style="color:gray;font-size:1em">FDR Report</div>
@@ -969,14 +963,14 @@
                             <div class="title-small ng-binding" style="color:gray;font-size:1em">Fin. Daily Report</div>
                         </a>
                     </div>
-					 
+
                     <div class="box-app" style="padding-top:0" ng-show="HasMenuAccess('fin_monthly_report',3)">
                         <a class="logo" style="text-decoration:none;" href="" data-ng-click="navigate(  '/fin/monthly/report'  , 'fin_monthly_report')">
                             <img src="content/images/flightsreport.png">
                             <div class="title-small ng-binding" style="color:gray;font-size:1em">Fin. Monthly Report</div>
                         </a>
                     </div>
-					  <div class="box-app" style="padding-top:0" ng-show="HasMenuAccess('delays_report',3)">
+                    <div class="box-app" style="padding-top:0" ng-show="HasMenuAccess('delays_report',3)">
                         <a class="logo" style="text-decoration:none;" href="" data-ng-click="navigate(  '/delays'  , 'delays_report')">
                             <img src="content/images/delay.png">
                             <div class="title-small ng-binding" style="color:gray;font-size:1em">Delays</div>
@@ -989,23 +983,23 @@
                         </a>
                     </div>
 
-                  
-                   
-					<!--<div class="box-app" style="padding-top:0" ng-show="HasMenuAccess('flight_crew_time',3)">
+
+
+                    <!--<div class="box-app" style="padding-top:0" ng-show="HasMenuAccess('flight_crew_time',3)">
                         <a class="logo" style="text-decoration:none;" href="" data-ng-click="navigate(  '/crew/report/fixtime/daily'  , 'flight_crew_fixtime')">
                             <img src="content/images/fixedtimereportdaily.png">
                             <div class="title-small ng-binding" style="color:gray;font-size:1em">Fixed Time Report (Daily)</div>
                         </a>
                     </div>-->
-					<div class="box-app" style="padding-top:0" ng-show="HasMenuAccess('fixedtime_edit',3)">
+                    <div class="box-app" style="padding-top:0" ng-show="HasMenuAccess('fixedtime_edit',3)">
                         <a class="logo" style="text-decoration:none;" href="" data-ng-click="navigate(  '/fixedtime'  , 'fixedtime_edit')">
                             <img src="content/images/fixedtimeedit.png">
                             <div class="title-small ng-binding" style="color:gray;font-size:1em">Edit Fixed Time</div>
                         </a>
                     </div>
-                 
 
-                   
+
+
                     <div class="box-app" style="padding-top:0" ng-show="HasMenuAccess('flight_airports',3)">
                         <a class="logo" style="text-decoration:none;" href="" data-ng-click="navigate(  '/dispatch/airport'  , 'flight_airports')">
                             <img src="content/images/airport.png">
@@ -1024,15 +1018,15 @@
                             <div class="title-small ng-binding" style="color:gray;font-size:1em">Delay Codes</div>
                         </a>
                     </div>
-					
-					<div class="box-app" style="padding-top:0" ng-show="HasMenuAccess('auth_card',3)"> 
-						<!-- HasMenuAccess('auth_card',3) -->
+
+                    <div class="box-app" style="padding-top:0" ng-show="HasMenuAccess('auth_card',3)">
+                        <!-- HasMenuAccess('auth_card',3) -->
                         <a class="logo" style="text-decoration:none;" href="" data-ng-click="navigate(  '/authcards'  , 'auth_card')">
                             <img src="content/images/flightsreport.png">
                             <div class="title-small ng-binding" style="color:gray;font-size:1em">Authorization Card</div>
                         </a>
                     </div>
-					<div class="box-app" style="padding-top:0" ng-show="1==0">
+                    <div class="box-app" style="padding-top:0" ng-show="1==0">
                         <a class="logo" style="text-decoration:none;" href="" data-ng-click="navigate(  '/boardtemp'  , 'week_board')">
                             <img src="content/images/date.png">
                             <div class="title-small ng-binding" style="color:gray;font-size:1em">Weekly Board</div>
@@ -1041,18 +1035,18 @@
 
 
                     <!--<div class="box-app" style="padding-top:0">
-        <a class="logo" style="text-decoration:none;" href="" data-ng-click="navigate(  '/dispatch/flights/THR/0'  , 'flight_board_2')">
-            <img src="../../content/images/actype2.png">
-            <div class="title-small ng-binding" style="color:gray;font-size:1em">Flight Board 2</div>
-        </a>
-    </div>
+                        <a class="logo" style="text-decoration:none;" href="" data-ng-click="navigate(  '/dispatch/flights/THR/0'  , 'flight_board_2')">
+                            <img src="../../content/images/actype2.png">
+                            <div class="title-small ng-binding" style="color:gray;font-size:1em">Flight Board 2</div>
+                        </a>
+                    </div>
 
-    <div class="box-app" style="padding-top:0">
-        <a class="logo" style="text-decoration:none;" href="" data-ng-click="navigate(  '/flight/archive'  , 'flight_archive')">
-            <img src="../../content/images/actype2.png">
-            <div class="title-small ng-binding" style="color:gray;font-size:1em">Flights Archive</div>
-        </a>
-    </div>-->
+                    <div class="box-app" style="padding-top:0">
+                        <a class="logo" style="text-decoration:none;" href="" data-ng-click="navigate(  '/flight/archive'  , 'flight_archive')">
+                            <img src="../../content/images/actype2.png">
+                            <div class="title-small ng-binding" style="color:gray;font-size:1em">Flights Archive</div>
+                        </a>
+                    </div>-->
 
                 </div>
 
@@ -1062,11 +1056,11 @@
 
         <div class=" col-lg-11 col-md-12   thin-scroll" style="padding:5px 5px 5px 10px;height:100%;overflow-y:auto">
             <!--<div ng-repeat="x in flight.Airports" class="box-app" style="padding-top:0;display: inline-block;width:150px;background:gray;margin:5px;border-radius:0">
-            <a class="logo" style="text-decoration:none;" href="" data-ng-click="navigateairport(x.IATA)">
+                <a class="logo" style="text-decoration:none;" href="" data-ng-click="navigateairport(x.IATA)">
 
-                <div class="title-small ng-binding" style="color:white;font-size:1em">{{x.IATA}}</div>
-            </a>
-        </div>-->
+                    <div class="title-small ng-binding" style="color:white;font-size:1em">{{x.IATA}}</div>
+                </a>
+            </div>-->
             <div class="flight-summary">
 
                 <div class="col-lg-2 hidden-xs hidden-sm hidden-xsm  padding-0 center summarybox">
@@ -1088,7 +1082,7 @@
                         <!--<div class="hidden-lg">
                             <div class="col-sm-3">
                                 <div class="center" dx-date-box="date_from" dx-validator="{validationGroup:'homedate',  validationRules: [{ type: 'required'}]}"></div>
-                                
+
                             </div>
                             <div class="col-sm-3">
                                 <div class="center"   dx-date-box="date_to" dx-validator="{validationGroup:'homedate',  validationRules: [{ type: 'required'}]}"></div>
@@ -1544,50 +1538,55 @@
                 <div style="clear:both"></div>
             </div>
             <!--End of flight summary-->
-            	<div style='margin-top:5px;padding-right:3px;' ng-show='has_forms'>
-		   <div style='background:#f0f3f5;padding:6px;border:1px solid #c8ced3'>Forms</div>
-		   <div style='padding:5px;border:1px solid #c8ced3'>
-		       <div class='col-lg-3 col-md-4 col-sm-6 col-xs-12' ng-repeat='x in qaStatus' style='padding:5px;' ng-click="showStatus(x.type, x.TypeTitle)">
-			        <div style='border:1px solid #ccc;margin-bottom:0px;'>
-					  <div style='font-size:12px;font-weight:bold;padding:5px;border-bottom:1px slid #ddd;background:#ddd;text-align:center'>{{x.TypeTitle}}</div>
-					  <table style='width:100%;text-align:center'>
-					     <tr style='border-bottom:1px solid #ddd'>
-						     <td style='padding:3px;font-size:11px;border-right:1px solid #ddd;background:#ffcc66'>NEW</td>
-							  <td style='padding:3px;font-size:11px;border-right:1px solid #ddd;background:#b3e6ff'>IN PROGRESS</td>
-							   <td style='padding:3px;font-size:11px;background:#66ffcc'>CLOSED</td>
-						 <tr>
-						  <tr style='border-bottom:0px solid #eee'>
-						     <td style='padding:3px;font-size:12px;font-weight:bold;border-right:1px solid #ddd '>{{x.NewCount}}</td>
-							 <td style='padding:3px;font-size:12px;font-weight:bold;border-right:1px solid #ddd '>{{x.OpenCount}}</td>
-							 <td style='padding:3px;font-size:12px;font-weight:bold'>{{x.DeterminedCount}}</td>
-						 <tr>
-					  </table>
-					</div>
-			   </div>
-		       <div style='clear:both'></div>
-		   </div>
-		</div>
-			
-			<div style="margin-top:10px;">
+            <div style='margin-top:5px;padding-right:3px;' ng-show='has_forms'>
+                <div style='background:#f0f3f5;padding:6px;border:1px solid #c8ced3'>Forms</div>
+                <div style='padding:5px;border:1px solid #c8ced3'>
+                    <div class='col-lg-3 col-md-4 col-sm-6 col-xs-12' ng-repeat='x in qaStatus' style='padding:5px;' ng-click="showStatus(x.type, x.TypeTitle)">
+                        <div style='border:1px solid #ccc;margin-bottom:0px;'>
+                            <div style='font-size:12px;font-weight:bold;padding:5px;border-bottom:1px solid #ddd;background:#ddd;text-align:center'>{{x.TypeTitle}}</div>
+                            <table style='width:100%;text-align:center'>
+                                <tr style='border-bottom:1px solid #ddd'>
+                                    <td style='padding:3px;font-size:11px;border-right:1px solid #ddd;background:#ffcc66'>NEW</td>
+                                    <td style='padding:3px;font-size:11px;border-right:1px solid #ddd;background:#b3e6ff'>IN PROGRESS</td>
+                                    <td style='padding:3px;font-size:11px;background:#66ffcc'>CLOSED</td>
+                                <tr>
+                                <tr style='border-bottom:0px solid #eee'>
+                                    <td style='padding:3px;font-size:12px;font-weight:bold;border-right:1px solid #ddd '>{{x.NewCount}}</td>
+                                    <td style='padding:3px;font-size:12px;font-weight:bold;border-right:1px solid #ddd '>{{x.OpenCount}}</td>
+                                    <td style='padding:3px;font-size:12px;font-weight:bold'>{{x.DeterminedCount}}</td>
+                                <tr>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div style='clear:both'></div>
+                </div>
+                <div dx-data-grid="dg_qa_notif" id="dg_qa_notif" class="content" style="overflow-y:hidden;" dx-item-alias="row" ng-show="true"></div>
+
+            </div>
+
+            <div style="margin-top:10px;">
                 <!--delay chart-->
-				<div ng-show='map'>
-					<div ng-class='get_map_class()' style='padding:0;padding-right:5px;' ng-repeat='x in ds_live'>
-						<div style='background:gray;color:black;text-align:center;font-weight:bold'>
-							<table style='width:100%;background:#ddd'><tr>
-								<td style='padding:7px;width:55%;text-align:left'>{{x.FlightNo}}</td>
-								<td style='width:22%;font-size:12px;text-align:right'><img src="content/images/acicon2.png" style="margin-right:5px;width:20px;height:20px;vertical-align:middle" />Estimated</td>
-								<td style='width:18%;font-size:12px;border-right:1px solid #ccc'><img src="content/images/acicon.png" style="margin-right:5px;width:20px;height:20px;vertical-align:middle" />Actual</td>
-								<td style='width:5%' ng-click='show_map(x)'><i class='fas fa-expand-arrows-alt' style='font-size:24px;color:gray'></i></td>
-						    </tr></table>
-						</div>
-						<div style='width:100%;height:400px;border:1px solid gray'>
-						   <iframe  ng-attr-id="map-{{x.Id}}" ng-src="{{x.url}}" style="border:none;height:100%;width:100%;"></iframe>
-						</div>
-						
-					</div>
-					<div style='clear:both'></div>
-				</div>
-				<div style='cler:both'></div>
+                <div ng-show='map'>
+                    <div ng-class='get_map_class()' style='padding:0;padding-right:5px;' ng-repeat='x in ds_live'>
+                        <div style='background:gray;color:black;text-align:center;font-weight:bold'>
+                            <table style='width:100%;background:#ddd'>
+                                <tr>
+                                    <td style='padding:7px;width:55%;text-align:left'>{{x.FlightNo}}</td>
+                                    <td style='width:22%;font-size:12px;text-align:right'><img src="content/images/acicon2.png" style="margin-right:5px;width:20px;height:20px;vertical-align:middle" />Estimated</td>
+                                    <td style='width:18%;font-size:12px;border-right:1px solid #ccc'><img src="content/images/acicon.png" style="margin-right:5px;width:20px;height:20px;vertical-align:middle" />Actual</td>
+                                    <td style='width:5%' ng-click='show_map(x)'><i class='fas fa-expand-arrows-alt' style='font-size:24px;color:gray'></i></td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div style='width:100%;height:400px;border:1px solid gray'>
+                            <iframe ng-attr-id="map-{{x.Id}}" ng-src="{{x.url}}" style="border:none;height:100%;width:100%;"></iframe>
+                        </div>
+
+                    </div>
+                    <div style='clear:both'></div>
+                </div>
+                <div style='cler:both'></div>
                 <div class="col-lg-8" style="padding:0 2px 0 2px">
 
                     <div class="card" style="margin-bottom:10px">
@@ -1596,8 +1595,8 @@
 
                         </div>
                         <!--<div class="card-body" style="height:264px;">
-                        <canvas id="chart-chartmostdelay" height="80"></canvas>
-                    </div>-->
+                            <canvas id="chart-chartmostdelay" height="80"></canvas>
+                        </div>-->
                         <div id="chart" dx-chart="chart_most_delayed"></div>
                     </div>
                 </div>
@@ -1862,128 +1861,107 @@
     </div>
 
     <div class="wrapper qa" style="display:inline-block;height:100%;padding-bottom:0px;display:none">
-	    <div class=" col-lg-1 col-md-2 hidden-md  hidden-xs hidden-sm hidden-xsm" style="padding:10px 0 10px 10px;padding:0; height:100%">
-		   <div class="home-box" style="height:100%;border-radius:0;padding:5px">
-		       <div class="thin-scroll" style="margin-top:10px;height:93%;overflow-y:auto">
-			         <div class="box-app" style="padding-top:0" ng-show="HasMenuAccess('flight_board',3)">
+        <div class=" col-lg-1 col-md-2 hidden-md  hidden-xs hidden-sm hidden-xsm" style="padding:10px 0 10px 10px;padding:0; height:100%">
+            <div class="home-box" style="height:100%;border-radius:0;padding:5px">
+                <div class="thin-scroll" style="margin-top:10px;height:93%;overflow-y:auto">
+                    <div class="box-app" style="padding-top:0" ng-show="HasMenuAccess('flight_board',3)">
                         <a class="logo" style="text-decoration:none;" href="" data-ng-click="navigate(  '/board'  , 'flight_board')">
                             <img src="content/images/date.png">
                             <div class="title-small ng-binding" style="color:gray;font-size:1em">Flight Board</div>
                         </a>
                     </div>
-				    <div class="box-app" style="padding-top:0" ng-show="HasMenuAccess('log_report',3)">
+                    <div class="box-app" style="padding-top:0" ng-show="HasMenuAccess('log_report',3)">
                         <a class="logo" style="text-decoration:none;" href="" data-ng-click="navigate(  '/qa/hazard/log'  , 'hazard_log')">
                             <img src="content/images/log.png">
                             <div class="title-small ng-binding" style="color:gray;font-size:1em">Hazard Log</div>
                         </a>
                     </div>
-					<div class="box-app" style="padding-top:0" ng-show="HasMenuAccess('qa_report',5)">
+                    <div class="box-app" style="padding-top:0" ng-show="HasMenuAccess('qa_report',5)">
                         <a class="logo" style="text-decoration:none;" href="" data-ng-click="navigate(  '/qa/report'  , 'qa_report')">
                             <img src="content/images/cm-report.png">
                             <div class="title-small ng-binding" style="color:gray;font-size:1em">CM Report</div>
                         </a>
                     </div>
-					
-					 
-					 <div class="box-app" style="padding-top:0" ng-show="HasMenuAccess('flight_crew',3)">
+
+
+                    <div class="box-app" style="padding-top:0" ng-show="HasMenuAccess('flight_crew',3)">
                         <a class="logo" style="text-decoration:none;" href="" data-ng-click="navigate(  '/crew/report'  , 'flight_crew')">
                             <img src="content/images/ftl.png">
                             <div class="title-small ng-binding" style="color:gray;font-size:1em">FTL Report</div>
                         </a>
                     </div>
-					 <div class="box-app" style="padding-top:0" ng-show="HasMenuAccess('efb',3)">
+                    <div class="box-app" style="padding-top:0" ng-show="HasMenuAccess('efb',3)">
                         <a class="logo" style="text-decoration:none;" href="" data-ng-click="navigate(  '/flights/efbs'  , 'flight_report')">
                             <img src="content/images/efb.png">
                             <div class="title-small ng-binding" style="color:gray;font-size:1em">EFB Report</div>
                         </a>
                     </div>
-					 
-					 <div class="box-app" style="padding-top:0" ng-show="HasMenuAccess('log_report',3)">
+
+                    <div class="box-app" style="padding-top:0" ng-show="HasMenuAccess('log_report',3)">
                         <a class="logo" style="text-decoration:none;" href="" data-ng-click="navigate(  '/log/report'  , 'log_report')">
                             <img src="content/images/log.png">
                             <div class="title-small ng-binding" style="color:gray;font-size:1em">Flight Log Report</div>
                         </a>
                     </div>
-				    <div class="box-app" style="padding-top:0" ng-show="HasMenuAccess('log_report',3)">
+                    <div class="box-app" style="padding-top:0" ng-show="HasMenuAccess('log_report',3)">
                         <a class="logo" style="text-decoration:none;" href="" data-ng-click="navigate(  '/log/duty/report'  , 'log_report')">
                             <img src="content/images/log.png">
                             <div class="title-small ng-binding" style="color:gray;font-size:1em">Duty Log Report</div>
                         </a>
                     </div>
-					 <div class="box-app" style="padding-top:0" ng-show="HasMenuAccess('log_report',3)">
+                    <div class="box-app" style="padding-top:0" ng-show="HasMenuAccess('log_report',3)">
                         <a class="logo" style="text-decoration:none;" href="" data-ng-click="navigate(  '/log/profile/report'  , 'log_profile_report')">
                             <img src="content/images/log.png">
                             <div class="title-small ng-binding" style="color:gray;font-size:1em">Profile Log Report</div>
                         </a>
                     </div>
-					 <div class="box-app" style="padding-top:0" ng-show="HasMenuAccess('profile_person',1)">
+                    <div class="box-app" style="padding-top:0" ng-show="HasMenuAccess('profile_person',1)">
                         <a class="logo" style="text-decoration:none;" href="" data-ng-click="navigate(  '/person/crew'  , 'profile_person')">
                             <img src="content/images/group2.png">
                             <div class="title-small ng-binding" style="color:gray;font-size:1em">Profiles</div>
                         </a>
                     </div>
-					<div class="box-app" style="padding-top:0" ng-show="HasMenuAccess('flight_report',3)">
+                    <div class="box-app" style="padding-top:0" ng-show="HasMenuAccess('flight_report',3)">
                         <a class="logo" style="text-decoration:none;" href="" data-ng-click="navigate(  '/report/flight/daily'  , 'flight_daily')">
                             <img src="content/images/fltdaily.png">
                             <div class="title-small ng-binding" style="color:gray;font-size:1em">Daily Report </div>
                         </a>
                     </div>
-					 <div class="box-app" style="padding-top:0" ng-show="HasMenuAccess('flight_crew_time',3)">
+                    <div class="box-app" style="padding-top:0" ng-show="HasMenuAccess('flight_crew_time',3)">
                         <a class="logo" style="text-decoration:none;" href="" data-ng-click="navigate(  '/crew/time/report'  , 'flight_crew_time')">
                             <img src="content/images/crew_time.png">
                             <div class="title-small ng-binding" style="color:gray;font-size:1em">Flight Time Report</div>
                         </a>
                     </div>
-					 <div class="box-app" style="padding-top:0" ng-show="HasMenuAccess('bi_delay',3)">
+                    <div class="box-app" style="padding-top:0" ng-show="HasMenuAccess('bi_delay',3)">
                         <a class="logo" style="text-decoration:none;" href="" data-ng-click="navigate(  '/delay/main'  , 'bi_delay')">
                             <img src="content/images/delaybi.png">
                             <div class="title-small ng-binding" style="color:gray;font-size:1em">Delays Monitoring</div>
                         </a>
                     </div>
-					   <div class="box-app" style="padding-top:0" ng-show="HasMenuAccess('flight_fuel',3)">
+                    <div class="box-app" style="padding-top:0" ng-show="HasMenuAccess('flight_fuel',3)">
                         <a class="logo" style="text-decoration:none;" href="" data-ng-click="navigate(  '/fuel/report'  , 'flight_fuel')">
                             <img src="content/images/fuel.png">
                             <div class="title-small ng-binding" style="color:gray;font-size:1em">Fuel</div>
                         </a>
                     </div>
-					<div class="box-app" style="padding-top:0" ng-show="HasMenuAccess('auth_card',3)"> 
-						<!-- HasMenuAccess('auth_card',3) -->
+                    <div class="box-app" style="padding-top:0" ng-show="HasMenuAccess('auth_card',3)">
+                        <!-- HasMenuAccess('auth_card',3) -->
                         <a class="logo" style="text-decoration:none;" href="" data-ng-click="navigate(  '/authcards'  , 'auth_card')">
                             <img src="content/images/flightsreport.png">
                             <div class="title-small ng-binding" style="color:gray;font-size:1em">Authorization Card</div>
                         </a>
                     </div>
-			   </div>
-		   </div>
-		</div>
-		
-		
-		
-		<div class=" col-lg-11 col-md-12   thin-scroll" style="padding:5px 5px 5px 10px;height:100%;overflow-y:auto">
-		<div style='margin-top:5px;padding-right:3px;'>
-		   <div style='background:#f0f3f5;padding:6px;border:1px solid #c8ced3'>Forms</div>
-		   <div style='padding:5px;border:1px solid #c8ced3'>
-		       <div class='col-lg-3 col-md-4 col-sm-6 col-xs-12' ng-repeat='x in qaStatus' style='padding:5px;' ng-click="showStatus(x.type, x.TypeTitle)">
-			        <div style='border:1px solid #ccc;margin-bottom:0px;'>
-					  <div style='font-size:12px;font-weight:bold;padding:5px;border-bottom:1px slid #ddd;background:#ddd;text-align:center'>{{x.TypeTitle}}</div>
-					  <table style='width:100%;text-align:center'>
-					     <tr style='border-bottom:1px solid #ddd'>
-						     <td style='padding:3px;font-size:11px;border-right:1px solid #ddd;background:#ffcc66'>NEW</td>
-							  <td style='padding:3px;font-size:11px;border-right:1px solid #ddd;background:#b3e6ff'>IN PROGRESS</td>
-							   <td style='padding:3px;font-size:11px;background:#66ffcc'>CLOSED</td>
-						 <tr>
-						  <tr style='border-bottom:0px solid #eee'>
-						     <td style='padding:3px;font-size:12px;font-weight:bold;border-right:1px solid #ddd '>{{x.NewCount}}</td>
-							 <td style='padding:3px;font-size:12px;font-weight:bold;border-right:1px solid #ddd '>{{x.OpenCount}}</td>
-							 <td style='padding:3px;font-size:12px;font-weight:bold'>{{x.DeterminedCount}}</td>
-						 <tr>
-					  </table>
-					</div>
-			   </div>
-		       <div style='clear:both'></div>
-		   </div>
-		</div>
-		<div class="flight-summary" style='margin-top:5px;'>
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class=" col-lg-11 col-md-12   thin-scroll" style="padding:5px 5px 5px 10px;height:100%;overflow-y:auto">
+
+
+            <div class="flight-summary" style='margin-top:5px;'>
 
                 <div class="col-lg-2 hidden-xs hidden-sm hidden-xsm  padding-0 center summarybox">
 
@@ -2001,7 +1979,7 @@
                                 </tr>
                             </tbody>
                         </table>
-                       
+
                     </div>
                 </div>
 
@@ -2041,7 +2019,7 @@
                         </table>
                     </div>
                 </div>
-                
+
                 <div class="hidden-lg" style="clear:both"></div>
                 <div class="col-lg-1  col-xs-6 col-sm-3 col-xsm-4 padding-0 center summarybox">
 
@@ -2168,7 +2146,7 @@
                     </div>
 
                 </div>
-                
+
                 <div class="col-lg-1  col-xs-6 col-sm-3 col-xsm-4 padding-0 center summarybox">
 
                     <div class="home-box " style="padding:8px;">
@@ -2291,53 +2269,95 @@
                     </div>
 
                 </div>
-                
+
 
 
                 <div style="clear:both"></div>
             </div>
-		
-		<div style='cler:both'></div>
-                <div class="col-lg-8" style="padding:0 2px 0 2px;margin-top:5px;">
 
-                    <div class="card" style="margin-bottom:10px">
-                        <div class="card-header">
-                            The most delayed flights
-
+            <div style="clear:both"></div>
+            <div style='margin-top:5px;padding-right:3px;'>
+                <div style='background:#f0f3f5;padding:6px;border:1px solid #c8ced3;text-align:center'>Safety Forms</div>
+                <div style='padding:5px;border:1px solid #c8ced3'>
+                    <div class='col-lg-3 col-md-4 col-sm-6 col-xs-12' ng-repeat='x in qaStatus' style='padding:5px;' ng-click="showStatus(x.type, x.TypeTitle)">
+                        <div style='border:1px solid #ccc;margin-bottom:0px;'>
+                            <div style='font-size:12px;font-weight:bold;padding:5px;border-bottom:1px solid #ddd;background:#ddd;text-align:center'>{{x.TypeTitle}}</div>
+                            <table style='width:100%;text-align:center'>
+                                <tr style='border-bottom:1px solid #ddd'>
+                                    <td style='padding:3px;font-size:11px;border-right:1px solid #ddd;background:#ffcc66'>NEW</td>
+                                    <td style='padding:3px;font-size:11px;border-right:1px solid #ddd;background:#b3e6ff'>IN PROGRESS</td>
+                                    <td style='padding:3px;font-size:11px;background:#66ffcc'>CLOSED</td>
+                                <tr>
+                                <tr style='border-bottom:0px solid #eee'>
+                                    <td style='padding:3px;font-size:12px;font-weight:bold;border-right:1px solid #ddd '>{{x.NewCount}}</td>
+                                    <td style='padding:3px;font-size:12px;font-weight:bold;border-right:1px solid #ddd '>{{x.OpenCount}}</td>
+                                    <td style='padding:3px;font-size:12px;font-weight:bold'>{{x.DeterminedCount}}</td>
+                                <tr>
+                            </table>
                         </div>
-                        <!--<div class="card-body" style="height:264px;">
-                        <canvas id="chart-chartmostdelay" height="80"></canvas>
-                    </div>-->
-                        <div id="chart" dx-chart="chart_most_delayed"></div>
                     </div>
+                    <div style='clear:both'></div>
                 </div>
 
-                <!--end of delay chart-->
-
-                <div class="col-lg-4" style="padding:0 2px 0 2px;margin-top:5px; ">
-                    <div class="card" style="margin-bottom:10px">
-                        <div class="card-header">
-                            Delays By Category
-
-                        </div>
-
-                        <div id="pie" dx-pie-chart="chart_delay_category"></div>
+                <div style='background:#f0f3f5;padding:6px;border:1px solid #c8ced3;text-align:center'> Items to be considered</div>
+                <div dx-data-grid="dg_qa_notif" id="dg_qa_notif" class="content" style="overflow-y:hidden;margin-top:5px" dx-item-alias="row" ng-show="qaNotifShow">
+                    <div data-options="dxTemplate:{ name:'ShowFormTemplate' }">
+                        <a ng-click="ShowForm(row)" href="" class='w3-button w3-block w3-blue' style=' margin:0 auto 0px auto;text-decoration:none;padding:5px 5px !important; text-align:center'>Show</a>
                     </div>
+
+                    <div data-options="dxTemplate:{ name:'SafetyFormTemplate' }">
+                        <a ng-click="SafetyForm(row)" href="" class='w3-button w3-block w3-blue' style=' margin:0 auto 0px auto;text-decoration:none;padding:5px 5px !important; text-align:center'>Safety Form</a>
+                    </div>
+
                 </div>
 
-                <div style="clear:both"></div>
-		 
-		</div>
-		
-		
-		
-		<div style='clear:both'></div>
-	</div>
+            </div>
 
 
-<div dx-toast="newFormToast"></div>
+            <div style='clear:both'></div>
+            <div class="col-lg-8" style="padding:0 2px 0 2px;margin-top:5px;">
+
+                <div class="card" style="margin-bottom:10px">
+                    <div class="card-header">
+                        The most delayed flights
+
+                    </div>
+                    <!--<div class="card-body" style="height:264px;">
+                <canvas id="chart-chartmostdelay" height="80"></canvas>
+            </div>-->
+                    <div id="chart" dx-chart="chart_most_delayed"></div>
+                </div>
+            </div>
+
+            <!--end of delay chart-->
+
+            <div class="col-lg-4" style="padding:0 2px 0 2px;margin-top:5px; ">
+                <div class="card" style="margin-bottom:10px">
+                    <div class="card-header">
+                        Delays By Category
+
+                    </div>
+
+                    <div id="pie" dx-pie-chart="chart_delay_category"></div>
+                </div>
+            </div>
+
+            <div style="clear:both"></div>
+
+        </div>
+
+
+
+        <div style='clear:both'></div>
+    </div>
+
+
+    <div dx-toast="newFormToast"></div>
     <div dx-load-panel="loadPanel"></div>
-	<div ng-include="'app/views/map.html?v=106011'"></div>
+    <div ng-include="'app/views/map.html?v=106011'"></div>
+    <div ng-include="'app/views/qaEmployee.html?vx.2'"></div>
+    <div ng-include="'app/views/qaForm.html?vx.2'"></div>
+    <div ng-include="'app/views/qaOperationPopup.html?vx.3'"></div>
 </div>
 
 

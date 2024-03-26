@@ -887,6 +887,19 @@ var _getDateVisit = function (employeeId) {
         return deferred.promise;
     }
 
+    var _qaNotification = function (id) {
+
+        var deferred = $q.defer();
+        $http.get(apiQA + 'api/qa/notifications/' + id).then(function (response) {
+            deferred.resolve(response.data);
+        }, function (err, status) {
+            deferred.reject(Exceptions.getMessage(err));
+        })
+
+        return deferred.promise;
+    }
+
+
     serviceFactory.getQAByEmployee = _getQAByEmployee;
     serviceFactory.getQAStatus = _getQAStatus;
     serviceFactory.confirmReport = _confirmReport;
@@ -984,6 +997,7 @@ serviceFactory.setDateVisit = _setDateVisit;
     serviceFactory.setReceiverLog = _setReceiverLog;
 
 	 serviceFactory.getVoyageReport = _getVoyageReport;
+    serviceFactory.qaNotification = _qaNotification;
     return serviceFactory;
 
 }]);
