@@ -2,9 +2,10 @@
 app.controller('qaEmployee', ['$scope', '$location', 'authService', '$routeParams', '$rootScope', 'qaService', function ($scope, $location, authService, $routeParams, $rootScope, qaService) {
 
     $scope.employeeList = [];
-	$scope.DeadLine = null;
+    $scope.DeadLine = null;
 
     //////////////////////////
+
     $scope.loadingVisible = false;
     $scope.loadPanel = {
         message: 'Please wait...',
@@ -33,9 +34,11 @@ app.controller('qaEmployee', ['$scope', '$location', 'authService', '$routeParam
         // { dataField: 'ReceiverEmployeeId', caption: 'ReceiverEmployeeId', allowResizing: true, alignment: 'center', dataType: 'string', allowEditing: false, width: 260 },
 
     ];
+
     $scope.dg_selected = null;
     $scope.dg_instance = null;
     $scope.dg_ds = null;
+    $scope.selected_keys = [];
     $scope.dg = {
         showRowLines: true,
         showColumnLines: true,
@@ -43,12 +46,16 @@ app.controller('qaEmployee', ['$scope', '$location', 'authService', '$routeParam
 
         noDataText: '',
 
+        keyExpr: 'ReceiverEmployeeId',
         allowColumnReordering: true,
         allowColumnResizing: true,
         scrolling: { mode: 'infinite' },
         paging: { pageSize: 100 },
         showBorders: true,
         selection: { mode: 'multiple' },
+        height: function () {
+            return 540;
+        },
 
         filterRow: { visible: true, showOperationChooser: true, },
         columnAutoWidth: false,
@@ -60,6 +67,7 @@ app.controller('qaEmployee', ['$scope', '$location', 'authService', '$routeParam
         },
         onSelectionChanged: function (e) {
             var data = e.selectedRowsData;
+            console.log(data);
             $scope.selectedEmployees = data;
 
             if (!data) {
@@ -73,27 +81,33 @@ app.controller('qaEmployee', ['$scope', '$location', 'authService', '$routeParam
         bindingOptions: {
 
             dataSource: 'dg_ds',
-            height: 'dg_height',
+            //height: 'dg_height',
+            selectedRowKeys: 'selected_keys',
         },
         // dataSource:ds
 
     };
 
+    $scope.removeCrew = function (c) {
+        $scope.selectedEmployees = Enumerable.From($scope.selectedEmployees).Where('$.ReceiverEmployeeId!=' + c.ReceiverEmployeeId).ToArray();
+        $scope.selected_keys = Enumerable.From($scope.selected_keys).Where('$!=' + c.ReceiverEmployeeId).ToArray();
+        //$scope.smsRecsKeys = Enumerable.From($scope.smsRecsKeys).Where('$!=' + c.Id).ToArray();
+    };
+
     /////////////////////////////
 
-    $scope.pop_width = 700;
-    $scope.pop_height = $(window).height() - 20;
     $scope.popup_add_visible = false;
     $scope.popup_add_title = 'Employees';
     $scope.popup_add = {
 
         fullScreen: false,
         showTitle: true,
-
+        height: 640,
+        width: 1100,
         toolbarItems: [
             {
                 widget: 'dxButton', location: 'after', options: {
-                    type: 'default', text: 'Refer', icon: 'check'
+                    type: 'default', text: 'Refer', icon: 'check', validationGroup: 'refer_grp'
                 }, toolbar: 'bottom'
             },
             { widget: 'dxButton', location: 'after', options: { type: 'danger', text: 'Close', icon: 'remove', }, toolbar: 'bottom' }
@@ -128,8 +142,6 @@ app.controller('qaEmployee', ['$scope', '$location', 'authService', '$routeParam
         },
         bindingOptions: {
             visible: 'popup_add_visible',
-            width: 'pop_width',
-            height: 'pop_height',
             title: 'popup_add_title'
         }
     };
@@ -142,6 +154,12 @@ app.controller('qaEmployee', ['$scope', '$location', 'authService', '$routeParam
 
     //refer button
     $scope.popup_add.toolbarItems[0].options.onClick = function (e) {
+        var result = e.validationGroup.validate();
+
+        if (!result.isValid) {
+            General.ShowNotify('The remark cannot be empty', 'error');
+            return;
+        }
         $scope.loadingVisible = true;
 
         $.each($scope.selectedEmployees, function (_i, _d) {
@@ -153,7 +171,7 @@ app.controller('qaEmployee', ['$scope', '$location', 'authService', '$routeParam
                 Type: $scope.Type,
                 Comment: $scope.Comment,
                 Priority: $scope.Priority,
-                 DeadLine: moment(new Date($scope.DeadLine)).format('YYYY-MM-DD')
+                DeadLine: moment(new Date($scope.DeadLine)).format('YYYY-MM-DD')
             });
 
         });
@@ -162,9 +180,11 @@ app.controller('qaEmployee', ['$scope', '$location', 'authService', '$routeParam
 
 
         qaService.referre($scope.employeeList).then(function (response) {
-			$scope.loadingVisible = false;
+            $scope.loadingVisible = false;
             if (response.IsSuccess == true) {
 
+                $scope.popup_add_visible = false;
+                $scope.employeeList = [];
 
                 General.ShowNotify(Config.Text_QARefer, 'success');
                 qaService.getReferredList($rootScope.employeeId, $scope.Type, $scope.Id).then(function (response) {

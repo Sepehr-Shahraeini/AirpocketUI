@@ -242,6 +242,7 @@
     <Content Include="app\controllers\routeAddController.js" />
     <Content Include="app\controllers\routeController.js" />
     <Content Include="app\controllers\rptflightspopup.js" />
+    <Content Include="app\controllers\cabinReports.js" />
     <Content Include="app\controllers\scheduling.js" />
     <Content Include="app\controllers\schedulinggrid.js" />
     <Content Include="app\controllers\schedulingvrh.js" />
@@ -282,6 +283,7 @@
     <Content Include="app\services\logService.js" />
     <Content Include="app\services\mapService.js" />
     <Content Include="app\services\msgService.js" />
+    <Content Include="app\services\neerjaService.js" />
     <Content Include="app\services\notificationService.js" />
     <Content Include="app\services\ordersService.js" />
     <Content Include="app\services\organizationService.js" />
@@ -477,6 +479,7 @@
     <Content Include="app\views\route.html" />
     <Content Include="app\views\routeAdd.html" />
     <Content Include="app\views\rptflightspopup.html" />
+    <Content Include="app\views\cabinReports.html" />
     <Content Include="app\views\scheduling.html" />
     <Content Include="app\views\schedulinggrid.html" />
     <Content Include="app\views\schedulingvrh.html" />

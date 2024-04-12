@@ -1,5 +1,5 @@
 'use strict';
-app.controller('qaOperationPopup', ['$scope', 'qaService', '$routeParams', '$rootScope', function ($scope, qaService, $routeParams, $rootScope) {
+app.controller('qaOperationPopup', ['$scope', 'qaService', '$routeParams', '$rootScope', '$window', function ($scope, qaService, $routeParams, $rootScope, $window) {
 
     $scope.isNotLocked = true;
     $scope.Type = null;
@@ -98,6 +98,15 @@ app.controller('qaOperationPopup', ['$scope', 'qaService', '$routeParams', '$roo
                             }
 
                         });
+                    }
+                }, toolbar: 'bottom'
+            },
+
+            {
+                widget: 'dxButton', location: 'after', options: {
+                    type: 'default', text: 'Print', icon: 'print', validationGroup: 'result', onClick: function (e) {
+                        if ($scope.tempData.Type == 8)
+                            $window.open('https://report.apvaresh.com/frmreportview.aspx?type=17&fid=' + $scope.tempData.Priority, '_blank')
                     }
                 }, toolbar: 'bottom'
             },
