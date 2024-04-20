@@ -1723,6 +1723,10 @@ app.controller('cabinReports', ['$scope', '$location', '$routeParams', '$rootSco
         //$scope.loadingVisible = true;
         flightBagService.getAppLegCrews(flightId).then(function (response) {
             $scope.selectedFlightCrews = response;
+            $scope.ds_crew = Enumerable.From(response).Where(function (x) {
+                return
+                ['CCM', 'SCCM', 'ISCCM'].indexOf(x.JobGroup) != -1;
+            }).ToArray();
             $.each(response, function (_i, _d) {
                 if (_d.JobGroup == "SCCM")
                     $scope.SCCM = _d;
@@ -3249,7 +3253,7 @@ app.controller('cabinReports', ['$scope', '$location', '$routeParams', '$rootSco
         valueExpr: 'CrewId',
         bindingOptions: {
             value: 'entity.crew2',
-            dataSource: 'selectedFlightCrews',
+            dataSource: 'ds_crew',
         }
     }
     //$scope.bind = function () {

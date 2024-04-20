@@ -184,6 +184,7 @@
     <Content Include="app\controllers\map.js" />
     <Content Include="app\controllers\mlistAddController.js" />
     <Content Include="app\controllers\mlistController.js" />
+    <Content Include="app\controllers\mntStatus.js" />
     <Content Include="app\controllers\New Text Document.txt" />
     <Content Include="app\controllers\nira.js" />
     <Content Include="app\controllers\notificationController.js" />
@@ -424,6 +425,7 @@
     <Content Include="app\views\menu.html" />
     <Content Include="app\views\mlist.html" />
     <Content Include="app\views\mlistAdd.html" />
+    <Content Include="app\views\mntStatus.html" />
     <Content Include="app\views\nira.html" />
     <Content Include="app\views\notification.html" />
     <Content Include="app\views\ofpAdd.html" />

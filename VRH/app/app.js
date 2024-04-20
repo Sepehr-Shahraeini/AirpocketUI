@@ -723,6 +723,12 @@ app.config(function ($routeProvider) {
     });
 
 
+       $routeProvider.when("/mnt/status", {
+           controller: "mntStatusController",
+        templateUrl: "/app/views/mntStatus.html"
+    });
+
+
 
 
 
