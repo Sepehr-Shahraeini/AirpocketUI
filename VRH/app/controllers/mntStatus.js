@@ -248,6 +248,56 @@ app.controller('mntStatusController', ['$scope', '$location', 'qaService', 'auth
             value: "",
         }
     }
+    $scope.txt_taskChk = {
+        bindingOptions: {
+            value: "",
+        }
+    }
+
+    $scope.txt_tasks = {
+        bindingOptions: {
+            value: "",
+        }
+    }
+
+    $scope.txt_tasksEstimated = {
+        bindingOptions: {
+            value: "",
+        }
+    }
+
+    $scope.txt_tasksRemaining = {
+        bindingOptions: {
+            value: "",
+        }
+    }
+
+    $scope.txt_subject = {
+        bindingOptions: {
+            value: "",
+        }
+    }
+
+    $scope.txt_adsb = {
+        bindingOptions: {
+            value: "",
+        }
+    }
+
+    $scope.txt_part = {
+        bindingOptions: {
+            value: "",
+        }
+    }
+
+    $scope.dt_taskUpdate = {
+        type: 'date',
+        displayFormat: "yyyy-MMM-dd",
+        bindingOptions: {
+            value: "",
+        }
+    }
+
     /////////////////////////////////////
 
     $scope.dg_coming_columns = [
@@ -328,22 +378,6 @@ app.controller('mntStatusController', ['$scope', '$location', 'qaService', 'auth
         onContentReady: function (e) {
             if (!$scope.dg_coming_instance)
                 $scope.dg_coming_instance = e.component;
-
-        },
-
-        onRowClick: function (e) {
-
-
-
-        },
-
-        onRowPrepared: function (e) {
-
-
-        },
-
-
-        onCellPrepared: function (e) {
 
         },
 
@@ -521,7 +555,7 @@ app.controller('mntStatusController', ['$scope', '$location', 'qaService', 'auth
 
     ];
 
-   
+
 
     $scope.dg_eng_part_selected = null;
     $scope.dg_eng_part_instance = null;
@@ -562,22 +596,7 @@ app.controller('mntStatusController', ['$scope', '$location', 'qaService', 'auth
 
         },
 
-        onRowClick: function (e) {
-
-
-
-        },
-
-        onRowPrepared: function (e) {
-
-
-        },
-
-
-        onCellPrepared: function (e) {
-
-        },
-
+       
         onSelectionChanged: function (e) {
             var data = e.selectedRowsData[0];
 
@@ -628,12 +647,12 @@ app.controller('mntStatusController', ['$scope', '$location', 'qaService', 'auth
 
             ]
         },
-        
+
 
 
     ];
 
-   
+
 
     $scope.dg_eng_ad_selected = null;
     $scope.dg_eng_ad_instance = null;
@@ -674,22 +693,6 @@ app.controller('mntStatusController', ['$scope', '$location', 'qaService', 'auth
 
         },
 
-        onRowClick: function (e) {
-
-
-
-        },
-
-        onRowPrepared: function (e) {
-
-
-        },
-
-
-        onCellPrepared: function (e) {
-
-        },
-
         onSelectionChanged: function (e) {
             var data = e.selectedRowsData[0];
 
@@ -715,7 +718,7 @@ app.controller('mntStatusController', ['$scope', '$location', 'qaService', 'auth
 
     /////////////////////////////
 
-    $scope.popup_eng_visible = true;
+    $scope.popup_eng_visible = false;
     $scope.popup_eng = {
 
         fullScreen: true,
@@ -739,23 +742,145 @@ app.controller('mntStatusController', ['$scope', '$location', 'qaService', 'auth
         visible: false,
 
         closeOnOutsideClick: false,
-        onShowing: function (e) {
 
-
-
-        },
-        onShown: function (e) {
-
-        },
-        onHiding: function () {
-
-
-
-
-
-        },
         bindingOptions: {
             visible: 'popup_eng_visible',
+            'toolbarItems[0].visible': 'btn_duties_visible',
+            'toolbarItems[1].visible': 'btn_crewlist_visible',
+
+        }
+    };
+
+    $scope.popup_tasks_visible = true;
+    $scope.popup_tasks = {
+
+        fullScreen: false,
+        showTitle: true,
+        dragEnabled: true,
+        height: 600,
+        width: 600,
+        toolbarItems: [
+
+            {
+                widget: 'dxButton', location: 'after', options: {
+                    type: 'danger', text: 'Close', icon: 'remove', onClick: function (e) {
+
+
+
+                        $scope.popup_tasks_visible = false;
+                    }
+                }, toolbar: 'bottom'
+            },
+
+
+        ],
+        visible: false,
+
+        closeOnOutsideClick: false,
+        bindingOptions: {
+            visible: 'popup_tasks_visible',
+            'toolbarItems[0].visible': 'btn_duties_visible',
+            'toolbarItems[1].visible': 'btn_crewlist_visible',
+
+        }
+    };
+
+    $scope.popup_ad_visible = true;
+    $scope.popup_ad = {
+
+        fullScreen: false,
+        showTitle: true,
+        dragEnabled: true,
+        height: 600,
+        width: 600,
+        toolbarItems: [
+
+            {
+                widget: 'dxButton', location: 'after', options: {
+                    type: 'danger', text: 'Close', icon: 'remove', onClick: function (e) {
+
+
+
+                        $scope.popup_ad_visible = false;
+                    }
+                }, toolbar: 'bottom'
+            },
+
+
+        ],
+        visible: false,
+
+        closeOnOutsideClick: false,
+        bindingOptions: {
+            visible: 'popup_ad_visible',
+            'toolbarItems[0].visible': 'btn_duties_visible',
+            'toolbarItems[1].visible': 'btn_crewlist_visible',
+
+        }
+    };
+
+    $scope.popup_cat_visible = true;
+    $scope.popup_cat = {
+
+        fullScreen: false,
+        showTitle: true,
+        dragEnabled: true,
+        height: 600,
+        width: 600,
+        toolbarItems: [
+
+            {
+                widget: 'dxButton', location: 'after', options: {
+                    type: 'danger', text: 'Close', icon: 'remove', onClick: function (e) {
+
+
+
+                        $scope.popup_cat_visible = false;
+                    }
+                }, toolbar: 'bottom'
+            },
+
+
+        ],
+        visible: false,
+
+        closeOnOutsideClick: false,
+        bindingOptions: {
+            visible: 'popup_cat_visible',
+            'toolbarItems[0].visible': 'btn_duties_visible',
+            'toolbarItems[1].visible': 'btn_crewlist_visible',
+
+        }
+    };
+
+     $scope.popup_adsb_visible = true;
+    $scope.popup_adsb = {
+
+        fullScreen: false,
+        showTitle: true,
+        dragEnabled: true,
+        height: 680,
+        width: 600,
+        toolbarItems: [
+
+            {
+                widget: 'dxButton', location: 'after', options: {
+                    type: 'danger', text: 'Close', icon: 'remove', onClick: function (e) {
+
+
+
+                        $scope.popup_adsb_visible = false;
+                    }
+                }, toolbar: 'bottom'
+            },
+
+
+        ],
+        visible: false,
+
+        closeOnOutsideClick: false,
+        bindingOptions: {
+            visible: 'popup_adsb_visible',
             'toolbarItems[0].visible': 'btn_duties_visible',
             'toolbarItems[1].visible': 'btn_crewlist_visible',
 
