@@ -137,7 +137,7 @@ app.controller('mntStatusController', ['$scope', '$location', 'qaService', 'auth
         }
     }
 
-    
+
     $scope.num_ldg = {
         bindingOptions: {
             value: "entity.ldg",
@@ -153,7 +153,7 @@ app.controller('mntStatusController', ['$scope', '$location', 'qaService', 'auth
     }
 
 
-     $scope.num_apu = {
+    $scope.num_apu = {
         bindingOptions: {
             value: "entity.apu",
         }
@@ -168,9 +168,9 @@ app.controller('mntStatusController', ['$scope', '$location', 'qaService', 'auth
     }
 
 
-    $scope.txt_firstHT = {
+    $scope.txt_firstht = {
         bindingOptions: {
-            value: "entity.",
+            value: "",
         }
     }
 
@@ -178,14 +178,14 @@ app.controller('mntStatusController', ['$scope', '$location', 'qaService', 'auth
         type: 'date',
         displayFormat: "yyyy-MMM-dd",
         bindingOptions: {
-            value: "entity.",
+            value: "",
         }
     }
 
 
     $scope.txt_secondHT = {
         bindingOptions: {
-            value: "entity.",
+            value: "",
         }
     }
 
@@ -193,14 +193,14 @@ app.controller('mntStatusController', ['$scope', '$location', 'qaService', 'auth
         type: 'date',
         displayFormat: "yyyy-MMM-dd",
         bindingOptions: {
-            value: "entity.",
+            value: "",
         }
     }
 
 
     $scope.txt_thirdHT = {
         bindingOptions: {
-            value: "entity.",
+            value: "",
         }
     }
 
@@ -208,19 +208,19 @@ app.controller('mntStatusController', ['$scope', '$location', 'qaService', 'auth
         type: 'date',
         displayFormat: "yyyy-MMM-dd",
         bindingOptions: {
-            value: "entity.",
+            value: "",
         }
     }
 
     $scope.num_defects = {
         bindingOptions: {
-            value: "entity.",
+            value: "",
         }
     }
 
     $scope.num_firstDue = {
         bindingOptions: {
-            value: "entity.",
+            value: "",
         }
     }
 
@@ -228,9 +228,540 @@ app.controller('mntStatusController', ['$scope', '$location', 'qaService', 'auth
         type: 'date',
         displayFormat: "yyyy-MMM-dd",
         bindingOptions: {
-            value: "entity.dateUpdate",
+            value: "",
         }
     }
+
+    $scope.txt_engModel = {
+        bindingOptions: {
+            value: "",
+        }
+    }
+    $scope.num_engSerial = {
+        bindingOptions: {
+            value: "",
+        }
+    }
+
+    $scope.txt_cat = {
+        bindingOptions: {
+            value: "",
+        }
+    }
+    /////////////////////////////////////
+
+    $scope.dg_coming_columns = [
+
+
+        {
+            cellTemplate: function (container, options) {
+                $("<div style='text-align:center'/>")
+                    .html(options.rowIndex + 1)
+                    .appendTo(container);
+            }, name: 'row', caption: '#', width: 50, fixed: true, fixedPosition: 'left', allowResizing: false, cssClass: 'rowHeader'
+        },
+
+
+
+
+        { dataField: 'Check', caption: 'Check', allowResizing: true, alignment: 'center', dataType: 'string', allowEditing: false, width: 100 },
+        { dataField: 'Remaining', caption: 'Remaining Hour', allowResizing: true, alignment: 'center', dataType: 'string', allowEditing: false, width: 100 },
+        { dataField: 'Remaining', caption: 'Task', allowResizing: true, alignment: 'center', dataType: 'string', allowEditing: false, minWidth: 250 },
+        { dataField: 'Estimated', caption: 'Estimated Working Hour', allowResizing: true, alignment: 'center', dataType: 'string', allowEditing: false, width: 100 },
+
+
+
+    ];
+
+    $scope.get_height = function () {
+        var h = $(window).height() - 110;
+        return {
+            'height': h + 'px',
+        }
+    }
+
+    $scope.showStatus = function (type, type_title) {
+        $scope.selected_type = Number(type);
+        $scope.bind_forms();
+
+    }
+    $scope.get_tile_class = function (type) {
+        if (Number(type) == $scope.selected_type)
+            return 'tile_selected';
+
+        return 'tile_header';
+    }
+
+    $scope.dg_coming_selected = null;
+    $scope.dg_coming_instance = null;
+    $rootScope.dg_coming_ds = null;
+    $scope.dg_coming = {
+
+
+
+        wordWrapEnabled: true,
+        rowAlternationEnabled: false,
+        headerFilter: {
+            visible: false
+        },
+        filterRow: {
+            visible: true,
+            showOperationChooser: true,
+        },
+        showRowLines: true,
+        showColumnLines: true,
+        sorting: { mode: 'none' },
+
+        noDataText: '',
+
+        allowColumnReordering: true,
+        allowColumnResizing: true,
+        scrolling: { mode: 'infinite' },
+        paging: { pageSize: 100 },
+        showBorders: true,
+        selection: { mode: 'single' },
+
+        columnAutoWidth: false,
+        height: $(window).height() - 180,
+
+        columns: $scope.dg_coming_columns,
+        onContentReady: function (e) {
+            if (!$scope.dg_coming_instance)
+                $scope.dg_coming_instance = e.component;
+
+        },
+
+        onRowClick: function (e) {
+
+
+
+        },
+
+        onRowPrepared: function (e) {
+
+
+        },
+
+
+        onCellPrepared: function (e) {
+
+        },
+
+        onSelectionChanged: function (e) {
+            var data = e.selectedRowsData[0];
+
+
+            if (!data) {
+                $scope.dg_coming_selected = null;
+            }
+            else
+                $scope.dg_coming_selected = data;
+
+
+        },
+
+        bindingOptions: {
+            dataSource: 'dg_coming_ds'
+        },
+        columnChooser: {
+            enabled: false
+        },
+
+    };
+
+
+    $scope.dg_ad_columns = [
+
+
+        {
+            cellTemplate: function (container, options) {
+                $("<div style='text-align:center'/>")
+                    .html(options.rowIndex + 1)
+                    .appendTo(container);
+            }, name: 'row', caption: '#', width: 50, fixed: true, fixedPosition: 'left', allowResizing: false, cssClass: 'rowHeader'
+        },
+
+
+
+
+        { dataField: 'Check', caption: 'AD/SB Ref', allowResizing: true, alignment: 'center', dataType: 'string', allowEditing: false, width: 100 },
+        { dataField: 'Remaining', caption: 'Subject', allowResizing: true, alignment: 'center', dataType: 'string', allowEditing: false, minWidth: 100 },
+        { dataField: 'Estimated', caption: 'Estimated Working Hour', allowResizing: true, alignment: 'center', dataType: 'string', allowEditing: false, width: 150 },
+        { dataField: 'Estimated', caption: 'Due Date', allowResizing: true, alignment: 'center', dataType: 'string', allowEditing: false, width: 100 },
+        { dataField: 'Estimated', caption: 'Remaining Day', allowResizing: true, alignment: 'center', dataType: 'string', allowEditing: false, width: 100 },
+
+
+
+    ];
+
+    $scope.get_height = function () {
+        var h = $(window).height() - 110;
+        return {
+            'height': h + 'px',
+        }
+    }
+
+    $scope.showStatus = function (type, type_title) {
+        $scope.selected_type = Number(type);
+        $scope.bind_forms();
+
+    }
+    $scope.get_tile_class = function (type) {
+        if (Number(type) == $scope.selected_type)
+            return 'tile_selected';
+
+        return 'tile_header';
+    }
+
+    $scope.dg_ad_selected = null;
+    $scope.dg_ad_instance = null;
+    $rootScope.dg_ad_ds = null;
+    $scope.dg_ad = {
+
+
+
+        wordWrapEnabled: true,
+        rowAlternationEnabled: false,
+        headerFilter: {
+            visible: false
+        },
+        filterRow: {
+            visible: true,
+            showOperationChooser: true,
+        },
+        showRowLines: true,
+        showColumnLines: true,
+        sorting: { mode: 'none' },
+
+        noDataText: '',
+
+        allowColumnReordering: true,
+        allowColumnResizing: true,
+        scrolling: { mode: 'infinite' },
+        paging: { pageSize: 100 },
+        showBorders: true,
+        selection: { mode: 'single' },
+
+        columnAutoWidth: false,
+        height: $(window).height() - 180,
+
+        columns: $scope.dg_ad_columns,
+        onContentReady: function (e) {
+            if (!$scope.dg_ad_instance)
+                $scope.dg_ad_instance = e.component;
+
+        },
+
+        onRowClick: function (e) {
+
+
+
+        },
+
+        onRowPrepared: function (e) {
+
+
+        },
+
+
+        onCellPrepared: function (e) {
+
+        },
+
+        onSelectionChanged: function (e) {
+            var data = e.selectedRowsData[0];
+
+
+            if (!data) {
+                $scope.dg_ad_selected = null;
+            }
+            else
+                $scope.dg_ad_selected = data;
+
+
+        },
+
+        bindingOptions: {
+            dataSource: 'dg_ad_ds'
+        },
+        columnChooser: {
+            enabled: false
+        },
+
+    };
+
+
+    $scope.dg_eng_part_columns = [
+
+
+        {
+            cellTemplate: function (container, options) {
+                $("<div style='text-align:center'/>")
+                    .html(options.rowIndex + 1)
+                    .appendTo(container);
+            }, name: 'row', caption: '#', width: 50, fixed: true, fixedPosition: 'left', allowResizing: false, cssClass: 'rowHeader'
+        },
+
+
+
+
+        { dataField: '', caption: 'Eng. Paart', allowResizing: true, alignment: 'center', dataType: 'string', allowEditing: false, minWidth: 100 },
+        {
+            caption: 'Life Time Limit',
+            alignment: 'center',
+            columns: [
+                { dataField: '', caption: 'CAT A', allowResizing: true, alignment: 'center', dataType: 'string', allowEditing: false, width: 150 },
+                { dataField: '', caption: 'CAT B', allowResizing: true, alignment: 'center', dataType: 'string', allowEditing: false, width: 150 },
+                { dataField: '', caption: 'CAT C', allowResizing: true, alignment: 'center', dataType: 'string', allowEditing: false, width: 150 },
+            ]
+        },
+        { dataField: '', caption: 'Remaining Cycle', allowResizing: true, alignment: 'center', dataType: 'string', allowEditing: false, width: 200 },
+
+
+
+    ];
+
+   
+
+    $scope.dg_eng_part_selected = null;
+    $scope.dg_eng_part_instance = null;
+    $rootScope.dg_eng_part_ds = null;
+    $scope.dg_eng_part = {
+
+
+
+        wordWrapEnabled: true,
+        rowAlternationEnabled: false,
+        headerFilter: {
+            visible: false
+        },
+        filterRow: {
+            visible: true,
+            showOperationChooser: true,
+        },
+        showRowLines: true,
+        showColumnLines: true,
+        sorting: { mode: 'none' },
+
+        noDataText: '',
+
+        allowColumnReordering: true,
+        allowColumnResizing: true,
+        scrolling: { mode: 'infinite' },
+        paging: { pageSize: 100 },
+        showBorders: true,
+        selection: { mode: 'single' },
+
+        columnAutoWidth: false,
+        height: ($(window).height() - 230) / 2,
+
+        columns: $scope.dg_eng_part_columns,
+        onContentReady: function (e) {
+            if (!$scope.dg_eng_part_instance)
+                $scope.dg_eng_part_instance = e.component;
+
+        },
+
+        onRowClick: function (e) {
+
+
+
+        },
+
+        onRowPrepared: function (e) {
+
+
+        },
+
+
+        onCellPrepared: function (e) {
+
+        },
+
+        onSelectionChanged: function (e) {
+            var data = e.selectedRowsData[0];
+
+
+            if (!data) {
+                $scope.dg_eng_part_selected = null;
+            }
+            else
+                $scope.dg_eng_part_selected = data;
+
+
+        },
+
+        bindingOptions: {
+            dataSource: 'dg_eng_part_ds'
+        },
+        columnChooser: {
+            enabled: false
+        },
+
+    };
+
+
+    $scope.dg_eng_ad_columns = [
+
+
+        {
+            cellTemplate: function (container, options) {
+                $("<div style='text-align:center'/>")
+                    .html(options.rowIndex + 1)
+                    .appendTo(container);
+            }, name: 'row', caption: '#', width: 50, fixed: true, fixedPosition: 'left', allowResizing: false, cssClass: 'rowHeader'
+        },
+
+
+
+
+        { dataField: '', caption: 'AD/SB', allowResizing: true, alignment: 'center', dataType: 'string', allowEditing: false, minWidth: 100 },
+        { dataField: '', caption: 'Description', allowResizing: true, alignment: 'center', dataType: 'string', allowEditing: false, width: 200 },
+        { dataField: '', caption: 'Remark', allowResizing: true, alignment: 'center', dataType: 'string', allowEditing: false, width: 200 },
+        { dataField: '', caption: 'Due Date', allowResizing: true, alignment: 'center', dataType: 'string', allowEditing: false, width: 200 },
+        {
+            caption: 'Remaining',
+            alignment: 'center',
+            columns: [
+                { dataField: '', caption: 'Day', allowResizing: true, alignment: 'center', dataType: 'string', allowEditing: false, width: 200 },
+                { dataField: '', caption: 'Cycle', allowResizing: true, alignment: 'center', dataType: 'string', allowEditing: false, width: 200 },
+
+            ]
+        },
+        
+
+
+    ];
+
+   
+
+    $scope.dg_eng_ad_selected = null;
+    $scope.dg_eng_ad_instance = null;
+    $rootScope.dg_eng_ad_ds = null;
+    $scope.dg_eng_ad = {
+
+
+
+        wordWrapEnabled: true,
+        rowAlternationEnabled: false,
+        headerFilter: {
+            visible: false
+        },
+        filterRow: {
+            visible: true,
+            showOperationChooser: true,
+        },
+        showRowLines: true,
+        showColumnLines: true,
+        sorting: { mode: 'none' },
+
+        noDataText: '',
+
+        allowColumnReordering: true,
+        allowColumnResizing: true,
+        scrolling: { mode: 'infinite' },
+        paging: { pageSize: 100 },
+        showBorders: true,
+        selection: { mode: 'single' },
+
+        columnAutoWidth: false,
+        height: ($(window).height() - 230) / 2,
+
+        columns: $scope.dg_eng_ad_columns,
+        onContentReady: function (e) {
+            if (!$scope.dg_eng_ad_instance)
+                $scope.dg_eng_ad_instance = e.component;
+
+        },
+
+        onRowClick: function (e) {
+
+
+
+        },
+
+        onRowPrepared: function (e) {
+
+
+        },
+
+
+        onCellPrepared: function (e) {
+
+        },
+
+        onSelectionChanged: function (e) {
+            var data = e.selectedRowsData[0];
+
+
+            if (!data) {
+                $scope.dg_eng_ad_selected = null;
+            }
+            else
+                $scope.dg_eng_ad_selected = data;
+
+
+        },
+
+        bindingOptions: {
+            dataSource: 'dg_eng_ad_ds'
+        },
+        columnChooser: {
+            enabled: false
+        },
+
+    };
+
+
+    /////////////////////////////
+
+    $scope.popup_eng_visible = true;
+    $scope.popup_eng = {
+
+        fullScreen: true,
+        showTitle: true,
+        dragEnabled: true,
+        toolbarItems: [
+
+            {
+                widget: 'dxButton', location: 'after', options: {
+                    type: 'danger', text: 'Close', icon: 'remove', onClick: function (e) {
+
+
+
+                        $scope.popup_eng_visible = false;
+                    }
+                }, toolbar: 'bottom'
+            },
+
+
+        ],
+        visible: false,
+
+        closeOnOutsideClick: false,
+        onShowing: function (e) {
+
+
+
+        },
+        onShown: function (e) {
+
+        },
+        onHiding: function () {
+
+
+
+
+
+        },
+        bindingOptions: {
+            visible: 'popup_eng_visible',
+            'toolbarItems[0].visible': 'btn_duties_visible',
+            'toolbarItems[1].visible': 'btn_crewlist_visible',
+
+        }
+    };
+
 
 
 }]);

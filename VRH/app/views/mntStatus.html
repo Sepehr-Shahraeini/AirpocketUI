@@ -1,4 +1,49 @@
-﻿
+﻿<style>
+
+    .ctd {
+        border: 1px solid #ccc;
+        text-align: center;
+    }
+
+    .ctd-empty {
+        border: 0px solid #ccc;
+        text-align: center;
+    }
+
+    .ctr {
+        /*height:30px;*/
+    }
+
+    .ctd-center {
+        background-color: lightseagreen;
+    }
+
+    .ctd-selected {
+        background-color: red;
+    }
+
+    .tdStyle {
+        padding: 7px;
+        text-align: left
+    }
+
+    .titleStyle {
+        background-color: whitesmoke;
+        padding: 7px;
+        text-align: left;
+        color: black;
+        font-weight: bold
+    }
+
+    .flex-container {
+        display: flex;
+    }
+
+        .flex-container > div {
+            margin: 10px;
+            padding: 10px;
+        }
+</style>
 <div ng-controller="mntStatusController">
 
 
@@ -42,42 +87,75 @@
                             </tr>
                         </table>
 
+                        <!--<div class="flex-container">
+                            <div style="width:250px">First Other HT Component</div>
+                            <div style="border: 1px solid #ccc; width: 200px" dx-text-box="txt_firstht"></div>
+                            <div>Days</div>
+                        </div>
+
+                        <div class="flex-container">
+                            <div style="width: 250px; text-align: left">Date Update</div>
+                            <div style="border: 1px solid #ccc; width: 200px" dx-text-box="txt_firstht"></div>
+                        </div>
+
+
+                        <div class="flex-container">
+                            <div style="width:250px">Second Other HT Component</div>
+                            <div style="border: 1px solid #ccc; width: 200px" dx-text-box="txt_secondHT"></div>
+                            <div>Days</div>
+                        </div>
+
+                        <div class="flex-container">
+                            <div style="width: 250px; text-align: left">Date Update</div>
+                            <div style="border: 1px solid #ccc; width: 200px" dx-text-box="txt_firstht"></div>
+                        </div>
+
+                        <div class="flex-container">
+                            <div style="width:250px">Third Other HT Component</div>
+                            <div style="border: 1px solid #ccc; width: 200px" dx-text-box="txt_thirdHT"></div>
+                            <div>Days</div>
+                        </div>
+
+                        <div class="flex-container">
+                            <div style="width:250px; text-align:left">Date Update</div>
+                            <div style="border: 1px solid #ccc; width: 200px" dx-text-box="txt_firstht"></div>
+                        </div>-->
+
+                        <div style="width: 100%; border: 1px solid #ccc; margin-top: 5px">
+                            <table>
+                                <tr>
+                                    <td style="padding:2px 0 0 5px !important; text-align: left;width:200px">First Other HT Component</td>
+                                    <td style="padding: 5px"><div style="border: 1px solid #ccc;height:40px; width:200px" dx-text-box="txt_firstHT"></div></td>
+                                    <td style="padding:2px 0 0 5px !important; text-align: left">Days</td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 2px 0 0 5px !important">Date Update</td>
+                                    <td style="padding: 5px"><div style="border: 1px solid #ccc; height: 40px; width: 100%" dx-date-box="dt_firstHT"></div></td>
+                                </tr>
+
+                                <tr>
+                                    <td style="padding: 2px 0 0 5px !important; text-align: left; width: 100px">Second Other HT Component</td>
+                                    <td style="padding: 5px"><div style="border: 1px solid #ccc; height: 40px" dx-text-box="txt_secondHT"></div></td>
+                                    <td style="padding: 2px 0 0 5px !important; text-align: left">Days</td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 2px 0 0 5px !important">Date Update</td>
+                                    <td style="padding:5px"><div style="border: 1px solid #ccc; height: 40px; width: 100%" dx-date-box="dt_firstHT"></div></td>
+                                </tr>
+
+                                <tr>
+                                    <td style="padding: 2px 0 0 5px !important; text-align: left">Third Other HT Component</td>
+                                    <td style="padding:5px"><div style="border: 1px solid #ccc; height: 40px" dx-text-box="txt_thirdHT"></div></td>
+                                    <td style="padding: 2px 0 0 5px !important; text-align: left">Days</td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 2px 0 0 5px !important">Date Update</td>
+                                    <td style="padding:5px"><div style="border: 1px solid #ccc; height: 40px; width: 100%" dx-date-box="dt_thirdHT"></div></td>
+                                </tr>
+                            </table>
+                        </div>
+
                         <table style="width: 100%; border: 1px solid #ccc; margin-top: 5px">
-                            <tr>
-                                <td  style="padding:2px 0 0 5px !important; text-align: left">First Other HT Component</td>
-                                <td  style="padding: 5px"><div style="border: 1px solid #ccc" dx-text-box="txt_firstHT"></div></td>
-                                <td  style="padding:2px 0 0 5px !important; text-align: left">Days</td>
-                            </tr>
-                            <tr>
-                                <td style="width:100px"></td>
-                                <td  style="padding: 2px 0 0 5px !important; text-align: center">Date Update</td>
-                                <td  style="padding: 5px"><div style="border: 1px solid #ccc; height: 40px; width: 100%" dx-date-box="dt_firstHT"></div></td>
-                            </tr>
-
-                            <tr>
-                                <td  style="padding: 2px 0 0 5px !important; text-align: left; width: 100px">Second Other HT Component</td>
-                                <td  style="padding: 5px"><div style="border: 1px solid #ccc; height: 40px" dx-text-box="txt_secondHT"></div></td>
-                                <td  style="padding: 2px 0 0 5px !important; text-align: left">Days</td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                                <td  style="padding: 2px 0 0 5px !important; text-align: center">Date Update</td>
-                                <td  style="padding:5px"><div style="border: 1px solid #ccc; height: 40px; width: 100%" dx-date-box="dt_firstHT"></div></td>
-                            </tr>
-
-                            <tr>
-                                <td  style="padding: 2px 0 0 5px !important; text-align: left">Third Other HT Component</td>
-                                <td  style="padding:5px"><div style="border: 1px solid #ccc; height: 40px" dx-text-box="txt_thirdHT"></div></td>
-                                <td  style="padding: 2px 0 0 5px !important; text-align: left">Days</td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                                <td  style="padding: 2px 0 0 5px !important; text-align: center">Date Update</td>
-                                <td  style="padding:5px"><div style="border: 1px solid #ccc; height: 40px; width: 100%" dx-date-box="dt_thirdHT"></div></td>
-                            </tr>
-                        </table>
-
-                        <table style="width: 100%; border: 1px solid #ccc">
                             <tr>
                                 <td class="col-lg-1 col-md-1" style="padding:2px 0 0 5px !important; text-align: center">Number Of Defects</td>
                                 <td class="col-lg-3 col-md-3" style="padding:5px"><div style="border: 1px solid #ccc; height: 40px" dx-number-box="num_defects"></div></td>
@@ -85,45 +163,46 @@
                                 <td class="col-lg-1 col-md-1" style="padding: 2px 0 0 5px !important; text-align: center">First Due(Day)</td>
                                 <td class="col-lg-3 col-md-3" style="padding:5px"><div style="border: 1px solid #ccc; height: 40px" dx-number-box="num_firstDue"></div></td>
 
-                                <td class="col-lg-1 col-md-1" style="padding: 2px 0 0 5px !important; text-align: center">Date UpDate</td>
+                                <td class="col-lg-1 col-md-1" style="padding: 2px 0 0 5px !important; text-align: center">Date Update</td>
                                 <td class="col-lg-3 col-md-3" style="padding:5px"><div style="border: 1px solid #ccc; height: 40px; width: 100%" dx-date-box="dt_defectsUpdate"></div></td>
                             </tr>
                         </table>
 
-                        <table style="width: 100%; border: 1px solid #ccc">
-                            <tr>
-                                <td style="padding: 2px 0 0 5px !important; text-align: center; width: 100px ">Engine 1</td>
-                                <td style="padding:5px; width:50px"><div style="border: 1px solid #ccc; height: 40px; display: inline-block; width:100px" dx-number-box="num_defects"></div></td>
-                                <td style="padding: 2px 0 0 5px !important; text-align: left">cycle</td>
+                        <div style="width: 100%; border: 1px solid #ccc; margin-top:5px">
+                            <table>
+                                <tr>
+                                    <td style="padding: 2px 0 0 5px !important; text-align: center; width: 100px">Engine 1</td>
+                                    <td style="padding:5px"><div style="border: 1px solid #ccc; height: 40px" dx-number-box="num_defects"></div></td>
+                                    <td style="padding: 2px 0 0 5px !important; text-align: center">Cycle</td>
+                                </tr>
 
-                            </tr>
-                            <tr>
-                                <td style="padding: 2px 0 0 5px !important; text-align: center; width: 100px">Engine 2</td>
-                                <td style="padding:5px; width:50px"><div style="border: 1px solid #ccc; height: 40px; display: inline-block; width:100px" dx-number-box="num_defects"></div></td>
-                                <td style="padding: 2px 0 0 5px !important; text-align: left">cycle</td>
-
-                            </tr>
-                        </table>
+                                <tr>
+                                    <td style="padding: 2px 0 0 5px !important; text-align: center; width: 100px ">Engine 2</td>
+                                    <td style="padding:5px"><div style="border: 1px solid #ccc; height: 40px" dx-number-box="num_defects"></div></td>
+                                    <td style="padding: 2px 0 0 5px !important; text-align: center">Cycle</td>
+                                </tr>
+                            </table>
+                        </div>
 
                     </div>
 
                     <div id="coming" class="tabst" style="padding: 7px">
-
+                        <div dx-data-grid="dg_coming" id="dg_coming" class="content" style="overflow-y:hidden" dx-item-alias="row"></div>
                     </div>
 
                     <div id="ad" class="tabst" style="padding: 7px">
-
+                        <div dx-data-grid="dg_ad" id="dg_ad" class="content" style="overflow-y:hidden" dx-item-alias="row"></div>
                     </div>
 
 
                 </div>
 
                 <div id="rbb" class="tabc">
-                    
+
                 </div>
 
                 <div id="rbc" class="tabc">
-             
+
                 </div>
 
 
@@ -132,7 +211,23 @@
 
 
         </div>
+        <div id="popup_eng" dx-popup="popup_eng">
+            <table style="width: 100%; border: 1px solid #ccc">
+                <tr>
+                    <td class="col-lg-1 col-md-1" style="padding:2px 0 0 5px !important; text-align: center">Model</td>
+                    <td class="col-lg-3 col-md-3" style="padding:5px"><div style="border: 1px solid #ccc; height: 40px" dx-text-box="txt_engModel"></div></td>
 
+                    <td class="col-lg-1 col-md-1" style="padding: 2px 0 0 5px !important; text-align: center">Serial No</td>
+                    <td class="col-lg-3 col-md-3" style="padding:5px"><div style="border: 1px solid #ccc; height: 40px" dx-number-box="num_engSerial"></div></td>
+
+                    <td class="col-lg-1 col-md-1" style="padding: 2px 0 0 5px !important; text-align: center">Cat</td>
+                    <td class="col-lg-3 col-md-3" style="padding:5px"><div style="border: 1px solid #ccc; height: 40px; width: 100%" dx-text-box="txt_cat"></div></td>
+                </tr>
+            </table>
+
+            <div dx-data-grid="dg_eng_part" id="dg_eng_part" class="content" style="overflow-y: hidden; margin-top: 10px" dx-item-alias="row"></div>
+            <div dx-data-grid="dg_eng_ad" id="dg_eng_ad" class="content" style="overflow-y:hidden; margin-top:10px" dx-item-alias="row"></div>
+        </div>
 
     </div>
     <div dx-load-panel="loadPanel"></div>
