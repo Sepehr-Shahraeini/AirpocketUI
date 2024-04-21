@@ -116,7 +116,79 @@ app.controller('mntStatusController', ['$scope', '$location', 'qaService', 'auth
 
 
     //////////////////////////////
+    $scope.btn_coming_add = {
+        text: '',
+        type: 'default',
+        icon: 'plus',
+        width: 35,
+        onClick: function (e) {
+            $scope.popup_tasks_visible = true;
+            
+        }
 
+    };
+
+    $scope.btn_coming_remove = {
+        text: '',
+        type: 'danger',
+        icon: 'close',
+        width: 35,
+        onClick: function (e) {
+
+          
+        }
+
+    };
+
+     $scope.btn_ad_add = {
+        text: '',
+        type: 'default',
+        icon: 'plus',
+        width: 35,
+         onClick: function (e) {
+             $scope.popup_ad_visible = true;
+            
+        }
+
+    };
+
+    $scope.btn_ad_remove = {
+        text: '',
+        type: 'danger',
+        icon: 'close',
+        width: 35,
+        onClick: function (e) {
+
+          
+        }
+
+    };
+
+   $scope.btn_eng1 = {
+        text: '',
+       type: 'default',
+        icon: 'default',
+        width: 15,
+        onClick: function (e) {
+            $scope.popup_eng_visible = true;
+          
+        }
+
+    };
+
+   $scope.btn_eng2 = {
+        text: '',
+        type: 'default',
+       icon: 'default',
+        width: 15,
+        onClick: function (e) {
+
+            $scope.popup_eng_visible = true;
+        }
+
+    };
+
+    /////////////////////////////
     $scope.num_tfh = {
         bindingOptions: {
             value: "entity.tfh",
@@ -314,33 +386,15 @@ app.controller('mntStatusController', ['$scope', '$location', 'qaService', 'auth
 
 
 
-        { dataField: 'Check', caption: 'Check', allowResizing: true, alignment: 'center', dataType: 'string', allowEditing: false, width: 100 },
-        { dataField: 'Remaining', caption: 'Remaining Hour', allowResizing: true, alignment: 'center', dataType: 'string', allowEditing: false, width: 100 },
+        { dataField: 'Check', caption: 'Check', allowResizing: true, alignment: 'center', dataType: 'string', allowEditing: false, width: 200 },
+        { dataField: 'Remaining', caption: 'Remaining Hour', allowResizing: true, alignment: 'center', dataType: 'string', allowEditing: false, width: 200 },
         { dataField: 'Remaining', caption: 'Task', allowResizing: true, alignment: 'center', dataType: 'string', allowEditing: false, minWidth: 250 },
-        { dataField: 'Estimated', caption: 'Estimated Working Hour', allowResizing: true, alignment: 'center', dataType: 'string', allowEditing: false, width: 100 },
+        { dataField: 'Estimated', caption: 'Estimated Working Hour', allowResizing: true, alignment: 'center', dataType: 'string', allowEditing: false, width: 250 },
 
 
 
     ];
 
-    $scope.get_height = function () {
-        var h = $(window).height() - 110;
-        return {
-            'height': h + 'px',
-        }
-    }
-
-    $scope.showStatus = function (type, type_title) {
-        $scope.selected_type = Number(type);
-        $scope.bind_forms();
-
-    }
-    $scope.get_tile_class = function (type) {
-        if (Number(type) == $scope.selected_type)
-            return 'tile_selected';
-
-        return 'tile_header';
-    }
 
     $scope.dg_coming_selected = null;
     $scope.dg_coming_instance = null;
@@ -372,7 +426,7 @@ app.controller('mntStatusController', ['$scope', '$location', 'qaService', 'auth
         selection: { mode: 'single' },
 
         columnAutoWidth: false,
-        height: $(window).height() - 180,
+        height: $(window).height() - 250,
 
         columns: $scope.dg_coming_columns,
         onContentReady: function (e) {
@@ -418,34 +472,17 @@ app.controller('mntStatusController', ['$scope', '$location', 'qaService', 'auth
 
 
 
-        { dataField: 'Check', caption: 'AD/SB Ref', allowResizing: true, alignment: 'center', dataType: 'string', allowEditing: false, width: 100 },
-        { dataField: 'Remaining', caption: 'Subject', allowResizing: true, alignment: 'center', dataType: 'string', allowEditing: false, minWidth: 100 },
-        { dataField: 'Estimated', caption: 'Estimated Working Hour', allowResizing: true, alignment: 'center', dataType: 'string', allowEditing: false, width: 150 },
-        { dataField: 'Estimated', caption: 'Due Date', allowResizing: true, alignment: 'center', dataType: 'string', allowEditing: false, width: 100 },
-        { dataField: 'Estimated', caption: 'Remaining Day', allowResizing: true, alignment: 'center', dataType: 'string', allowEditing: false, width: 100 },
+        { dataField: 'Check', caption: 'AD/SB Ref', allowResizing: true, alignment: 'center', dataType: 'string', allowEditing: false, width: 200 },
+        { dataField: 'Remaining', caption: 'Subject', allowResizing: true, alignment: 'center', dataType: 'string', allowEditing: false, minWidth: 200 },
+        { dataField: 'Estimated', caption: 'Estimated Working Hour', allowResizing: true, alignment: 'center', dataType: 'string', allowEditing: false, width: 250 },
+        { dataField: 'Estimated', caption: 'Due Date', allowResizing: true, alignment: 'center', dataType: 'string', allowEditing: false, width: 200 },
+        { dataField: 'Estimated', caption: 'Remaining Day', allowResizing: true, alignment: 'center', dataType: 'string', allowEditing: false, width: 250 },
 
 
 
     ];
 
-    $scope.get_height = function () {
-        var h = $(window).height() - 110;
-        return {
-            'height': h + 'px',
-        }
-    }
-
-    $scope.showStatus = function (type, type_title) {
-        $scope.selected_type = Number(type);
-        $scope.bind_forms();
-
-    }
-    $scope.get_tile_class = function (type) {
-        if (Number(type) == $scope.selected_type)
-            return 'tile_selected';
-
-        return 'tile_header';
-    }
+   
 
     $scope.dg_ad_selected = null;
     $scope.dg_ad_instance = null;
@@ -477,7 +514,7 @@ app.controller('mntStatusController', ['$scope', '$location', 'qaService', 'auth
         selection: { mode: 'single' },
 
         columnAutoWidth: false,
-        height: $(window).height() - 180,
+        height: $(window).height() - 250,
 
         columns: $scope.dg_ad_columns,
         onContentReady: function (e) {
@@ -751,7 +788,7 @@ app.controller('mntStatusController', ['$scope', '$location', 'qaService', 'auth
         }
     };
 
-    $scope.popup_tasks_visible = true;
+    $scope.popup_tasks_visible = false;
     $scope.popup_tasks = {
 
         fullScreen: false,
@@ -785,7 +822,7 @@ app.controller('mntStatusController', ['$scope', '$location', 'qaService', 'auth
         }
     };
 
-    $scope.popup_ad_visible = true;
+    $scope.popup_ad_visible = false;
     $scope.popup_ad = {
 
         fullScreen: false,
@@ -819,7 +856,7 @@ app.controller('mntStatusController', ['$scope', '$location', 'qaService', 'auth
         }
     };
 
-    $scope.popup_cat_visible = true;
+    $scope.popup_cat_visible = false;
     $scope.popup_cat = {
 
         fullScreen: false,
@@ -853,7 +890,7 @@ app.controller('mntStatusController', ['$scope', '$location', 'qaService', 'auth
         }
     };
 
-     $scope.popup_adsb_visible = true;
+     $scope.popup_adsb_visible = false;
     $scope.popup_adsb = {
 
         fullScreen: false,
