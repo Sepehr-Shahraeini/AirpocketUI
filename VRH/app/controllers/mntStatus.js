@@ -1,11 +1,37 @@
 ﻿'use strict';
-app.controller('mntStatusController', ['$scope', '$location', 'qaService', 'authService', '$routeParams', '$rootScope', '$window', '$sce', 'qahService', function ($scope, $location, qaService, authService, $routeParams, $rootScope, $window, $sce, qahService) {
+
+
+app.controller('mntStatusController', ['$scope', '$location', 'mntService', 'authService', '$routeParams', '$rootScope', '$window', '$sce', function ($scope, $location, mntService, authService, $routeParams, $rootScope, $window, $sce) {
+    $scope.entity = {};
+    $scope.dg_coming_ds = null;
+
+    $scope.fill = function (data) {
+        $scope.entity = data;
+    }
+
+    $scope.bind = function () {
+        mntService.getLLP($scope.selectedTabId).then(function (response) {
+            $scope.fill(response.data);
+        });
+
+        mntService.getCheck($scope.selectedTabId).then(function (response) {
+            $scope.dg_coming_ds = response.data;
+            console.log($scope.dg_coming_ds)
+
+        });
+
+        mntService.getADSB($scope.selectedTabId).then(function (response) {
+            $scope.dg_ad_ds = response.data;
+        });
+    }
+
+
     $scope.selectedTabIndex = -1;
     $scope.selectedTabId = null;
     $scope.tabs = [
-        { text: "RBA", id: 'rba' },
-        { text: "RBB", id: 'rbb' },
-        { text: "RBC", id: 'rbc' },
+        { text: "RBA", id: '30' },
+        { text: "RBB", id: '224' },
+        { text: "RBC", id: '225' },
     ];
 
     $scope.tabs_options = {
@@ -19,6 +45,7 @@ app.controller('mntStatusController', ['$scope', '$location', 'qaService', 'auth
         onItemRendered: function (e) {
             $scope.selectedTabIndex = -1;
             $scope.selectedTabIndex = 0;
+            $scope.selectedTabId = 30;
         },
         bindingOptions: {
             //visible: 'tabsdatevisible',
@@ -32,19 +59,23 @@ app.controller('mntStatusController', ['$scope', '$location', 'qaService', 'auth
             $('.tabc').hide();
             var id = $scope.tabs[newValue].id;
             $scope.selectedTabId = id;
+            console.log($scope.selectedTabId);
             $('#' + id).fadeIn();
-
+            $scope.bind();
             switch (id) {
-                case 'rba':
-
+                case '30':
+                    $scope.eng1Id = 1;
+                    $scope.eng2Id = 2;
                     break;
 
-                case 'rbb':
-
+                case '224':
+                    $scope.eng1Id = 3;
+                    $scope.eng2Id = 4;
                     break;
 
-                case 'rbc':
-
+                case '225':
+                    $scope.eng1Id = 5;
+                    $scope.eng2Id = 6;
                     break;
 
                 default:
@@ -123,7 +154,7 @@ app.controller('mntStatusController', ['$scope', '$location', 'qaService', 'auth
         width: 35,
         onClick: function (e) {
             $scope.popup_tasks_visible = true;
-            
+
         }
 
     };
@@ -135,19 +166,19 @@ app.controller('mntStatusController', ['$scope', '$location', 'qaService', 'auth
         width: 35,
         onClick: function (e) {
 
-          
+
         }
 
     };
 
-     $scope.btn_ad_add = {
+    $scope.btn_ad_add = {
         text: '',
         type: 'default',
         icon: 'plus',
         width: 35,
-         onClick: function (e) {
-             $scope.popup_ad_visible = true;
-            
+        onClick: function (e) {
+            $scope.popup_ad_visible = true;
+
         }
 
     };
@@ -159,31 +190,55 @@ app.controller('mntStatusController', ['$scope', '$location', 'qaService', 'auth
         width: 35,
         onClick: function (e) {
 
-          
+
         }
 
     };
 
-   $scope.btn_eng1 = {
+    $scope.btn_eng1 = {
         text: '',
-       type: 'default',
+        type: 'default',
         icon: 'default',
         width: 15,
         onClick: function (e) {
+            $scope.engEntity.engine_no = 1;
             $scope.popup_eng_visible = true;
-          
+
         }
 
     };
 
-   $scope.btn_eng2 = {
+    $scope.btn_eng2 = {
         text: '',
         type: 'default',
-       icon: 'default',
+        icon: 'default',
         width: 15,
         onClick: function (e) {
-
+            $scope.engEntity.engine_no = 2;
             $scope.popup_eng_visible = true;
+        }
+
+    };
+
+    $scope.btn_save = {
+        text: 'Save',
+        type: 'success',
+        onClick: function (e) {
+
+
+            $scope.entity.date_initial_landing_gear = moment($scope.entity.date_initial_landing_gear).format('YYYY-MM-DD');
+            $scope.entity.date_initial_apu = moment($scope.entity.date_initial_apu).format('YYYY-MM-DD');
+            $scope.entity.date_initial_ht1 = moment($scope.entity.date_initial_ht1).format('YYYY-MM-DD');
+            $scope.entity.date_initial_ht2 = moment($scope.entity.date_initial_ht2).format('YYYY-MM-DD');
+            $scope.entity.date_initial_ht3 = moment($scope.entity.date_initial_ht3).format('YYYY-MM-DD');
+            $scope.entity.date_initial_due = moment($scope.entity.date_initial_due).format('YYYY-MM-DD');
+            $scope.entity.date_initial = moment($scope.entity.date_initial).format('YYYY-MM-DD');
+            $scope.entity.ID = $scope.selectedTabId;
+            console.log($scope.entity);
+
+            mntService.saveLLP($scope.entity).then(function (response) {
+                console.log(response);
+            });
         }
 
     };
@@ -191,13 +246,13 @@ app.controller('mntStatusController', ['$scope', '$location', 'qaService', 'auth
     /////////////////////////////
     $scope.num_tfh = {
         bindingOptions: {
-            value: "entity.tfh",
+            value: "entity.total_flight_minute",
         }
     }
 
     $scope.num_tfc = {
         bindingOptions: {
-            value: "entity.tfc",
+            value: "entity.total_flight_cycle",
         }
     }
 
@@ -205,14 +260,14 @@ app.controller('mntStatusController', ['$scope', '$location', 'qaService', 'auth
         type: 'date',
         displayFormat: "yyyy-MMM-dd",
         bindingOptions: {
-            value: "entity.dateUpdate",
+            value: "entity.date_initial",
         }
     }
 
 
     $scope.num_ldg = {
         bindingOptions: {
-            value: "entity.ldg",
+            value: "entity.landing_gear_remaining",
         }
     }
 
@@ -220,14 +275,14 @@ app.controller('mntStatusController', ['$scope', '$location', 'qaService', 'auth
         type: 'date',
         displayFormat: "yyyy-MMM-dd",
         bindingOptions: {
-            value: "entity.ldgDate",
+            value: "entity.date_initial_landing_gear",
         }
     }
 
 
     $scope.num_apu = {
         bindingOptions: {
-            value: "entity.apu",
+            value: "entity.apu_remaining",
         }
     }
 
@@ -235,64 +290,63 @@ app.controller('mntStatusController', ['$scope', '$location', 'qaService', 'auth
         type: 'date',
         displayFormat: "yyyy-MMM-dd",
         bindingOptions: {
-            value: "entity.apuDate",
+            value: "entity.date_initial_apu",
         }
     }
 
 
-    $scope.txt_firstht = {
+    $scope.txt_firstHT = {
         bindingOptions: {
-            value: "",
+            value: "entity.ht1_remaining",
         }
     }
 
-    $scope.dt_firstHt = {
+    $scope.dt_firstHT = {
         type: 'date',
         displayFormat: "yyyy-MMM-dd",
         bindingOptions: {
-            value: "",
+            value: "entity.date_initial_ht1",
         }
     }
-
 
     $scope.txt_secondHT = {
         bindingOptions: {
-            value: "",
+            value: "entity.ht2_remaining",
         }
     }
 
-    $scope.dt_secondHt = {
+    $scope.dt_secondHT = {
         type: 'date',
         displayFormat: "yyyy-MMM-dd",
         bindingOptions: {
-            value: "",
+            value: "entity.date_initial_ht2",
         }
     }
 
 
     $scope.txt_thirdHT = {
         bindingOptions: {
-            value: "",
+            value: "entity.ht3_remaining",
         }
     }
 
-    $scope.dt_thirdHt = {
+    $scope.dt_thirdHT = {
         type: 'date',
         displayFormat: "yyyy-MMM-dd",
         bindingOptions: {
-            value: "",
+            value: "entity.date_initial_ht3",
         }
     }
 
     $scope.num_defects = {
         bindingOptions: {
-            value: "",
+            value: "entity.deffects_no",
         }
     }
 
     $scope.num_firstDue = {
         bindingOptions: {
-            value: "",
+            value: "entity.first_due_remaining",
         }
     }
 
@@ -300,59 +354,107 @@ app.controller('mntStatusController', ['$scope', '$location', 'qaService', 'auth
         type: 'date',
         displayFormat: "yyyy-MMM-dd",
         bindingOptions: {
-            value: "",
+            value: "entity.date_initial_due",
         }
     }
 
     $scope.txt_engModel = {
         bindingOptions: {
-            value: "",
+            value: "engEntity.model",
         }
     }
     $scope.num_engSerial = {
         bindingOptions: {
-            value: "",
+            value: "engEntity.serial_no",
         }
     }
 
     $scope.txt_cat = {
         bindingOptions: {
-            value: "",
+            value: "engEntity.cat",
         }
     }
+    $scope.num_engTfh = {
+        bindingOptions: {
+            value: "engEntity.remaining_minutes",
+        }
+    }
+    $scope.num_engTfc = {
+        bindingOptions: {
+            value: "engEntity.remaining_cycles",
+        }
+    }
+
+    $scope.dt_engUpdate = {
+        bindingOptions: {
+            value: "engEntity.date_initial",
+        }
+    }
+
     $scope.txt_taskChk = {
         bindingOptions: {
-            value: "",
+            value: "checkEntity.check",
         }
     }
 
     $scope.txt_tasks = {
         bindingOptions: {
-            value: "",
+            value: "checkEntity.tasks",
         }
     }
 
     $scope.txt_tasksEstimated = {
         bindingOptions: {
-            value: "",
+            value: "checkEntity.estimated_working_days",
         }
     }
 
     $scope.txt_tasksRemaining = {
         bindingOptions: {
-            value: "",
+            value: "checkEntity.remaining_minutes",
+        }
+    }
+
+    $scope.dt_taskUpdate = {
+        type: 'date',
+        displayFormat: "yyyy-MMM-dd",
+        bindingOptions: {
+            value: "checkEntity.date_initial",
+        }
+    }
+
+
+    $scope.dt_adDue = {
+        type: 'date',
+        displayFormat: "yyyy-MMM-dd",
+        bindingOptions: {
+            value: "adEntity.date_due",
+        }
+    }
+
+   $scope.dt_adUpdate = {
+        type: 'date',
+        displayFormat: "yyyy-MMM-dd",
+        bindingOptions: {
+            value: "adEntity.date_initial",
         }
     }
 
     $scope.txt_subject = {
         bindingOptions: {
-            value: "",
+            value: "adEntity.subject",
         }
     }
 
     $scope.txt_adsb = {
         bindingOptions: {
-            value: "",
+            value: "adEntity.reference",
+        }
+    }
+
+    $scope.txt_adEstimated = {
+        bindingOptions: {
+            value: "adEntity.estimated_working_days",
         }
     }
 
@@ -361,16 +463,9 @@ app.controller('mntStatusController', ['$scope', '$location', 'qaService', 'auth
             value: "",
         }
     }
-
-    $scope.dt_taskUpdate = {
-        type: 'date',
-        displayFormat: "yyyy-MMM-dd",
-        bindingOptions: {
-            value: "",
-        }
-    }
-
     /////////////////////////////////////
+
+
 
     $scope.dg_coming_columns = [
 
@@ -386,10 +481,10 @@ app.controller('mntStatusController', ['$scope', '$location', 'qaService', 'auth
 
 
 
-        { dataField: 'Check', caption: 'Check', allowResizing: true, alignment: 'center', dataType: 'string', allowEditing: false, width: 200 },
-        { dataField: 'Remaining', caption: 'Remaining Hour', allowResizing: true, alignment: 'center', dataType: 'string', allowEditing: false, width: 200 },
-        { dataField: 'Remaining', caption: 'Task', allowResizing: true, alignment: 'center', dataType: 'string', allowEditing: false, minWidth: 250 },
-        { dataField: 'Estimated', caption: 'Estimated Working Hour', allowResizing: true, alignment: 'center', dataType: 'string', allowEditing: false, width: 250 },
+        { dataField: 'check', caption: 'Check', allowResizing: true, alignment: 'center', dataType: 'string', allowEditing: false, width: 200 },
+        { dataField: 'remaining_minutes', caption: 'Remaining Hour', allowResizing: true, alignment: 'center', dataType: 'string', allowEditing: false, width: 200 },
+        { dataField: 'tasks', caption: 'Task', allowResizing: true, alignment: 'center', dataType: 'string', allowEditing: false, minWidth: 250 },
+        { dataField: 'estimated_working_days', caption: 'Estimated Working Hour', allowResizing: true, alignment: 'center', dataType: 'string', allowEditing: false, width: 250 },
 
 
 
@@ -398,7 +493,6 @@ app.controller('mntStatusController', ['$scope', '$location', 'qaService', 'auth
 
     $scope.dg_coming_selected = null;
     $scope.dg_coming_instance = null;
-    $rootScope.dg_coming_ds = null;
     $scope.dg_coming = {
 
 
@@ -472,21 +566,21 @@ app.controller('mntStatusController', ['$scope', '$location', 'qaService', 'auth
 
 
 
-        { dataField: 'Check', caption: 'AD/SB Ref', allowResizing: true, alignment: 'center', dataType: 'string', allowEditing: false, width: 200 },
-        { dataField: 'Remaining', caption: 'Subject', allowResizing: true, alignment: 'center', dataType: 'string', allowEditing: false, minWidth: 200 },
-        { dataField: 'Estimated', caption: 'Estimated Working Hour', allowResizing: true, alignment: 'center', dataType: 'string', allowEditing: false, width: 250 },
-        { dataField: 'Estimated', caption: 'Due Date', allowResizing: true, alignment: 'center', dataType: 'string', allowEditing: false, width: 200 },
-        { dataField: 'Estimated', caption: 'Remaining Day', allowResizing: true, alignment: 'center', dataType: 'string', allowEditing: false, width: 250 },
+        { dataField: 'reference', caption: 'AD/SB Ref', allowResizing: true, alignment: 'center', dataType: 'string', allowEditing: false, width: 200 },
+        { dataField: 'subject', caption: 'Subject', allowResizing: true, alignment: 'center', dataType: 'string', allowEditing: false, minWidth: 200 },
+        { dataField: 'estimated_working_days', caption: 'Estimated Working Hour', allowResizing: true, alignment: 'center', dataType: 'string', allowEditing: false, width: 250 },
+        { dataField: 'date_due', caption: 'Due Date', allowResizing: true, alignment: 'center', dataType: 'string', allowEditing: false, width: 200 },
+        { dataField: 'remaining_days_actual', caption: 'Remaining Day', allowResizing: true, alignment: 'center', dataType: 'string', allowEditing: false, width: 250 },
 
 
 
     ];
 
-   
+
 
     $scope.dg_ad_selected = null;
     $scope.dg_ad_instance = null;
-    $rootScope.dg_ad_ds = null;
+    $scope.dg_ad_ds = null;
     $scope.dg_ad = {
 
 
@@ -633,7 +727,7 @@ app.controller('mntStatusController', ['$scope', '$location', 'qaService', 'auth
 
         },
 
-       
+
         onSelectionChanged: function (e) {
             var data = e.selectedRowsData[0];
 
@@ -755,6 +849,9 @@ app.controller('mntStatusController', ['$scope', '$location', 'qaService', 'auth
 
     /////////////////////////////
 
+    $scope.engEntity = {}
+
+
     $scope.popup_eng_visible = false;
     $scope.popup_eng = {
 
@@ -767,7 +864,16 @@ app.controller('mntStatusController', ['$scope', '$location', 'qaService', 'auth
                 widget: 'dxButton', location: 'after', options: {
                     type: 'danger', text: 'Close', icon: 'remove', onClick: function (e) {
 
+                        $scope.engEntity.aircraft_id = $scope.selectedTabId;
+                        $scope.engEntity.date_initial = moment($scope.engEntity.date_initial).format('YYYY-MM-DD')
+                        if ($scope.engEntity.engine_no == 1)
+                            $scope.engEntity.id = $scope.eng1Id
+                        else
+                            $scope.engEntity.id = $scope.eng2Id
 
+                        mntService.saveEngStatus($scope.engEntity).then(function (response) {
+                            //console.log(response);
+                        });
 
                         $scope.popup_eng_visible = false;
                     }
@@ -788,6 +894,8 @@ app.controller('mntStatusController', ['$scope', '$location', 'qaService', 'auth
         }
     };
 
+    $scope.checkEntity = {};
+
     $scope.popup_tasks_visible = false;
     $scope.popup_tasks = {
 
@@ -803,11 +911,27 @@ app.controller('mntStatusController', ['$scope', '$location', 'qaService', 'auth
                     type: 'danger', text: 'Close', icon: 'remove', onClick: function (e) {
 
 
+                        $scope.popup_tasks_visible = false;
+                    }
+
+
+
+                }, toolbar: 'bottom'
+            },
+            {
+                widget: 'dxButton', location: 'after', options: {
+                    type: 'success', text: 'Save', icon: '', onClick: function (e) {
+
+                        $scope.checkEntity.date_initial = moment($scope.checkEntity.date_initial).format('YYYY-MM-DD');
+                        $scope.checkEntity.aircraft_id = $scope.selectedTabId;
+                        mntService.saveCheck($scope.checkEntity).then(function (response) {
+                            console.log(response);
+                        });
 
                         $scope.popup_tasks_visible = false;
                     }
                 }, toolbar: 'bottom'
-            },
+            }
 
 
         ],
@@ -837,6 +961,22 @@ app.controller('mntStatusController', ['$scope', '$location', 'qaService', 'auth
                     type: 'danger', text: 'Close', icon: 'remove', onClick: function (e) {
 
 
+
+                        $scope.popup_ad_visible = false;
+                    }
+                }, toolbar: 'bottom'
+            },
+
+            {
+                widget: 'dxButton', location: 'after', options: {
+                    type: 'success', text: 'Save', icon: '', onClick: function (e) {
+
+                        $scope.adEntity.date_initial = moment($scope.adEntity.date_initial).format("YYYY-MM-DD");
+                        $scope.adEntity.date_due = moment($scope.adEntity.date_due).format("YYYY-MM-DD");
+                        $scope.adEntity.aircraft_id = $scope.selectedTabId; 
+                        mntService.saveADSB($scope.adEntity).then(function (response) {
+                            console.log(response);
+                        });
 
                         $scope.popup_ad_visible = false;
                     }
@@ -890,7 +1030,7 @@ app.controller('mntStatusController', ['$scope', '$location', 'qaService', 'auth
         }
     };
 
-     $scope.popup_adsb_visible = false;
+    $scope.popup_adsb_visible = false;
     $scope.popup_adsb = {
 
         fullScreen: false,
@@ -923,6 +1063,8 @@ app.controller('mntStatusController', ['$scope', '$location', 'qaService', 'auth
 
         }
     };
+
+
 
 
 

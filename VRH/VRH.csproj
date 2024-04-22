@@ -278,6 +278,7 @@
     <Content Include="app\services\flightService.js" />
     <Content Include="app\services\fuelService.js" />
     <Content Include="app\services\generalService.js" />
+    <Content Include="app\services\mntService.js" />
     <Content Include="app\services\jobgroupService.js" />
     <Content Include="app\services\libraryService.js" />
     <Content Include="app\services\locationService.js" />

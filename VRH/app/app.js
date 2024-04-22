@@ -1004,6 +1004,7 @@ app.run(['authService', 'activityService', '$rootScope', '$location', '$template
         $templateCache.removeAll();
     });
     $rootScope.serviceUrl = serviceBase;
+    $rootScope.serviceMnt = 'http://localhost:9063/';
     $rootScope.fileHandlerUrl = webBase + 'filehandler.ashx';
     // $rootScope.fileHandlerUrl ='https://trn.apvaresh.com/'+'filehandler.ashx';
     $rootScope.clientsFilesUrl = 'https://files.airpocket.online/varesh/certificates/';//webBase + 'upload/clientsfiles/';
