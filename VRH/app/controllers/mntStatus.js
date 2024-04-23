@@ -196,6 +196,11 @@ app.controller('mntStatusController', ['$scope', '$location', 'mntService', 'aut
         width: 35,
         onClick: function (e) {
 
+            mntService.deleteAcCheck($scope.dg_coming_id).then(function (response) {
+                $scope.dg_coming_ds = Enumerable.From($scope.dg_coming_ds).Where(function (x) {
+                    return x.id != $scope.dg_coming_id.id;
+                }).ToArray();
+            });
 
         }
 
@@ -220,7 +225,11 @@ app.controller('mntStatusController', ['$scope', '$location', 'mntService', 'aut
         width: 35,
         onClick: function (e) {
 
-
+            mntService.deleteAcAdsb($scope.dg_ad_id).then(function (response) {
+                $scope.dg_ad_ds = Enumerable.From($scope.dg_ad_ds).Where(function (x) {
+                    return x.id != $scope.dg_ad_id.id;
+                }).ToArray();
+            });
         }
 
     };
@@ -232,7 +241,11 @@ app.controller('mntStatusController', ['$scope', '$location', 'mntService', 'aut
         width: 35,
         onClick: function (e) {
 
-
+            mntService.deleteEngLlp($scope.dg_eng_part_id).then(function (response) {
+                $scope.dg_eng_part_ds = Enumerable.From($scope.dg_eng_part_ds).Where(function (x) {
+                    return x.id != $scope.dg_eng_part_id.id;
+                }).ToArray();
+            });
         }
 
     };
@@ -256,7 +269,11 @@ app.controller('mntStatusController', ['$scope', '$location', 'mntService', 'aut
         width: 35,
         onClick: function (e) {
 
-
+            mntService.deleteEngAdsb($scope.dg_eng_ad_id).then(function (response) {
+                $scope.dg_eng_ad_ds = Enumerable.From($scope.dg_eng_ad_ds).Where(function (x) {
+                    return x.id != $scope.dg_eng_ad_id.id;
+                }).ToArray();
+            });
         }
 
     };
@@ -542,7 +559,79 @@ app.controller('mntStatusController', ['$scope', '$location', 'mntService', 'aut
 
     $scope.txt_part = {
         bindingOptions: {
-            value: "",
+            value: "catEntity.title",
+        }
+    }
+
+    $scope.txt_cata = {
+        bindingOptions: {
+            value: "catEntity.cat_a",
+        }
+    }
+
+    $scope.txt_catb = {
+        bindingOptions: {
+            value: "catEntity.cat_b",
+        }
+    }
+
+    $scope.txt_catc = {
+        bindingOptions: {
+            value: "catEntity.cat_c",
+        }
+    }
+    $scope.txt_catCycle = {
+        bindingOptions: {
+            value: "catEntity.remaining_cycles",
+        }
+    }
+
+    $scope.dt_catUpdate = {
+        type: 'date',
+        displayFormat: "yyyy-MMM-dd",
+        bindingOptions: {
+            value: "catEntity.date_initial",
+        }
+    }
+
+
+
+    $scope.txt_adPart = {
+        bindingOptions: {
+            value: "engAdEntity.reference",
+        }
+    }
+
+    $scope.txt_adSubject = {
+        bindingOptions: {
+            value: "engAdEntity.subject",
+        }
+    }
+
+    $scope.txt_adRemark = {
+        bindingOptions: {
+            value: "engAdEntity.remark",
+        }
+    }
+    $scope.txt_adCycle = {
+        bindingOptions: {
+            value: "engAdEntity.remaining_cycles",
+        }
+    }
+
+    $scope.dt_adDue = {
+        type: 'date',
+        displayFormat: "yyyy-MMM-dd",
+        bindingOptions: {
+            value: "engAdEntity.date_due",
+        }
+    }
+
+    $scope.dt_engAdUpdate = {
+        type: 'date',
+        displayFormat: "yyyy-MMM-dd",
+        bindingOptions: {
+            value: "engAdEntity.date_initial",
         }
     }
     /////////////////////////////////////
@@ -575,6 +664,7 @@ app.controller('mntStatusController', ['$scope', '$location', 'mntService', 'aut
     $scope.dg_coming_selected = null;
     $scope.dg_coming_instance = null;
     $scope.dg_coming_ds = null;
+    $scope.dg_coming_id = { id: null };
     $scope.dg_coming = {
 
 
@@ -615,7 +705,9 @@ app.controller('mntStatusController', ['$scope', '$location', 'mntService', 'aut
         onSelectionChanged: function (e) {
             var data = e.selectedRowsData[0];
 
+            $scope.dg_coming_id.id = e.selectedRowsData[0].id;
 
+            
             if (!data) {
                 $scope.dg_coming_selected = null;
             }
@@ -666,6 +758,7 @@ app.controller('mntStatusController', ['$scope', '$location', 'mntService', 'aut
     $scope.dg_ad_selected = null;
     $scope.dg_ad_instance = null;
     $scope.dg_ad_ds = [];
+    $scope.dg_ad_id = { id: null };
     $scope.dg_ad = {
 
 
@@ -721,6 +814,7 @@ app.controller('mntStatusController', ['$scope', '$location', 'mntService', 'aut
         onSelectionChanged: function (e) {
             var data = e.selectedRowsData[0];
 
+            $scope.dg_ad_id.id = e.selectedRowsData[0].id;
 
             if (!data) {
                 $scope.dg_ad_selected = null;
@@ -755,7 +849,7 @@ app.controller('mntStatusController', ['$scope', '$location', 'mntService', 'aut
 
 
 
-        { dataField: 'cat', caption: 'Eng. Part', allowResizing: true, alignment: 'center', dataType: 'string', allowEditing: false, minWidth: 100 },
+        { dataField: 'title', caption: 'Title', allowResizing: true, alignment: 'center', dataType: 'string', allowEditing: false, minWidth: 100 },
         {
             caption: 'Life Time Limit',
             alignment: 'center',
@@ -776,6 +870,7 @@ app.controller('mntStatusController', ['$scope', '$location', 'mntService', 'aut
     $scope.dg_eng_part_selected = null;
     $scope.dg_eng_part_instance = null;
     $rootScope.dg_eng_part_ds = null;
+    $scope.dg_eng_part_id = {id: null}
     $scope.dg_eng_part = {
 
 
@@ -816,6 +911,7 @@ app.controller('mntStatusController', ['$scope', '$location', 'mntService', 'aut
         onSelectionChanged: function (e) {
             var data = e.selectedRowsData[0];
 
+            $scope.dg_eng_part_id.id = e.selectedRowsData[0].id;
 
             if (!data) {
                 $scope.dg_eng_part_selected = null;
@@ -851,7 +947,7 @@ app.controller('mntStatusController', ['$scope', '$location', 'mntService', 'aut
 
 
         { dataField: '', caption: 'AD/SB', allowResizing: true, alignment: 'center', dataType: 'string', allowEditing: false, minWidth: 100 },
-        { dataField: '', caption: 'Description', allowResizing: true, alignment: 'center', dataType: 'string', allowEditing: false, width: 200 },
+        { dataField: 'subject', caption: 'Subject', allowResizing: true, alignment: 'center', dataType: 'string', allowEditing: false, width: 200 },
         { dataField: 'remark', caption: 'Remark', allowResizing: true, alignment: 'center', dataType: 'string', allowEditing: false, width: 200 },
         { dataField: 'date_due', caption: 'Due Date', allowResizing: true, alignment: 'center', dataType: 'string', allowEditing: false, width: 200 },
         {
@@ -873,6 +969,7 @@ app.controller('mntStatusController', ['$scope', '$location', 'mntService', 'aut
     $scope.dg_eng_ad_selected = null;
     $scope.dg_eng_ad_instance = null;
     $rootScope.dg_eng_ad_ds = null;
+    $scope.dg_eng_ad_id = {id: null}
     $scope.dg_eng_ad = {
 
 
@@ -912,6 +1009,7 @@ app.controller('mntStatusController', ['$scope', '$location', 'mntService', 'aut
         onSelectionChanged: function (e) {
             var data = e.selectedRowsData[0];
 
+            $scope.dg_eng_ad_id.id = e.selectedRowsData[0].id;
 
             if (!data) {
                 $scope.dg_eng_ad_selected = null;
@@ -1106,7 +1204,11 @@ app.controller('mntStatusController', ['$scope', '$location', 'mntService', 'aut
                 widget: 'dxButton', location: 'after', options: {
                     type: 'success', text: 'Save', icon: '', onClick: function (e) {
 
-                       
+                        $scope.catEntity.date_initial = moment($scope.catEntity.date_initial).format("YYYY-MM-DD");
+                        $scope.catEntity.engine_id = $scope.engEntity.id
+                        mntService.saveEngLlp($scope.catEntity).then(function (response) {
+                            console.log(response);
+                        });
 
                         $scope.popup_ad_visible = false;
                     }
@@ -1149,7 +1251,12 @@ app.controller('mntStatusController', ['$scope', '$location', 'mntService', 'aut
                 widget: 'dxButton', location: 'after', options: {
                     type: 'success', text: 'Save', icon: '', onClick: function (e) {
 
-                       
+                        $scope.engAdEntity.date_initial = moment($scope.engAdEntity.date_initial).format("YYYY-MM-DD");
+                        $scope.engAdEntity.engine_id = $scope.engEntity.id
+                        mntService.saveEngAdsb().then(function (response) {
+                            console.log(response);
+                        });
+
                         $scope.popup_ad_visible = false;
                     }
                 }, toolbar: 'bottom'

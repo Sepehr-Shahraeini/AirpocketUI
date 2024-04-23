@@ -83,6 +83,79 @@ app.factory('mntService', ['$http', '$q', 'ngAuthSettings', '$rootScope', functi
         return deferred.promise;
     };
 
+   var _saveEngLlp = function (entity) {
+        var deferred = $q.defer();
+       $http.post($rootScope.serviceMnt + 'api/mnt/engine/llp/save', entity).then(function (response) {
+            deferred.resolve(response.data);
+        }, function (err, status) {
+
+            deferred.reject(Exceptions.getMessage(err));
+        });
+
+        return deferred.promise;
+    };
+
+    var _saveEngAdsb = function (entity) {
+        var deferred = $q.defer();
+        $http.post($rootScope.serviceMnt + 'api/mnt/engine/adsb/save', entity).then(function (response) {
+            deferred.resolve(response.data);
+        }, function (err, status) {
+
+            deferred.reject(Exceptions.getMessage(err));
+        });
+
+        return deferred.promise;
+    };
+
+    var _deletEngAdsb = function (entity) {
+        var deferred = $q.defer();
+        $http.post($rootScope.serviceMnt + 'api/mnt/engine/adsb/delete', entity).then(function (response) {
+            deferred.resolve(response.data);
+        }, function (err, status) {
+
+            deferred.reject(Exceptions.getMessage(err));
+        });
+
+        return deferred.promise;
+    };
+
+   var _deletAcCheck = function (entity) {
+        var deferred = $q.defer();
+       $http.post($rootScope.serviceMnt + 'api/mnt/aircraft/check/delete', entity).then(function (response) {
+            deferred.resolve(response.data);
+        }, function (err, status) {
+
+            deferred.reject(Exceptions.getMessage(err));
+        });
+
+        return deferred.promise;
+    };
+
+  var _deletAcAdsb = function (entity) {
+        var deferred = $q.defer();
+      $http.post($rootScope.serviceMnt + 'api/mnt/aircraft/adsb/delete', entity).then(function (response) {
+            deferred.resolve(response.data);
+        }, function (err, status) {
+
+            deferred.reject(Exceptions.getMessage(err));
+        });
+
+        return deferred.promise;
+    };
+
+  
+     var _deletEngLlp = function (entity) {
+        var deferred = $q.defer();
+         $http.post($rootScope.serviceMnt + 'api/mnt/engine/llp/delete', entity).then(function (response) {
+            deferred.resolve(response.data);
+        }, function (err, status) {
+
+            deferred.reject(Exceptions.getMessage(err));
+        });
+
+        return deferred.promise;
+    };
+
   
 
     ordersServiceFactory.getLLP = _getLLP;
@@ -96,6 +169,14 @@ app.factory('mntService', ['$http', '$q', 'ngAuthSettings', '$rootScope', functi
     ordersServiceFactory.saveADSB = _saveADSB;
     ordersServiceFactory.saveCheck = _saveCheck;
     ordersServiceFactory.saveEngStatus = _saveEngStatus;
+    ordersServiceFactory.saveEngLlp = _saveEngLlp;
+    ordersServiceFactory.saveEngAdsb = _saveEngAdsb;
+
+
+    ordersServiceFactory.deleteEngAdsb = _deletEngAdsb;
+    ordersServiceFactory.deleteAcCheck = _deletAcCheck;
+    ordersServiceFactory.deleteAcAdsb = _deletAcAdsb;
+    ordersServiceFactory.deleteEngLlp = _deletEngLlp;
 
     return ordersServiceFactory;
 
