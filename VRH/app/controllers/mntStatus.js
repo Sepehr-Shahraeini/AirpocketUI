@@ -196,10 +196,12 @@ app.controller('mntStatusController', ['$scope', '$location', 'mntService', 'aut
         width: 35,
         onClick: function (e) {
 
+            $scope.loadingVisible = true;
             mntService.deleteAcCheck($scope.dg_coming_id).then(function (response) {
                 $scope.dg_coming_ds = Enumerable.From($scope.dg_coming_ds).Where(function (x) {
                     return x.id != $scope.dg_coming_id.id;
                 }).ToArray();
+                $scope.loadingVisible = false;
             });
 
         }
@@ -224,11 +226,12 @@ app.controller('mntStatusController', ['$scope', '$location', 'mntService', 'aut
         icon: 'close',
         width: 35,
         onClick: function (e) {
-
+            $scope.loadingVisible = true;
             mntService.deleteAcAdsb($scope.dg_ad_id).then(function (response) {
                 $scope.dg_ad_ds = Enumerable.From($scope.dg_ad_ds).Where(function (x) {
                     return x.id != $scope.dg_ad_id.id;
                 }).ToArray();
+                $scope.loadingVisible = false;
             });
         }
 
@@ -240,11 +243,12 @@ app.controller('mntStatusController', ['$scope', '$location', 'mntService', 'aut
         icon: 'close',
         width: 35,
         onClick: function (e) {
-
+            $scope.loadingVisible = true;
             mntService.deleteEngLlp($scope.dg_eng_part_id).then(function (response) {
                 $scope.dg_eng_part_ds = Enumerable.From($scope.dg_eng_part_ds).Where(function (x) {
                     return x.id != $scope.dg_eng_part_id.id;
                 }).ToArray();
+                $scope.loadingVisible = false;
             });
         }
 
@@ -268,11 +272,12 @@ app.controller('mntStatusController', ['$scope', '$location', 'mntService', 'aut
         icon: 'close',
         width: 35,
         onClick: function (e) {
-
+            $scope.loadingVisible = true;
             mntService.deleteEngAdsb($scope.dg_eng_ad_id).then(function (response) {
                 $scope.dg_eng_ad_ds = Enumerable.From($scope.dg_eng_ad_ds).Where(function (x) {
                     return x.id != $scope.dg_eng_ad_id.id;
                 }).ToArray();
+                $scope.loadingVisible = false;
             });
         }
 
@@ -591,6 +596,14 @@ app.controller('mntStatusController', ['$scope', '$location', 'mntService', 'aut
         displayFormat: "yyyy-MMM-dd",
         bindingOptions: {
             value: "catEntity.date_initial",
+        }
+    }
+
+    $scope.dt_catDue = {
+        type: 'date',
+        displayFormat: "yyyy-MMM-dd",
+        bindingOptions: {
+            value: "catEntity.date_due",
         }
     }
 
@@ -946,7 +959,7 @@ app.controller('mntStatusController', ['$scope', '$location', 'mntService', 'aut
 
 
 
-        { dataField: '', caption: 'AD/SB', allowResizing: true, alignment: 'center', dataType: 'string', allowEditing: false, minWidth: 100 },
+        { dataField: 'reference', caption: 'AD/SB Reference', allowResizing: true, alignment: 'center', dataType: 'string', allowEditing: false, minWidth: 100 },
         { dataField: 'subject', caption: 'Subject', allowResizing: true, alignment: 'center', dataType: 'string', allowEditing: false, width: 200 },
         { dataField: 'remark', caption: 'Remark', allowResizing: true, alignment: 'center', dataType: 'string', allowEditing: false, width: 200 },
         { dataField: 'date_due', caption: 'Due Date', allowResizing: true, alignment: 'center', dataType: 'string', allowEditing: false, width: 200 },
@@ -1107,8 +1120,11 @@ app.controller('mntStatusController', ['$scope', '$location', 'mntService', 'aut
 
                         $scope.checkEntity.date_initial = moment($scope.checkEntity.date_initial).format('YYYY-MM-DD');
                         $scope.checkEntity.aircraft_id = $scope.selectedTabId;
+                        $scope.loadingVisible = true;
                         mntService.saveCheck($scope.checkEntity).then(function (response) {
                             console.log(response);
+                            $scope.loadingVisible = false;
+                            $scope.bind();
                         });
 
                         $scope.popup_tasks_visible = false;
@@ -1157,8 +1173,12 @@ app.controller('mntStatusController', ['$scope', '$location', 'mntService', 'aut
                         $scope.adEntity.date_initial = moment($scope.adEntity.date_initial).format("YYYY-MM-DD");
                         $scope.adEntity.date_due = moment($scope.adEntity.date_due).format("YYYY-MM-DD");
                         $scope.adEntity.aircraft_id = $scope.selectedTabId;
+                        $scope.loadingVisible = true;
                         mntService.saveADSB($scope.adEntity).then(function (response) {
                             console.log(response);
+                            $scope.bind();
+                            $scope.loadingVisible = false;
+
                         });
 
                         $scope.popup_ad_visible = false;
@@ -1205,12 +1225,16 @@ app.controller('mntStatusController', ['$scope', '$location', 'mntService', 'aut
                     type: 'success', text: 'Save', icon: '', onClick: function (e) {
 
                         $scope.catEntity.date_initial = moment($scope.catEntity.date_initial).format("YYYY-MM-DD");
+                        $scope.catEntity.date_due = moment($scope.catEntity.date_due).format("YYYY-MM-DD");
                         $scope.catEntity.engine_id = $scope.engEntity.id
+                        $scope.loadingVisible = true;
                         mntService.saveEngLlp($scope.catEntity).then(function (response) {
                             console.log(response);
+                            $scope.bindEng();
+                            $scope.loadingVisible = false;
                         });
 
-                        $scope.popup_ad_visible = false;
+                        $scope.popup_cat_visible = false;
                     }
                 }, toolbar: 'bottom'
             },
@@ -1253,12 +1277,15 @@ app.controller('mntStatusController', ['$scope', '$location', 'mntService', 'aut
 
                         $scope.engAdEntity.date_initial = moment($scope.engAdEntity.date_initial).format("YYYY-MM-DD");
                         $scope.engAdEntity.date_due = moment($scope.engAdEntity.date_due).format("YYYY-MM-DD");
-                        $scope.engAdEntity.engine_id = $scope.engEntity.id
+                        $scope.engAdEntity.engine_id = $scope.engEntity.id;
+                        $scope.loadingVisible = true;
                         mntService.saveEngAdsb($scope.engAdEntity).then(function (response) {
                             console.log(response);
+                            $scope.bindEng();
+                            $scope.loadingVisible = false;
                         });
 
-                        $scope.popup_ad_visible = false;
+                        $scope.popup_adsb_visible = false;
                     }
                 }, toolbar: 'bottom'
             },
@@ -1276,7 +1303,25 @@ app.controller('mntStatusController', ['$scope', '$location', 'mntService', 'aut
     };
 
 
+    $scope.loadingVisible = false;
+    $scope.loadPanel = {
+        message: 'Please wait...',
 
+        showIndicator: true,
+        showPane: true,
+        shading: true,
+        closeOnOutsideClick: false,
+        shadingColor: "rgba(0,0,0,0.4)",
+        onShown: function () {
+
+        },
+        onHidden: function () {
+
+        },
+        bindingOptions: {
+            visible: 'loadingVisible'
+        }
+    };
 
 
 }]);
