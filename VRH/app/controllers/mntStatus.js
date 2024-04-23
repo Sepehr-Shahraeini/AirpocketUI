@@ -557,7 +557,7 @@ app.controller('mntStatusController', ['$scope', '$location', 'mntService', 'aut
         }
     }
 
-    $scope.txt_part = {
+    $scope.txt_title = {
         bindingOptions: {
             value: "catEntity.title",
         }
@@ -1252,8 +1252,9 @@ app.controller('mntStatusController', ['$scope', '$location', 'mntService', 'aut
                     type: 'success', text: 'Save', icon: '', onClick: function (e) {
 
                         $scope.engAdEntity.date_initial = moment($scope.engAdEntity.date_initial).format("YYYY-MM-DD");
+                        $scope.engAdEntity.date_due = moment($scope.engAdEntity.date_due).format("YYYY-MM-DD");
                         $scope.engAdEntity.engine_id = $scope.engEntity.id
-                        mntService.saveEngAdsb().then(function (response) {
+                        mntService.saveEngAdsb($scope.engAdEntity).then(function (response) {
                             console.log(response);
                         });
 
