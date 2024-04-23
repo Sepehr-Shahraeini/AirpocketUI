@@ -23,6 +23,18 @@ app.factory('mntService', ['$http', '$q', 'ngAuthSettings', '$rootScope', functi
             return results;
         });
     };
+   var _getEngADSB = function (id) {
+
+       return $http.get($rootScope.serviceMnt + 'api/mnt/get/aircraft/adsbs/engine/' + id).then(function (results) {
+            return results;
+        });
+    };
+     var _getEngLlp = function (id) {
+
+       return $http.get($rootScope.serviceMnt + 'api/mnt/get/aircraft/llps/engine/' + id).then(function (results) {
+            return results;
+        });
+    };
     var _saveLLP = function (entity) {
         var deferred = $q.defer();
         $http.post($rootScope.serviceMnt + 'api/mnt/aircraft/status', entity).then(function (response) {
@@ -76,6 +88,8 @@ app.factory('mntService', ['$http', '$q', 'ngAuthSettings', '$rootScope', functi
     ordersServiceFactory.getLLP = _getLLP;
     ordersServiceFactory.getADSB = _getADSB;
     ordersServiceFactory.getCheck = _getCheck;
+    ordersServiceFactory.getEngADSB = _getEngADSB;
+    ordersServiceFactory.getEngLlp = _getEngLlp;
 
 
     ordersServiceFactory.saveLLP = _saveLLP;

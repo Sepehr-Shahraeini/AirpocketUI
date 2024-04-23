@@ -439,27 +439,25 @@
 
             </div>
             <div id="popup_eng" dx-popup="popup_eng">
-                <div style="border: 1px solid #ccc; width:100%">
+                <div style="border: 1px solid #ccc; width:100%;padding-top:3px">
                     <table>
                         <tr>
-                            <td style="padding: 5px 0 0 5px !important; text-align: center; width: 15%">Model</td>
+                            <td style="padding: 5px 0 0 5px !important; text-align: center; width: 5%">Model</td>
                             <td style="padding:5px"><div style="border: 1px solid #ccc; height: 35px" dx-text-box="txt_engModel"></div></td>
 
-                            <td style="padding: 5px 0 0 5px !important; text-align: center; width: 15%">Serial No</td>
+                            <td style="padding: 5px 0 0 5px !important; text-align: center; width: 5%">Serial No</td>
                             <td style="padding:5px"><div style="border: 1px solid #ccc; height: 35px" dx-number-box="num_engSerial"></div></td>
 
-                            <td style="padding: 5px 0 0 5px !important; text-align: center; width: 15%">Cat</td>
+                            <td style="padding: 5px 0 0 5px !important; text-align: center; width: 5%">Cat</td>
                             <td style="padding:5px"><div style="border: 1px solid #ccc; height: 35px; width: 100%" dx-text-box="txt_cat"></div></td>
-                        </tr>
 
-                        <tr>
-                            <td style="padding:2px 0 0 5px !important; text-align: center;width: 15%">TFH</td>
+                            <td style="padding:2px 0 0 5px !important; text-align: center;width: 5%">TFH</td>
                             <td style="padding:5px"><div style="border: 1px solid #ccc; height: 35px" dx-number-box="num_engTfh"></div></td>
 
-                            <td style="padding: 2px 0 0 5px !important; text-align: center; width: 15%">TFC</td>
+                            <td style="padding: 2px 0 0 5px !important; text-align: center; width: 5%">TFC</td>
                             <td style="padding:5px"><div style="border: 1px solid #ccc; height: 35px" dx-number-box="num_engTfc"></div></td>
 
-                            <td style="padding: 2px 0 0 5px !important; text-align: center; width: 15%">Date UpDate</td>
+                            <td style="padding: 2px 0 0 5px !important; text-align: center; width: 5%">Date UpDate</td>
                             <td style="padding:5px"><div style="border: 1px solid #ccc; height: 35px; width: 100%" dx-date-box="dt_engUpdate"></div></td>
                         </tr>
                     </table>
@@ -467,7 +465,12 @@
 
 
                 <div dx-data-grid="dg_eng_part" id="dg_eng_part" class="content" style="overflow-y: hidden; margin-top: 10px" dx-item-alias="row"></div>
+                <div dx-button="btn_eng_part_add" style="margin: 5px 2px 0 2px !important"></div>
+                <div dx-button="btn_eng_part_remove" style="margin: 5px 0 0 0 !important"></div>
+
                 <div dx-data-grid="dg_eng_ad" id="dg_eng_ad" class="content" style="overflow-y:hidden; margin-top:10px" dx-item-alias="row"></div>
+                <div dx-button="btn_eng_ad_add" style="margin: 5px 2px 0 2px !important"></div>
+                <div dx-button="btn_eng_ad_remove" style="margin: 5px 0 0 0 !important"></div>
             </div>
 
 
